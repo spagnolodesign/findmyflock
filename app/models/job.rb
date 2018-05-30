@@ -8,7 +8,6 @@ class Job < ApplicationRecord
   validates :remote, inclusion: { in: [["remote"], ["office"], ["remote", "office"]]}
   validates :level, presence: true,  inclusion: { in: 1..5 }
   validates :employment_type, presence: true, length: { maximum: 100 }
-  validate  :check_benefits, :check_cultures
   validates :skills, :benefits, :cultures, length: { minimum: 1, maximum: 10 }
   before_save :geocode
 
