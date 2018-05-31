@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_28_052639) do
+ActiveRecord::Schema.define(version: 2018_05_31_032511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "applications", force: :cascade do |t|
+    t.text "message"
+    t.bigint "developer_id"
+    t.bigint "job_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["developer_id"], name: "index_applications_on_developer_id"
+    t.index ["job_id"], name: "index_applications_on_job_id"
+  end
 
   create_table "benefits", force: :cascade do |t|
     t.string "value"
@@ -32,6 +42,41 @@ ActiveRecord::Schema.define(version: 2018_05_28_052639) do
     t.string "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "developers", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.string "first_name"
+    t.string "last_name"
+    t.boolean "need_us_permit", default: false
+    t.string "resume_name"
+    t.string "photo_name"
+    t.integer "min_salary"
+    t.string "city"
+    t.string "zip_code"
+    t.string "country"
+    t.float "latitude"
+    t.float "longitude"
+    t.integer "level"
+    t.text "skills", default: [], array: true
+    t.text "remote", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_developers_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_developers_on_reset_password_token", unique: true
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -63,5 +108,7 @@ ActiveRecord::Schema.define(version: 2018_05_28_052639) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "applications", "developers"
+  add_foreign_key "applications", "jobs"
   add_foreign_key "jobs", "companies"
 end
