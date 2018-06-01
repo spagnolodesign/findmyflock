@@ -43,7 +43,7 @@ class DeviseCreateDevelopers < ActiveRecord::Migration[5.2]
       t.float :latitude
       t.float :longitude
       t.integer :level
-      t.text :skills, array: true, default: []
+      t.hstore :skills, default: {}, null: false
       t.text :remote, array: true, default: []
 
       t.timestamps null: false

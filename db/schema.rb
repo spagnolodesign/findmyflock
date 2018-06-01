@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 2018_05_31_032511) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
   enable_extension "plpgsql"
 
   create_table "applications", force: :cascade do |t|
@@ -71,7 +72,7 @@ ActiveRecord::Schema.define(version: 2018_05_31_032511) do
     t.float "latitude"
     t.float "longitude"
     t.integer "level"
-    t.text "skills", default: [], array: true
+    t.hstore "skills", default: {}, null: false
     t.text "remote", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -91,7 +92,7 @@ ActiveRecord::Schema.define(version: 2018_05_31_032511) do
     t.float "longitude"
     t.integer "max_salary"
     t.integer "level"
-    t.text "skills", default: [], array: true
+    t.hstore "skills", default: {}, null: false
     t.string "employment_type"
     t.text "benefits", default: [], array: true
     t.text "cultures", default: [], array: true

@@ -8,7 +8,7 @@ class Job < ApplicationRecord
   validates :remote, inclusion: { in: [["remote"], ["office"], ["remote", "office"]]}
   validates :level, presence: true,  inclusion: { in: 1..5 }
   validates :employment_type, presence: true, length: { maximum: 100 }
-  validates :skills, :benefits, :cultures, length: { minimum: 1, maximum: 10 }
+  # validates :skills, :benefits, :cultures, length: { minimum: 1, maximum: 10 }
   before_save :geocode
 
   scope :filter_by_benefits, -> (array) { where("benefits @> ARRAY[?]::text[]", array) }
@@ -19,5 +19,7 @@ class Job < ApplicationRecord
   def location
     [city, zip_code, state, country].compact.join(', ')
   end
+
+  
 
 end

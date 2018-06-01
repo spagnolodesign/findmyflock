@@ -60,12 +60,14 @@ Company.all.each do |company|
       latitude: nil,
       longitude: nil,
       max_salary: salary.sample,
-      skills: skills,
       benefits: benefits,
       cultures: cultures,
       can_sponsor: Faker::Boolean.boolean(0.2),
       company: company
     )
+
+    job.skills[(SKILLS.sample)] = rand(1..3)
+    job.skills[(SKILLS.sample)] = rand(1..3)
     job.save
 
     puts "created job #{job.title}"
@@ -80,7 +82,7 @@ p "Creating Developer"
     rand(2..5).times do
       skills << Skill.find(rand(1..Skill.count)).value
     end
-    Developer.create(
+    dev = Developer.create(
     email: Faker::Internet.email,
     password: 'Developer1!',
     first_name: Faker::Name.first_name,
@@ -89,28 +91,32 @@ p "Creating Developer"
     zip_code: '90009',
     country: 'United States',
     need_us_permit: Faker::Boolean.boolean(0.2),
-    min_salary: salary = [10_000, 20_000, 30_000, 40_000].sample,
+    min_salary: salary = [10_000, 20_000, 30_000].sample,
     level: rand(1..5),
     remote: [['remote'], ['office'], %w[remote office]].sample,
-    skills: skills
   )
+
+  dev.skills[(SKILLS.sample)] = rand(2..5)
+  dev.skills[(SKILLS.sample)] = rand(2..5)
+  dev.skills[(SKILLS.sample)] = rand(2..5)
+  dev.save
  p "One developer created"
 end
 
-list = Developer.match_list
-
-p "There are #{list.count} matches in the db"
-p "Creating applications"
-
-
-list.each do |id|
-  dev = Developer.find(id)
-  job = dev.match.sample
-  Application.create(
-    developer: dev,
-    job: job,
-    message: "È universalmente riconosciuto che un lettore che osserva il layout di una pagina viene distratto dal contenuto testuale se questo è leggibile. Lo scopo dell’utilizzo del Lorem Ipsum è che offre una normale distribuzione delle lettere (al contrario di quanto avviene se si utilizzano brevi frasi ripetute, ad esempio “testo qui”), apparendo come un normale blocco di testo leggibile. Molti software di impaginazione e di web design utilizzano Lorem Ipsum come testo modello. Molte versioni del testo sono state prodotte negli anni, a volte casualmente, a volte di proposito (ad esempio inserendo passaggi ironici)."
-  )
-end
-
-p "Created #{Application.all.count} applications"
+# list = Developer.match_list
+#
+# p "There are #{list.count} matches in the db"
+# p "Creating applications"
+#
+#
+# list.each do |id|
+#   dev = Developer.find(id)
+#   job = dev.match.sample
+#   Application.create(
+#     developer: dev,
+#     job: job,
+#     message: "È universalmente riconosciuto che un lettore che osserva il layout di una pagina viene distratto dal contenuto testuale se questo è leggibile. Lo scopo dell’utilizzo del Lorem Ipsum è che offre una normale distribuzione delle lettere (al contrario di quanto avviene se si utilizzano brevi frasi ripetute, ad esempio “testo qui”), apparendo come un normale blocco di testo leggibile. Molti software di impaginazione e di web design utilizzano Lorem Ipsum come testo modello. Molte versioni del testo sono state prodotte negli anni, a volte casualmente, a volte di proposito (ad esempio inserendo passaggi ironici)."
+#   )
+# end
+#
+# p "Created #{Application.all.count} applications"

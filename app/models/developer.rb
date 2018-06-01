@@ -43,25 +43,25 @@ class Developer < ApplicationRecord
 
 
   def match
-    @jobs = Job.where("skills <@ ARRAY[?]::text[]", self.skills).where("level <= ?", self.level).where("max_salary >= ?", self.min_salary)
     if self.remote == ["office"]
-      @jobs.where(remote: ["office"])
+      @jobs = Job.where(remote: ["office"]).where("max_salary >= ?", self.min_salary)
     elsif self.remote == ["remote"]
-      @jobs.where(remote: ["remote"])
+      @jobs = Job.where(remote: ["remote"]).where("max_salary >= ?", self.min_salary)
     else
-      @jobs.where("remote = ARRAY['remote']::text[] OR remote = ARRAY['remote', 'office']::text[]")
+      @jobs = Job.where("remote = ARRAY['remote']::text[] OR remote = ARRAY['remote', 'office']::text[]").where("max_salary >= ?", self.min_salary)
     end
+    match_skills(self, @jobs)
   end
 
-# Usefull just for test
-  def self.match_list
-    match = []
-    Developer.all.each do |dev|
-      if !dev.match.empty?
-        match << dev.id
+  def match_skills(user, jobs)
+    matched_jobs = []
+    jobs.each do |job|
+      match = true
+      job.skills.each do |key, value|
+          match = false if !((user.skills.include?(key)) && (user.skills[key] >= value))
       end
+      matched_jobs << job if match
     end
-    match
+  matched_jobs
   end
-
 end
