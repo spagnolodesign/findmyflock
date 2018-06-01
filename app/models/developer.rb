@@ -14,9 +14,11 @@ class Developer < ApplicationRecord
   validates :email, :password, presence: true
   validates :first_name, :last_name, presence: true, length: { maximum: 50 }, on: :update
   validates :city, :zip_code, :country, presence: true,  length: { maximum: 100 }
+  validates :skills, presence: true, length: { minimum: 1, maximum: 3 }
   validates :min_salary, numericality: { only_integer: true, greater_than: 0}, on: :update
   validates :level, presence: true,  inclusion: { in: 1..5 }, on: :update
   validates :remote, inclusion: { in: [["remote"], ["office"], ["remote", "office"]]}, on: :update
+
   validates :level, presence: true,  inclusion: { in: 1..5 }, on: :update
   before_save :geocode
 
@@ -44,7 +46,7 @@ class Developer < ApplicationRecord
 
   def match
     if self.remote == ["office"]
-      @jobs = Job.where(remote: ["office"]).where("max_salary >= ?", self.min_salary)
+      @jobs = Job.where(remote: ["office"]).where("max_salary >= ?", self.min_salary).
     elsif self.remote == ["remote"]
       @jobs = Job.where(remote: ["remote"]).where("max_salary >= ?", self.min_salary)
     else
