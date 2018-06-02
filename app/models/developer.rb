@@ -21,7 +21,8 @@ class Developer < ApplicationRecord
 
   validates :level, presence: true,  inclusion: { in: 1..5 }, on: :update
   before_save :geocode
-  before_save :developer_skills_array
+  before_save :developer_skills_array ,  if: :skills_changed?
+
 
 
   def location
@@ -52,7 +53,6 @@ class Developer < ApplicationRecord
 private
 
   def developer_skills_array
-  if skills_changed?
     skills_array.clear
     skills.each do |key, value|
       x = value.to_i
@@ -61,7 +61,6 @@ private
         x -= 1
       end
     end
-  end
 end
 
 end

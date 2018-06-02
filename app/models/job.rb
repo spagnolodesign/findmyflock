@@ -11,10 +11,10 @@ class Job < ApplicationRecord
   validates :benefits, :cultures, length: { minimum: 1, maximum: 10 }
   validates :skills, length: { minimum: 1, maximum: 3 }
   before_save :geocode
-  before_save :generate_job_skills_array
+  before_save :generate_job_skills_array, if: :skills_changed?
 
 
-  scope :remote_or_office_jobs, -> (array) {where("remote <@ ARRAY[?]::text[]", array)}
+  scope :remote_or_office_jobs, -> (array) {where("remote <@ ARRAY[?]::text[] OR remote @> ARRAY[?]::text[]", array, array)}
   scope :match_skills_type, -> (array) { where("skills_array <@ ARRAY[?]::text[]", array) }
   scope :filter_by_user_salary, -> (value) {where("max_salary >= ?", value)}
   scope :filter_by_benefits, -> (array) { where("benefits @> ARRAY[?]::text[]", array) }
@@ -28,12 +28,10 @@ class Job < ApplicationRecord
   private
 
   def generate_job_skills_array
-    if skills_changed?
       skills_array.clear
       skills.each do |key, value|
         skills_array <<  "#{key}/#{value}"
       end
-    end
   end
 
 

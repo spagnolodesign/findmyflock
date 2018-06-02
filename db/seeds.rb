@@ -4,7 +4,7 @@ EMPLOYMENT_TYPE = ['full-time', 'part-time', 'contract', 'temporary', 'seasonal'
 
 BENEFITS = ['Office Dogs', 'Equity', 'Remote', '30+ Days Parental Leave', '60+ Days Parental Leave', '90+ Days Parental Leave', 'Flexible Hours', 'Social Mission', 'Environmental Mission', '401(k)', '401(k) Matching', "100\% Covered Health Insurance", "80\%+ Covered Health Insurance", 'Dental Insurance', 'Vision Insurance', 'Life Insurance', 'Trans-Inclusive Healthcare', 'Professional Development Budget', 'Unlimited Vacation', '30+ Days Vacation', 'Lunch Provided', 'Beach Within 60 Minutes', 'Mountain Within 60 Minutes', 'In-Office Gym', 'Flat Heirarchy', 'Commuter Coverage'].freeze
 
-CULTURES = ['family-like team' 'Cubicles,' 'No cubicles,' 'company outings,' 'beer on tap', 'ping pong', 'Game Nights', 'pair programming', 'not pair programming'].freeze
+CULTURES = ['family-like team', 'Cubicles', 'No cubicles' , 'company outings' , 'beer on tap', 'ping pong', 'Game Nights', 'pair programming', 'not pair programming'].freeze
 
 SKILLS.each do |skill|
   Skill.create(value: skill)
