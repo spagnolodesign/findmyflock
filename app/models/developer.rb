@@ -46,19 +46,14 @@ class Developer < ApplicationRecord
 
 
   def match
-    if self.remote == ["office"]
-      Job.only_office_jobs.match_skills_type(self.skills_array)
-    elsif self.remote == ["remote"]
-      Job.only_remote_jobs.match_skills_type(self.skills_array)
-    else
-      Job.remote_or_office_jobs.match_skills_type(self.skills_array)
-    end
+      Job.remote_or_office_jobs(self.remote).match_skills_type(self.skills_array)
   end
 
 private
 
   def developer_skills_array
   if skills_changed?
+    skills_array.clear
     skills.each do |key, value|
       x = value.to_i
       (value.to_i).times do

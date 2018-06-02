@@ -14,9 +14,7 @@ class Job < ApplicationRecord
   before_save :generate_job_skills_array
 
 
-  scope :only_remote_jobs, -> {where(remote: ["remote"])}
-  scope :only_office_jobs, -> {where(remote: ["office"])}
-  scope :remote_or_office_jobs, -> {where("remote = ARRAY['remote']::text[] OR remote = ARRAY['remote', 'office']::text[]")}
+  scope :remote_or_office_jobs, -> (array) {where("remote <@ ARRAY[?]::text[]", array)}
   scope :match_skills_type, -> (array) { where("skills_array <@ ARRAY[?]::text[]", array) }
   scope :filter_by_user_salary, -> (value) {where("max_salary >= ?", value)}
   scope :filter_by_benefits, -> (array) { where("benefits @> ARRAY[?]::text[]", array) }
@@ -31,6 +29,7 @@ class Job < ApplicationRecord
 
   def generate_job_skills_array
     if skills_changed?
+      skills_array.clear
       skills.each do |key, value|
         skills_array <<  "#{key}/#{value}"
       end
