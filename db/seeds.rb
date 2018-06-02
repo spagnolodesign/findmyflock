@@ -66,14 +66,16 @@ Company.all.each do |company|
       company: company
     )
 
-    job.skills[(SKILLS.sample)] = rand(1..3)
-    job.skills[(SKILLS.sample)] = rand(1..3)
+    rand(1..2).times do
+      job.skills[SKILLS.sample] = rand(1..4)
+    end
     job.save
-
     puts "created job #{job.title}"
-  end
-end
 
+  end
+
+end
+#
 p "Creating Developer"
 
 40.times do
@@ -95,28 +97,10 @@ p "Creating Developer"
     level: rand(1..5),
     remote: [['remote'], ['office'], %w[remote office]].sample,
   )
+  3.times do
+    dev.skills[SKILLS.sample] = rand(2..5)
+  end
 
-  dev.skills[(SKILLS.sample)] = rand(2..5)
-  dev.skills[(SKILLS.sample)] = rand(2..5)
-  dev.skills[(SKILLS.sample)] = rand(2..5)
   dev.save
  p "One developer created"
 end
-
-# list = Developer.match_list
-#
-# p "There are #{list.count} matches in the db"
-# p "Creating applications"
-#
-#
-# list.each do |id|
-#   dev = Developer.find(id)
-#   job = dev.match.sample
-#   Application.create(
-#     developer: dev,
-#     job: job,
-#     message: "È universalmente riconosciuto che un lettore che osserva il layout di una pagina viene distratto dal contenuto testuale se questo è leggibile. Lo scopo dell’utilizzo del Lorem Ipsum è che offre una normale distribuzione delle lettere (al contrario di quanto avviene se si utilizzano brevi frasi ripetute, ad esempio “testo qui”), apparendo come un normale blocco di testo leggibile. Molti software di impaginazione e di web design utilizzano Lorem Ipsum come testo modello. Molte versioni del testo sono state prodotte negli anni, a volte casualmente, a volte di proposito (ad esempio inserendo passaggi ironici)."
-#   )
-# end
-#
-# p "Created #{Application.all.count} applications"

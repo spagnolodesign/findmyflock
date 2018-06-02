@@ -73,6 +73,8 @@ ActiveRecord::Schema.define(version: 2018_05_31_032511) do
     t.float "longitude"
     t.integer "level"
     t.hstore "skills", default: {}, null: false
+    t.text "skills_array", default: [], array: true
+    t.text "levels", default: [], array: true
     t.text "remote", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -93,6 +95,8 @@ ActiveRecord::Schema.define(version: 2018_05_31_032511) do
     t.integer "max_salary"
     t.integer "level"
     t.hstore "skills", default: {}, null: false
+    t.text "skills_array", default: [], array: true
+    t.text "levels", default: [], array: true
     t.string "employment_type"
     t.text "benefits", default: [], array: true
     t.text "cultures", default: [], array: true

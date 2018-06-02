@@ -21,6 +21,7 @@ class Developer < ApplicationRecord
 
   validates :level, presence: true,  inclusion: { in: 1..5 }, on: :update
   before_save :geocode
+  before_save :developer_skills_array
 
 
   def location
@@ -46,24 +47,26 @@ class Developer < ApplicationRecord
 
   def match
     if self.remote == ["office"]
-      @jobs = Job.where(remote: ["office"]).where("max_salary >= ?", self.min_salary).
+      Job.only_office_jobs.match_skills_type(self.skills_array)
     elsif self.remote == ["remote"]
-      @jobs = Job.where(remote: ["remote"]).where("max_salary >= ?", self.min_salary)
+      Job.only_remote_jobs.match_skills_type(self.skills_array)
     else
-      @jobs = Job.where("remote = ARRAY['remote']::text[] OR remote = ARRAY['remote', 'office']::text[]").where("max_salary >= ?", self.min_salary)
+      Job.remote_or_office_jobs.match_skills_type(self.skills_array)
     end
-    match_skills(self, @jobs)
   end
 
-  def match_skills(user, jobs)
-    matched_jobs = []
-    jobs.each do |job|
-      match = true
-      job.skills.each do |key, value|
-          match = false if !((user.skills.include?(key)) && (user.skills[key] >= value))
+private
+
+  def developer_skills_array
+  if skills_changed?
+    skills.each do |key, value|
+      x = value.to_i
+      (value.to_i).times do
+        skills_array << "#{key}/#{x}"
+        x -= 1
       end
-      matched_jobs << job if match
     end
-  matched_jobs
   end
+end
+
 end
