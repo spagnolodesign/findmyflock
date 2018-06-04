@@ -10,7 +10,7 @@ class Job < ApplicationRecord
   validates :employment_type, presence: true, length: { maximum: 100 }
   validates :benefits, :cultures, length: { minimum: 1, maximum: 10 }
   validates :skills, length: { minimum: 1, maximum: 3 }
-  before_save :geocode
+  before_save :geocode, if: :city_changed?
   before_save :generate_job_skills_array, if: :skills_changed?
 
 

@@ -20,7 +20,7 @@ class Developer < ApplicationRecord
   validates :remote, inclusion: { in: [["remote"], ["office"], ["remote", "office"]]}, on: :update
 
   validates :level, presence: true,  inclusion: { in: 1..5 }, on: :update
-  before_save :geocode
+  before_save :geocode, if: :city_changed?
   before_save :developer_skills_array ,  if: :skills_changed?
 
 
@@ -41,7 +41,7 @@ class Developer < ApplicationRecord
 
   def password_complexity
     if !password.nil? && password !~ /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/
-      errors.add :password, 'must include at least one lowercase letter, one uppercase letter, and one digit'
+      errors.add :password, 'Password must include at least one lowercase letter, one uppercase letter, and one digit'
     end
   end
 
@@ -50,8 +50,9 @@ class Developer < ApplicationRecord
       Job.remote_or_office_jobs(self.remote).match_skills_type(self.skills_array)
   end
 
-private
 
+
+private
   def developer_skills_array
     skills_array.clear
     skills.each do |key, value|
