@@ -12,7 +12,6 @@ class CreateJobs < ActiveRecord::Migration[5.2]
       t.float :longitude
       t.integer :max_salary
       t.integer :level
-      t.hstore :skills, default: {}, null: false
       t.text :skills_array, array: true, default: []
       t.text :levels, array: true, default: []
       t.string :employment_type

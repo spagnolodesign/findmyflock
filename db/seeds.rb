@@ -7,10 +7,10 @@ BENEFITS = ['Office Dogs', 'Equity', 'Remote', '30+ Days Parental Leave', '60+ D
 CULTURES = ['family-like team', 'Cubicles', 'No cubicles' , 'company outings' , 'beer on tap', 'ping pong', 'Game Nights', 'pair programming', 'not pair programming'].freeze
 
 SKILLS.each do |skill|
-  Skill.create(value: skill)
+  Competence.create(value: skill)
 end
 
-p "Created #{Skill.all.count} skills"
+p "Created #{Competence.all.count} competence"
 
 BENEFITS.each do |value|
   Benefit.create(value: value)
@@ -32,7 +32,7 @@ p "Created #{Culture.all.count} cultures"
 end
 
 Company.all.each do |company|
-  30.times do
+  10.times do
     cultures = []
     benefits = []
     skills = []
@@ -43,9 +43,6 @@ Company.all.each do |company|
     end
     rand(2..5).times do
       benefits << Benefit.find(rand(1..Benefit.count)).value
-    end
-    rand(1..2).times do
-      skills << Skill.find(rand(1..Skill.count)).value
     end
     job = Job.new(
       title: Faker::FamilyGuy.character,
@@ -66,11 +63,9 @@ Company.all.each do |company|
       company: company
     )
 
-    rand(1..2).times do
-      job.skills[SKILLS.sample] = rand(1..4)
-    end
     job.save
     puts "created job #{job.title}"
+    job.skills.new(name: SKILLS.sample, level: rand(1..4)).save
 
   end
 
@@ -78,15 +73,12 @@ end
 #
 p "Creating Developer"
 
-40.times do
+50.times do
 
-  skills = []
-    rand(2..5).times do
-      skills << Skill.find(rand(1..Skill.count)).value
-    end
-    dev = Developer.create(
+    dev = Developer.create!(
     email: Faker::Internet.email,
     password: 'Developer1!',
+    password_confirmation: 'Developer1!',
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     city: 'Los Angeles',
@@ -97,11 +89,13 @@ p "Creating Developer"
     level: rand(1..5),
     remote: [['remote'], ['office'], %w[remote office]].sample,
   )
-  3.times do
-    dev.skills[SKILLS.sample] = rand(2..5)
-  end
 
+3.times do
+  a = dev.skills.new(name: SKILLS.sample, level: rand(3..5))
+  dev.password = 'Developer1!'
   dev.save
+  a.save
+end
  p "One developer created"
 end
 #

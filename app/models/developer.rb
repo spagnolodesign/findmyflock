@@ -1,34 +1,37 @@
 class Developer < ApplicationRecord
+  has_many :skills, as: :skillable
   has_many :applications
   has_many :jobs, through: :applications
-  has_many :companies , through: :applications
+  has_many :companies, through: :applications
   geocoded_by :location
 
+  # devise :database_authenticatable, :registerable,
+  #        :recoverable, :rememberable, :trackable
+
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   before_validation :email_downcase
   before_validation :capitalize_name
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   validate :password_complexity
-  validates :email, :password, presence: true
   validates :first_name, :last_name, presence: true, length: { maximum: 50 }, on: :update
-  validates :city, :zip_code, :country, presence: true,  length: { maximum: 100 }
-  validates :skills, presence: true, length: { minimum: 1, maximum: 3 }
-  validates :min_salary, numericality: { only_integer: true, greater_than: 0}, on: :update
-  validates :level, presence: true,  inclusion: { in: 1..5 }, on: :update
-  validates :remote, inclusion: { in: [["remote"], ["office"], ["remote", "office"]]}, on: :update
+  validates :city, :zip_code, :country, presence: true, length: { maximum: 100 }
+  validates :min_salary, numericality: { only_integer: true, greater_than: 0 }, on: :update
+  validates :level, presence: true, inclusion: { in: 1..5 }, on: :update
+  validates :remote, inclusion: { in: [['remote'], ['office'], %w[remote office]] }, on: :update
 
-  validates :level, presence: true,  inclusion: { in: 1..5 }, on: :update
+  validates :level, presence: true, inclusion: { in: 1..5 }, on: :update
   before_save :geocode, if: :city_changed?
-  before_save :developer_skills_array ,  if: :skills_changed?
 
 
+  def password_required?
+    false
+  end
 
   def location
     [city, zip_code, country].compact.join(', ')
   end
-
 
   def email_downcase
     email = email.strip.downcase if email
@@ -45,23 +48,7 @@ class Developer < ApplicationRecord
     end
   end
 
-
   def match
-      Job.remote_or_office_jobs(self.remote).match_skills_type(self.skills_array)
+    Job.remote_or_office_jobs(remote).match_skills_type(skills_array)
   end
-
-
-
-private
-  def developer_skills_array
-    skills_array.clear
-    skills.each do |key, value|
-      x = value.to_i
-      (value.to_i).times do
-        skills_array << "#{key}/#{x}"
-        x -= 1
-      end
-    end
-end
-
 end

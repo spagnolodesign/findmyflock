@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_31_032511) do
+ActiveRecord::Schema.define(version: 2018_06_04_045131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -35,6 +35,12 @@ ActiveRecord::Schema.define(version: 2018_05_31_032511) do
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "competences", force: :cascade do |t|
+    t.string "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -72,7 +78,6 @@ ActiveRecord::Schema.define(version: 2018_05_31_032511) do
     t.float "latitude"
     t.float "longitude"
     t.integer "level"
-    t.hstore "skills", default: {}, null: false
     t.text "skills_array", default: [], array: true
     t.text "levels", default: [], array: true
     t.text "remote", default: [], array: true
@@ -94,7 +99,6 @@ ActiveRecord::Schema.define(version: 2018_05_31_032511) do
     t.float "longitude"
     t.integer "max_salary"
     t.integer "level"
-    t.hstore "skills", default: {}, null: false
     t.text "skills_array", default: [], array: true
     t.text "levels", default: [], array: true
     t.string "employment_type"
@@ -108,9 +112,13 @@ ActiveRecord::Schema.define(version: 2018_05_31_032511) do
   end
 
   create_table "skills", force: :cascade do |t|
-    t.string "value"
+    t.string "name"
+    t.integer "level"
+    t.string "skillable_type"
+    t.bigint "skillable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["skillable_type", "skillable_id"], name: "index_skills_on_skillable_type_and_skillable_id"
   end
 
   add_foreign_key "applications", "developers"
