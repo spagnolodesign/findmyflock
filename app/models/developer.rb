@@ -5,11 +5,11 @@ class Developer < ApplicationRecord
   has_many :companies, through: :applications
   geocoded_by :location
 
-  # devise :database_authenticatable, :registerable,
-  #        :recoverable, :rememberable, :trackable
-
   devise :database_authenticatable, :registerable,
-          :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable
+
+  # devise :database_authenticatable, :registerable,
+  #         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   before_validation :email_downcase
   before_validation :capitalize_name
