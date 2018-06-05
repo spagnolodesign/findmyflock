@@ -99,3 +99,5 @@ end
  p "One developer created"
 end
 #
+
+Admin.create!(email: "admin@findmyflock.com", password:"flock2018", password_confirmation:"flock2018")

@@ -10,6 +10,7 @@ Things you may want to cover:
 * System dependencies
 
 * Configuration
+  `EDITOR="atom --wait" bin/rails credentials:edit`
 
 * Database creation
 
