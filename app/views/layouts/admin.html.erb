@@ -11,11 +11,20 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%= render "admin/shared/navbar" %>
 
-    <%= yield %>
+    <div class="container-fluid">
+      <div class="row">
 
+        <%= render "admin/shared/sidebar" %>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+          <%= yield %>
+        </main>
+      </div>
+    </div>
     <%= javascript_include_tag 'admin' %>
     <%= javascript_pack_tag 'admin' %>
   </body>
