@@ -1,10 +1,10 @@
-class Admin::BenefitsController < Admin::BaseController
-  before_action :set_benefit, only: [:show, :edit, :update, :destroy]
+class Admin::CulturesController < Admin::BaseController
+  before_action :set_culture, only: [:show, :edit, :update, :destroy]
 
   # GET /benefits
   # GET /benefits.json
   def index
-    @benefits= Benefit.all
+    @cultures = Culture.all
   end
 
   # GET /benefits/1
@@ -14,7 +14,7 @@ class Admin::BenefitsController < Admin::BaseController
 
   # GET /benefits/new
   def new
-    @benefit = Benefit.new
+    @culture = Culture.new
   end
 
   # GET /benefits/1/edit
@@ -24,11 +24,11 @@ class Admin::BenefitsController < Admin::BaseController
   # POST /benefits
   # POST /benefits.json
   def create
-    @benefit = Benefit.new(benefit_params)
+    @culture = Culture.new(benefit_params)
 
     respond_to do |format|
-      if @benefit.save
-        format.html { redirect_to admin_benefits_path, notice: 'Benefit was successfully created.' }
+      if @culture.save
+        format.html { redirect_to admin_benefits_path, notice: 'Culture was successfully created.' }
       else
         format.html { render :new }
       end
@@ -39,8 +39,8 @@ class Admin::BenefitsController < Admin::BaseController
   # PATCH/PUT /benefits/1.json
   def update
     respond_to do |format|
-      if @benefit.update(benefit_params)
-        format.html { redirect_to admin_benefit_path(@benefit), notice: 'Benefit was successfully updated.' }
+      if @culture.update(benefit_params)
+        format.html { redirect_to admin_culture_path(@culture), notice: 'Culture was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -50,20 +50,20 @@ class Admin::BenefitsController < Admin::BaseController
   # DELETE /benefits/1
   # DELETE /benefits/1.json
   def destroy
-    @benefit.destroy
+    @culture.destroy
     respond_to do |format|
-      format.html { redirect_to admin_benefits_url, notice: 'Benefit was successfully destroyed.' }
+      format.html { redirect_to admin_cultures_url, notice: 'Culture was successfully destroyed.' }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_benefit
-      @benefit = Benefit.find(params[:id])
+    def set_culture
+      @culture = Culture.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def benefit_params
-      params.require(:benefit).permit(:value)
+      params.require(:culture).permit(:value)
     end
 end

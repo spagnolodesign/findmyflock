@@ -1,0 +1,25 @@
+<div>
+  <h1>cultures</h1>
+  <%= link_to 'Add a new culture', new_admin_culture_path %>
+</div>
+
+<br />
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cultures.each do |culture| %>
+      <tr>
+        <td><%= culture.value %></td>
+        <td><%= link_to 'Edit', edit_admin_culture_path(culture) %></td>
+        <td><%= link_to 'Destroy', admin_culture_path(culture), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

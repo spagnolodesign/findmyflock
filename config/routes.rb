@@ -11,6 +11,9 @@ Rails.application.routes.draw do
       root 'dashboard#index'
       resources :competences
       resources :benefits
+      resources :cultures
+      resources :companies
+      resources :jobs
     end
   end
 end
