@@ -1,6 +1,6 @@
 class Skill < ApplicationRecord
   after_save :generate_skills_array
-  # validates :name, :uniqueness => { :scope => [:skillable_type , :skillable_id] }
+  validates :name, :uniqueness => { :scope => [:skillable_type , :skillable_id] }
 
 
   def generate_skills_array

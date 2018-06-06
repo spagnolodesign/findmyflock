@@ -1,6 +1,9 @@
 class Job < ApplicationRecord
-  has_many :skills, as: :skillable
   belongs_to :company
+  has_many :matches, dependent: :destroy
+  has_many :skills, as: :skillable, dependent: :destroy
+  has_many :developers, through: :matches
+  has_many :applications, through: :matches
   geocoded_by :location
   validates :title, :description, presence: true,  length: { maximum: 500 }
   validates :city, :zip_code, :state, :country, presence: true,  length: { maximum: 100 }

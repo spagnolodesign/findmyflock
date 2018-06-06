@@ -1,8 +1,7 @@
 class Developer < ApplicationRecord
-  has_many :skills, as: :skillable
-  has_many :applications
-  has_many :jobs, through: :applications
-  has_many :companies, through: :applications
+  has_many :matches, dependent: :destroy
+  has_many :skills, as: :skillable, dependent: :destroy
+  has_many :applications, through: :matches
   geocoded_by :location
 
   # devise :database_authenticatable, :registerable,
@@ -25,9 +24,6 @@ class Developer < ApplicationRecord
   before_save :geocode, if: :city_changed?
 
 
-  def password_required?
-    false
-  end
 
   def location
     [city, zip_code, country].compact.join(', ')
@@ -48,7 +44,36 @@ class Developer < ApplicationRecord
     end
   end
 
-  def match
+  def matched_job
     Job.remote_or_office_jobs(remote).match_skills_type(skills_array)
   end
+
+
+  def self.check_for_first_matches
+    self.all.each do |developer|
+      developer.matched_job.each do |job|
+       Match.create(developer_id: developer.id, job_id: job.id)
+      end
+    end
+  end
+
+
+  def self.check_for_new_matches
+    string = ""
+    self.all.each do |developer|
+      new_matches = 0
+      developer.matched_job.each do |job|
+        match = Match.new(developer_id: developer.id, job_id: job.id)
+          new_matches += 1 if match.save
+      end
+      if new_matches > 0
+        string << "Sending an email to #{developer.first_name}. He has #{new_matches} new matches!"
+      end
+    end
+    p string
+  end
+
+
+
+
 end
