@@ -77,8 +77,8 @@ p "Creating Developer"
 
     dev = Developer.create!(
     email: Faker::Internet.email,
-    password: 'Developer1!',
-    password_confirmation: 'Developer1!',
+    password: 'Developer9)',
+    password_confirmation: 'Developer9)',
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     city: 'Los Angeles',
@@ -98,6 +98,11 @@ p "Creating Developer"
 end
  p "One developer created"
 end
-#
+
+Developer.check_for_first_matches
+
+30.times do
+  Application.create(match: Match.all.sample, message: "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh.")
+end
 
 Admin.create!(email: "admin@findmyflock.com", password:"flock2018", password_confirmation:"flock2018")

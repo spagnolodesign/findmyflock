@@ -66,12 +66,12 @@ ActiveRecord::Schema.define(version: 2018_06_05_065757) do
 
   create_table "applications", force: :cascade do |t|
     t.text "message"
-    t.bigint "developer_id"
-    t.bigint "job_id"
+    t.boolean "application_readed", default: false
+    t.boolean "contact_candidate", default: false
+    t.bigint "match_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["developer_id"], name: "index_applications_on_developer_id"
-    t.index ["job_id"], name: "index_applications_on_job_id"
+    t.index ["match_id"], name: "index_applications_on_match_id"
   end
 
   create_table "benefits", force: :cascade do |t|
@@ -135,6 +135,15 @@ ActiveRecord::Schema.define(version: 2018_06_05_065757) do
     t.index ["reset_password_token"], name: "index_developers_on_reset_password_token", unique: true
   end
 
+  create_table "employees", force: :cascade do |t|
+    t.bigint "company_id"
+    t.bigint "recruiter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_employees_on_company_id"
+    t.index ["recruiter_id"], name: "index_employees_on_recruiter_id"
+  end
+
   create_table "jobs", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -159,6 +168,34 @@ ActiveRecord::Schema.define(version: 2018_06_05_065757) do
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
+  create_table "matches", force: :cascade do |t|
+    t.bigint "job_id"
+    t.bigint "developer_id"
+    t.boolean "application", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["developer_id"], name: "index_matches_on_developer_id"
+    t.index ["job_id"], name: "index_matches_on_job_id"
+  end
+
+  create_table "recruiters", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.boolean "main_recruiter", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_recruiters_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_recruiters_on_reset_password_token", unique: true
+  end
+
   create_table "skills", force: :cascade do |t|
     t.string "name"
     t.integer "level"
@@ -169,7 +206,10 @@ ActiveRecord::Schema.define(version: 2018_06_05_065757) do
     t.index ["skillable_type", "skillable_id"], name: "index_skills_on_skillable_type_and_skillable_id"
   end
 
-  add_foreign_key "applications", "developers"
-  add_foreign_key "applications", "jobs"
+  add_foreign_key "applications", "matches"
+  add_foreign_key "employees", "companies"
+  add_foreign_key "employees", "recruiters"
   add_foreign_key "jobs", "companies"
+  add_foreign_key "matches", "developers"
+  add_foreign_key "matches", "jobs"
 end
