@@ -17,6 +17,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'geocoder'
 gem 'bootstrap', '~> 4.1.1'
+gem 'active_link_to'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

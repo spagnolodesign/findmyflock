@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   authenticate :admin do
     namespace :admin do
       root 'dashboard#index'
+      resources :competences
     end
   end
 end
