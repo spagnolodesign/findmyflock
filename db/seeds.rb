@@ -105,7 +105,4 @@ Developer.check_for_first_matches
   Application.create(match: Match.all.sample, message: "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh.")
 end
 
-20.times do
-a = Recruiter.new(email: Faker::Internet.email, password: "Recruiter9)" , password_confirmation:  "Recruiter9)" )
-Employee.create(company: Company.all.sample, recruiter: a)
-end
+Admin.create!(email: "admin@findmyflock.com", password:"flock2018", password_confirmation:"flock2018")

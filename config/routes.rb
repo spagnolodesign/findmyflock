@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :recruiters
-  devise_for :developers
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  devise_for :admins, skip: [:registrations], path: 'admins'
+  devise_for :developers, path: 'developers'
+
+  root 'pages#home'
+  get "/pages/:page", to: "pages#show", as: :pages
+
+  authenticate :admin do
+    namespace :admin do
+      root 'dashboard#index'
+      resources :competences
+      resources :benefits
+    end
+  end
 end

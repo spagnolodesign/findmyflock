@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin - Findmyflock</title>
+    <meta name="robots" content="noindex">
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'admin', media: 'all' %>
+  </head>
+
+  <body>
+    <%= render "admin/shared/navbar" %>
+
+    <div class="container-fluid">
+      <div class="row">
+
+        <%= render "admin/shared/sidebar" %>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+          <%= yield %>
+        </main>
+      </div>
+    </div>
+    <%= javascript_include_tag 'admin' %>
+    <%= javascript_pack_tag 'admin' %>
+  </body>
+</html>
