@@ -1,0 +1,25 @@
+<div>
+  <h1>Benefits</h1>
+  <%= link_to 'Add a new benefit', new_admin_benefit_path %>
+</div>
+
+<br />
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @benefits.each do |benefit| %>
+      <tr>
+        <td><%= benefit.value %></td>
+        <td><%= link_to 'Edit', edit_admin_benefit_path(benefit) %></td>
+        <td><%= link_to 'Destroy', admin_benefit_path(benefit), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
