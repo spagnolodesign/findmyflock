@@ -1,0 +1,20 @@
+<%= simple_form_for job, url: url, action: :update, local: true do |f| %>
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :city %>
+    <%= f.input :zip_code %>
+    <%= f.input :state %>
+    <%= f.input :country %>
+    <%= f.input :max_salary %>
+    <%= f.input :can_sponsor %>
+    <%= f.input :employment_type %>
+
+    <%= f.association :company %>
+    <%= f.collection_check_boxes :remote, [['remote', 'remote'],['office', 'office']], :first, :last, include_hidden: false %>
+    <br />
+    <%= f.collection_check_boxes :benefits, Benefit.all, :value, :value, include_hidden: false %>
+    <br />
+    <%= f.collection_check_boxes :cultures, Culture.all, :value, :value, include_hidden: false %>
+    <br />
+    <%= f.submit %>
+<% end %>

@@ -19,6 +19,7 @@ gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'geocoder'
 gem 'bootstrap', '~> 4.1.1'
 gem 'active_link_to'
+gem 'country_select'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
