@@ -6,6 +6,8 @@ class Recruiter < ApplicationRecord
   before_validation :email_downcase
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   validate :password_complexity
+  belongs_to :company, optional: true
+
 
   def email_downcase
     email = email.strip.downcase if email

@@ -33,6 +33,7 @@ class DeviseCreateRecruiters < ActiveRecord::Migration[5.2]
       # t.datetime :locked_at
       t.boolean :main_recruiter, default: false
       t.timestamps null: false
+      t.references :company, foreign_key: true
     end
 
     add_index :recruiters, :email,                unique: true
