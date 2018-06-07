@@ -3,10 +3,24 @@
     <%= f.input :password %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
+    <%= f.input :min_salary %>
     <%= f.input :city %>
     <%= f.input :zip_code %>
     <%= f.input :country %>
+    <%= f.input :linkedin_url %>
+    <%= f.input :github_url %>
+
     <%= f.collection_check_boxes :remote, [['remote', 'remote'],['office', 'office']], :first, :last, include_hidden: false %>
     <%= f.input :need_us_permit %>
     <%= f.submit "Update", class: "btn btn-primary" %>
+<% end %>
+
+<%= simple_form_for [developer, Skill.new], url: admin_developer_skills_path(developer) do |f| %>
+  <%= f.input :name, collection: Competence.all, label_method: :value, value_method: :value %>
+  <%= f.input :level, as: :range, input_html: {min: 1, max: 5, step: 1} %>
+  <%= f.submit "Add", class: "btn btn-primary" %>
+<% end %>
+
+<% developer.skills.each do |skill| %>
+  <%= skill.name %> - <%=  skill.level %> <%= link_to "remove", admin_developer_skill_path(developer, skill), method: :delete %><br />
 <% end %>

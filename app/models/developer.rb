@@ -17,10 +17,7 @@ class Developer < ApplicationRecord
   validates :first_name, :last_name, presence: true, length: { maximum: 50 }, on: :update
   validates :city, :zip_code, :country, presence: true, length: { maximum: 100 }
   validates :min_salary, numericality: { only_integer: true, greater_than: 0 }, on: :update
-  validates :level, presence: true, inclusion: { in: 1..5 }, on: :update
   validates :remote, inclusion: { in: [['remote'], ['office'], %w[remote office]] }, on: :update
-
-  validates :level, presence: true, inclusion: { in: 1..5 }, on: :update
   before_save :geocode, if: :city_changed?
 
 

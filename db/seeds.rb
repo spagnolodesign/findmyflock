@@ -1,3 +1,4 @@
+
 SKILLS = ['AR', 'VR', 'Cybersecurity', 'Management', 'Kubernetes', 'Docker', 'Architecture', 'Mentorship', 'AWS', 'Java', 'Python', 'C', 'Ruby', 'Javascript', 'JQuery', 'AngularJS', 'Node.js', 'React', 'PHP', 'WordPress', 'HTML', 'CSS', 'Objective-C', 'Swift', 'iOS', 'Android', 'Kotlin', 'SQL', '.NET', 'R', 'Perl', 'MATLAB', 'Erlang', 'Scala', 'Bash', 'Clojure', 'Haskell', 'Groovy', 'DevOps', 'Systems', 'Apex', 'SAS', 'Crystal', 'git', 'GitHub', 'Project Management', 'Product Management', 'Engineering Management', 'CTO', 'User Experience Design / UX', 'User Interface Design / UI', 'Quality Assurance / QA', 'Automated QA', 'Ruby on Rails', 'SaaS', 'React Native', 'Technical Sales', 'Outbound Sales', 'Business Development', 'Training', 'Django'].freeze
 
 EMPLOYMENT_TYPE = ['full-time', 'part-time', 'contract', 'temporary', 'seasonal', 'internship'].freeze
@@ -31,7 +32,8 @@ end
 
 5.times do
   company = Company.create(url: Faker::Internet.url, name: Faker::Company.name)
-  r = Recruiter.all.sample.company = company
+  r = Recruiter.all.sample
+  r.company = company
   r.save
   puts "created company #{company.name}"
 end
@@ -59,7 +61,6 @@ Company.all.each do |company|
       state: 'California',
       country: 'United States',
       employment_type: EMPLOYMENT_TYPE.sample,
-      level: rand(1..5),
       latitude: nil,
       longitude: nil,
       max_salary: salary.sample,
@@ -92,7 +93,6 @@ p "Creating Developer"
     country: 'United States',
     need_us_permit: Faker::Boolean.boolean(0.2),
     min_salary: salary = [10_000, 20_000, 30_000].sample,
-    level: rand(1..5),
     remote: [['remote'], ['office'], %w[remote office]].sample,
   )
 

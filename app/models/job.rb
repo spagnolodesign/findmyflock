@@ -9,7 +9,6 @@ class Job < ApplicationRecord
   validates :city, :zip_code, :state, :country, presence: true,  length: { maximum: 100 }
   validates :max_salary, numericality: { only_integer: true, greater_than: 0}
   validates :remote, inclusion: { in: [["remote"], ["office"], ["remote", "office"]]}
-  validates :level, presence: true,  inclusion: { in: 1..5 }
   validates :employment_type, presence: true, length: { maximum: 100 }
   validates :benefits, :cultures, length: { minimum: 1, maximum: 10 }
   before_save :geocode, if: :city_changed?

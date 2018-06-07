@@ -86,17 +86,15 @@ ActiveRecord::Schema.define(version: 2018_06_06_032512) do
     t.string "first_name"
     t.string "last_name"
     t.boolean "need_us_permit", default: false
-    t.string "resume_name"
-    t.string "photo_name"
+    t.string "linkedin_url"
+    t.string "github_url"
     t.integer "min_salary"
     t.string "city"
     t.string "zip_code"
     t.string "country"
     t.float "latitude"
     t.float "longitude"
-    t.integer "level"
     t.text "skills_array", default: [], array: true
-    t.text "levels", default: [], array: true
     t.text "remote", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -115,9 +113,7 @@ ActiveRecord::Schema.define(version: 2018_06_06_032512) do
     t.float "latitude"
     t.float "longitude"
     t.integer "max_salary"
-    t.integer "level"
     t.text "skills_array", default: [], array: true
-    t.text "levels", default: [], array: true
     t.string "employment_type"
     t.text "benefits", default: [], array: true
     t.text "cultures", default: [], array: true

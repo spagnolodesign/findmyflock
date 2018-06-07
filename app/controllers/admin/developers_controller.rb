@@ -63,6 +63,6 @@ class Admin::DevelopersController < Admin::BaseController
 
 
     def developer_params
-      params.require(:developer).permit(:email, :password, :password_confirmation, :first_name, :last_name, :need_us_permit, :city, :zip_code, :country, remote:[])
+      params.require(:developer).permit(:email, :password, :password_confirmation, :first_name, :last_name, :need_us_permit, :city, :zip_code, :country, :linkedin_url, :github_url, remote:[])
     end
 end

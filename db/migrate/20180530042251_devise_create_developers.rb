@@ -34,17 +34,15 @@ class DeviseCreateDevelopers < ActiveRecord::Migration[5.2]
       t.string   :first_name
       t.string   :last_name
       t.boolean  :need_us_permit, default: false
-      t.string   :resume_name
-      t.string   :photo_name
+      t.string   :linkedin_url
+      t.string   :github_url
       t.integer :min_salary
       t.string :city
       t.string :zip_code
       t.string :country
       t.float :latitude
       t.float :longitude
-      t.integer :level
       t.text :skills_array, array: true, default: []
-      t.text :levels, array: true, default: []
       t.text :remote, array: true, default: []
 
       t.timestamps null: false
