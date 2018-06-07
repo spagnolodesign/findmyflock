@@ -69,7 +69,8 @@ body {
  */
 
 [role="main"] {
-  padding-top: 48px; /* Space for fixed navbar */
+  padding-top: 60px;
+  padding-bottom: 60px; /* Space for fixed navbar */
 }
 
 /*
@@ -107,3 +108,12 @@ body {
 
 .border-top { border-top: 1px solid #e5e5e5; }
 .border-bottom { border-bottom: 1px solid #e5e5e5; }
+
+
+/*
+ * Inputs
+ */
+
+.was-validated .form-control:valid, .form-control.is-valid, .was-validated .custom-select:valid, .custom-select.is-valid {
+  border-color: #ced4da;
+}
