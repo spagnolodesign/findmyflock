@@ -17,6 +17,7 @@ class Job < ApplicationRecord
 
 
   scope :remote_or_office_jobs, -> (array) {where("remote <@ ARRAY[?]::text[] OR remote @> ARRAY[?]::text[]", array, array)}
+  scope :can_sponsor, -> {where("can_sponsor = true ")}
   scope :match_skills_type, -> (array) { where.not(skills_array: []).where("skills_array <@ ARRAY[?]::text[]", array) }
   scope :filter_by_user_salary, -> (value) {where("max_salary >= ?", value)}
   scope :filter_by_benefits, -> (array) { where("benefits @> ARRAY[?]::text[]", array) }

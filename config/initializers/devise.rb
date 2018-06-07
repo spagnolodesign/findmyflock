@@ -19,6 +19,7 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'contact@findmyflock.com'
+  config.secret_key = '668aee5dd952daf4be00229445a8963c31277d530c638c11dae721d630e69cfa88d029fc9bacef7ec1e77756bc436eb9a3ad347839a79d9563f88ddb6269f7a2'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'

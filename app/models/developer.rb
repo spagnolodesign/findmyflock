@@ -49,7 +49,11 @@ class Developer < ApplicationRecord
   end
 
   def matched_job
-    Job.remote_or_office_jobs(remote).match_skills_type(skills_array)
+    if self.need_us_permit
+      Job.remote_or_office_jobs(remote).match_skills_type(skills_array).can_sponsor
+    else
+      Job.remote_or_office_jobs(remote).match_skills_type(skills_array)
+    end
   end
 
 
