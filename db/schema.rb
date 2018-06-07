@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_06_032513) do
+ActiveRecord::Schema.define(version: 2018_06_06_032512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -104,15 +104,6 @@ ActiveRecord::Schema.define(version: 2018_06_06_032513) do
     t.index ["reset_password_token"], name: "index_developers_on_reset_password_token", unique: true
   end
 
-  create_table "employees", force: :cascade do |t|
-    t.bigint "company_id"
-    t.bigint "recruiter_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_employees_on_company_id"
-    t.index ["recruiter_id"], name: "index_employees_on_recruiter_id"
-  end
-
   create_table "jobs", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -161,6 +152,8 @@ ActiveRecord::Schema.define(version: 2018_06_06_032513) do
     t.boolean "main_recruiter", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "company_id"
+    t.index ["company_id"], name: "index_recruiters_on_company_id"
     t.index ["email"], name: "index_recruiters_on_email", unique: true
     t.index ["reset_password_token"], name: "index_recruiters_on_reset_password_token", unique: true
   end
@@ -176,9 +169,8 @@ ActiveRecord::Schema.define(version: 2018_06_06_032513) do
   end
 
   add_foreign_key "applications", "matches"
-  add_foreign_key "employees", "companies"
-  add_foreign_key "employees", "recruiters"
   add_foreign_key "jobs", "companies"
   add_foreign_key "matches", "developers"
   add_foreign_key "matches", "jobs"
+  add_foreign_key "recruiters", "companies"
 end
