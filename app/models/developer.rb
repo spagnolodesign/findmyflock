@@ -38,6 +38,10 @@ class Developer < ApplicationRecord
     last_name = last_name.capitalize if last_name
   end
 
+  def full_name
+    first_name + " " + last_name
+  end
+
   def password_complexity
     if !password.nil? && password !~ /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/
       errors.add :password, 'Password must include at least one lowercase letter, one uppercase letter, and one digit'

@@ -1,5 +1,2 @@
-<h1>Editing Competence</h1>
-
+<%= render 'admin/shared/sub_header', title: @competence.value  %>
 <%= render 'form', competence: @competence, url: admin_competence_path(@competence) %>
-
-<%= link_to 'Back', admin_competences_path %>

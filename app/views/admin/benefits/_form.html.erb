@@ -1,23 +1,4 @@
-<%= form_for benefit, url: url, action: :update, local: true do |form| %>
-
-  <% if benefit.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(benefit.errors.count, "error") %> prohibited this benefit from being saved:</h2>
-
-      <ul>
-      <% benefit.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :value %>
-    <%= form.text_field :value %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<%= simple_form_for benefit, url: url, action: :update, local: true do |f| %>
+  <%= f.input :value %>
+  <%= f.submit "Update", class: "btn btn-primary" %>
 <% end %>

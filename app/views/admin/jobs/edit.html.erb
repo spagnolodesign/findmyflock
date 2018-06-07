@@ -1,3 +1,2 @@
-<%= link_to '< Back', admin_jobs_path, class: "btn btn-sm btn-secondary mb-2" %>
-<h3>Editing: <%= @job.title %></h3>
+<%= render 'admin/shared/sub_header', title: @job.title  %>
 <%= render 'form', job: @job, url: admin_job_path(@job) %>

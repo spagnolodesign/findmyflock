@@ -1,5 +1,2 @@
-<h1>New job</h1>
-
+<%= render 'admin/shared/sub_header', title: "New job" %>
 <%= render 'form', job: @job, url: admin_jobs_path %>
-
-<%= link_to 'Back', admin_jobs_path %>

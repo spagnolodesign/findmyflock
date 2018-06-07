@@ -1,5 +1,2 @@
-<h1>Editing culture</h1>
-
+<%= render 'admin/shared/sub_header', title: @culture.value  %>
 <%= render 'form', culture: @culture, url: admin_culture_path(@culture) %>
-
-<%= link_to 'Back', admin_cultures_path %>

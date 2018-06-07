@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :cultures
       resources :companies
       resources :jobs
+      resources :developers
     end
   end
 end
