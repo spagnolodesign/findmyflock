@@ -8,13 +8,18 @@
     <%= f.input :max_salary %>
     <%= f.input :can_sponsor %>
     <%= f.input :employment_type %>
-
     <%= f.association :company %>
     <%= f.collection_check_boxes :remote, [['remote', 'remote'],['office', 'office']], :first, :last, include_hidden: false %>
+    <hr />
+    <div class="d-flex flex-column mb-3">
+      <label class="form-control-label select required">Benefits:</label>
+      <%= f.collection_check_boxes :benefits, Benefit.all, :value, :value, include_hidden: false %>
+    </div>
+    <hr />
+    <div class="d-flex flex-column bd-highlight mb-3">
+      <label class="form-control-label select required">Culture:</label>
+      <%= f.collection_check_boxes :cultures, Culture.all, :value, :value, include_hidden: false %>
+    </div>
     <br />
-    <%= f.collection_check_boxes :benefits, Benefit.all, :value, :value, include_hidden: false %>
-    <br />
-    <%= f.collection_check_boxes :cultures, Culture.all, :value, :value, include_hidden: false %>
-    <br />
-    <%= f.submit %>
+    <%= f.submit "Update", class: "btn btn-primary btn-lg" %>
 <% end %>
