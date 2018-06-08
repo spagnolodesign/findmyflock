@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 2018_06_06_032512) do
     t.string "zip_code"
     t.string "state"
     t.string "country"
+    t.boolean "active", default: true
     t.float "latitude"
     t.float "longitude"
     t.integer "max_salary"

@@ -1,4 +1,5 @@
 class Job < ApplicationRecord
+  default_scope {where(active: true) }
   belongs_to :company
   has_many :matches, dependent: :destroy
   has_many :skills, as: :skillable, dependent: :destroy
@@ -13,8 +14,7 @@ class Job < ApplicationRecord
   validates :benefits, :cultures, length: { minimum: 1, maximum: 10 }
   before_save :geocode, if: :city_changed?
 
-
-
+  scope :full_list, -> {where.not(id: nil)}
   scope :remote_or_office_jobs, -> (array) {where("remote <@ ARRAY[?]::text[] OR remote @> ARRAY[?]::text[]", array, array)}
   scope :can_sponsor, -> {where("can_sponsor = true ")}
   scope :match_skills_type, -> (array) { where.not(skills_array: []).where("skills_array <@ ARRAY[?]::text[]", array) }
@@ -25,6 +25,10 @@ class Job < ApplicationRecord
 
   def location
     [city, zip_code, state, country].compact.join(', ')
+  end
+
+  def deactivate
+    self.active = false
   end
 
 end

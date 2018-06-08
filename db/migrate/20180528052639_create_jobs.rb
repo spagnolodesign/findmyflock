@@ -8,6 +8,7 @@ class CreateJobs < ActiveRecord::Migration[5.2]
       t.string :zip_code
       t.string :state
       t.string :country
+      t.boolean :active, default: true
       t.float :latitude
       t.float :longitude
       t.integer :max_salary
