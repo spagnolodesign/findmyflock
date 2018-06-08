@@ -16,11 +16,18 @@ Rails.application.routes.draw do
       resources :cultures
       resources :companies
       resources :jobs do
-        resources :skills, only: [:create, :destroy]
+        # resources :skills, only: [:create, :destroy]
       end
       resources :developers do
-        resources :skills, only: [:create, :destroy]
+        # resources :skills, only: [:create, :destroy]
       end
     end
   end
+
+  namespace :api, defaults: { format: :json } do
+    resources :developers, only: [:create] do
+      resources :skills, only: [:index, :create, :destroy]
+    end
+  end
+
 end

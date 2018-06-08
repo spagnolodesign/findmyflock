@@ -6,6 +6,7 @@
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <%= stylesheet_link_tag 'admin', media: 'all' %>
   </head>
@@ -28,5 +29,6 @@
     </div>
     <%= javascript_include_tag 'admin' %>
     <%= javascript_pack_tag 'admin' %>
+    <%= javascript_pack_tag 'form-skills' %>
   </body>
 </html>

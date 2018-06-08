@@ -15,6 +15,12 @@
     <%= f.submit "Update", class: "btn btn-primary" %>
 <% end %>
 
+
+<div id="form-skills"
+  data-competences="<%= Competence.all.to_json(only: [:value, :level]) %>"
+  data-devskills="<%= developer.skills.to_json(only: [:name, :level])  %>">
+</div>
+
 <%= simple_form_for [developer, Skill.new], url: admin_developer_skills_path(developer) do |f| %>
   <%= f.input :name, collection: Competence.all, label_method: :value, value_method: :value %>
   <%= f.input :level, as: :range, input_html: {min: 1, max: 5, step: 1} %>
