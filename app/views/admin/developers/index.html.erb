@@ -16,7 +16,7 @@
   <tbody>
     <% @developers.each do |developer| %>
       <tr>
-        <td><%= developer.full_name %></td>
+        <td><%= link_to developer.full_name, admin_developer_path(developer) %></td>
         <td><%= link_to 'Edit', edit_admin_developer_path(developer) %></td>
         <td><%= link_to 'Destroy', admin_developer_path(developer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

@@ -2,15 +2,6 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import {Typeahead} from 'react-bootstrap-typeahead'
 
-// GET SKILLS
-// /api/developers/:developer_id/skills
-
-// POST SKILLS
-// /api/developers/:developer_id/skills
-
-// DELETE SKILLS
-// /api/developers/:developer_id/skills/:id
-
 class FormSkill extends Component {
 
   constructor(props) {
@@ -19,7 +10,8 @@ class FormSkill extends Component {
     this.state = {
       competences: props.competences,
       skills: props.devskills,
-      skillLevel:1
+      skillLevel:1,
+      selectedValue: []
     }
   }
 
@@ -35,7 +27,7 @@ class FormSkill extends Component {
     this.setState({
       skills: newSkills,
       skillLevel:1,
-      selectedValue: [""],
+      selectedValue: [],
       competences: updatedList
     })
 
@@ -114,15 +106,27 @@ class FormSkill extends Component {
     return(
       <div>
         {listOfSkills}
-        <Typeahead
-          labelKey="value"
-          options={competences}
-          placeholder="Choose a skill..."
-          onChange={this.onSelectSkill}
-          selected={selectedValue}
-        />
-        <input type="range" min="1" max="5" value={skillLevel} onChange={this.onChangeLevel} step="1"/>
-        <button className="btn btn-primary" onClick={(e) => this.add(e)}>add skill</button>
+        <div className="form-group">
+          <Typeahead
+            labelKey="value"
+            options={competences}
+            placeholder="Select a skill..."
+            onChange={this.onSelectSkill}
+            selected={selectedValue}
+            renderMenuItemChildren={(option, props, index) => {
+               return (<p><i className={`devicon-${option.value}-plain colored`}></i> {option.value}</p>)
+             }}
+          />
+        </div>
+        {selectedValue.length > 0 &&
+        <div>
+          <p>Please select the level:</p>
+          <div className="form-group">
+            <input className="form-control-range" type="range" min="1" max="5" value={skillLevel} onChange={this.onChangeLevel} step="1"/>
+          </div>
+          <button className="btn btn-primary" onClick={(e) => this.add(e)}>add skill</button>
+        </div>
+        }
       </div>
     )
   }

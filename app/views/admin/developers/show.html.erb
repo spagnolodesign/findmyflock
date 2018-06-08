@@ -1,7 +1,19 @@
-<p>
-  <strong>Name:</strong>
-  <%= @developer.full_name %>
-</p>
+<h2><%= @developer.full_name %></h2>
+<p><b>First Name:</b> <%= @developer.first_name %></p>
+<p><b>Last Name:</b> <%= @developer.last_name %></p>
+<p><b>Need us permit:</b> <%= @developer.need_us_permit %></p>
+<p><b>Linkedin url:</b> <%= @developer.linkedin_url %></p>
+<p><b>Github url:</b> <%= @developer.github_url %></p>
+<p><b>min_salary:</b> <%= @developer.min_salary %></p>
+<p><b>City:</b> <%= @developer.city %></p>
+<p><b>ZipCode:</b> <%= @developer.zip_code %></p>
+<p><b>Remote:</b> <%= @developer.remote %></p>
 
-<%= link_to 'Edit', edit_admin_developer_path(@developer) %> |
-<%= link_to 'Back', admin_developers_path %>
+<h5>Skills</h5>
+<%= render 'admin/shared/skills_list', skills: @developer.skills %>
+<%= render 'admin/developers/matches' %>
+
+<br />
+<br />
+<%= link_to 'Edit', edit_admin_developer_path(@developer), class: "btn btn-sm btn-outline-secondary" %>
+<%= link_to 'Back', admin_developers_path, class: "btn btn-sm btn-outline-secondary" %>

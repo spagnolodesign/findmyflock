@@ -1,0 +1,5 @@
+<% skills.each do |skill| %>
+  <button type="button" class="btn btn-light btn-lg">
+    <i class="devicon-<%= skill.name %>-plain colored"></i> <%= skill.name %> <span class="badge badge-light"><%= skill.level %></span>
+  </button>
+<% end %>

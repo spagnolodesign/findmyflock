@@ -10,7 +10,7 @@ class Admin::DevelopersController < Admin::BaseController
   # GET /admin/developers/1
   # GET /admin/developers/1.json
   def show
-    # @job_matches = @developer.matched_job
+    @job_matches = @developer.matched_job
   end
 
   # GET /admin/developers/new
@@ -20,7 +20,6 @@ class Admin::DevelopersController < Admin::BaseController
 
   # GET /admin/developers/1/edit
   def edit
-    @job_matches = @developer.matched_job
   end
 
   # POST /admin/developers
