@@ -15,12 +15,9 @@ Rails.application.routes.draw do
       resources :benefits
       resources :cultures
       resources :companies
-      resources :jobs do
-        # resources :skills, only: [:create, :destroy]
-      end
-      resources :developers do
-        # resources :skills, only: [:create, :destroy]
-      end
+      resources :jobs
+      resources :developers
+      resources :matches
     end
   end
 

@@ -7,6 +7,7 @@
     <%= f.input :country %>
     <%= f.input :max_salary %>
     <%= f.input :can_sponsor %>
+    <%= f.input :active %>
     <%= f.input :employment_type %>
     <%= f.association :company %>
     <%= f.collection_check_boxes :remote, [['remote', 'remote'],['office', 'office']], :first, :last, include_hidden: false %>

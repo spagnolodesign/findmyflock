@@ -25,7 +25,6 @@ class Admin::JobsController < Admin::BaseController
   # POST /comapies.json
   def create
     @job = Job.new(job_params)
-
     respond_to do |format|
       if @job.save
         format.html { redirect_to admin_jobs_path, notice: 'Job was successfully created.' }
@@ -59,13 +58,13 @@ class Admin::JobsController < Admin::BaseController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_job
-      @job = Job.find(params[:id])
+      @job = Job.all.find(params[:id])
     end
 
     # (:title, :description, remote:[], benefits:[], cultures:[], :city, :zip_code, :state, :country, :max_salary, :employment_type)
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params.require(:job).permit(:title, :description, :city, :zip_code, :state, :country, :max_salary, :employment_type, :can_sponsor, remote:[], benefits:[], cultures:[])
+      params.require(:job).permit(:title, :active, :description, :city, :zip_code, :state, :country, :max_salary, :employment_type, :can_sponsor, :company_id, remote:[], benefits:[], cultures:[])
     end
 end
