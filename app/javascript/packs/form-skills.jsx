@@ -131,9 +131,7 @@ class FormSkill extends Component {
     )
   }
 
-
 }
-
 
 
 document.addEventListener('DOMContentLoaded', () => {
