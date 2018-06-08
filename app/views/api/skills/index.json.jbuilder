@@ -1,1 +1,1 @@
-json.array! @skills, :id, :content
+json.array! @skills, :value

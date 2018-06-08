@@ -38,7 +38,28 @@ class FormSkill extends Component {
       selectedValue: [""],
       competences: updatedList
     })
+
+    this.postSkill(skillObj);
   }
+
+
+  postSkill = (skill) => {
+    console.log(`/api/${this.props.resource}/${this.props.id}/skills`)
+    fetch(`/api/${this.props.resource}/${this.props.id}/skills`,{
+      method: 'POST',
+      body: JSON.stringify(skill),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+    .then(this.handleErrors)
+    .then(res => res.json())
+    .then(response => {
+      console.log(response)
+    })
+    .catch(error => console.log(error));
+  }
+
 
   newListCompetences = (value) => {
     return this.state.competences.filter(function( obj ) {
@@ -59,6 +80,18 @@ class FormSkill extends Component {
     this.setState({
       skills: newSkills,
       competences: updatedList
+    })
+    this.deleteSkill(toRemove.name);
+  }
+
+  deleteSkill = (skill) => {
+    fetch(`/api/${this.props.resource}/${this.props.id}/skills/${skill}`, {
+      method: 'DELETE',
+      headers: new Headers({ 'Content-Type': 'application/json' })
+    })
+    .catch(error => console.error('Error:', error))
+    .then(response => {
+      console.log(response)
     })
   }
 
@@ -105,8 +138,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const competences =  JSON.parse(el.dataset.competences);
   const devSkills =  JSON.parse(el.dataset.devskills);
+  const resource =  el.dataset.resource
+  const id = el.dataset.id
 
   ReactDOM.render(
-    <FormSkill  competences={competences} devskills={devSkills} />, document.getElementById('form-skills')
+    <FormSkill  competences={competences} devskills={devSkills} id={id} resource={resource} />, document.getElementById('form-skills')
   )
 })

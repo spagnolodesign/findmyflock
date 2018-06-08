@@ -2,7 +2,7 @@ class Skill < ApplicationRecord
   after_save :generate_skills_array
   after_destroy :generate_skills_array
   validates :name, :uniqueness => { :scope => [:skillable_type , :skillable_id] }
-
+  validates :name, presence: true
 
   def generate_skills_array
     if skillable_type == 'Job'

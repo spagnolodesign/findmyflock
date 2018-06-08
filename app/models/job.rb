@@ -7,11 +7,11 @@ class Job < ApplicationRecord
   has_many :applications, through: :matches
   geocoded_by :location
   validates :title, :description, presence: true,  length: { maximum: 500 }
-  validates :city, :zip_code, :state, :country, presence: true,  length: { maximum: 100 }
-  validates :max_salary, numericality: { only_integer: true, greater_than: 0}
-  validates :remote, inclusion: { in: [["remote"], ["office"], ["remote", "office"]]}
-  validates :employment_type, presence: true, length: { maximum: 100 }
-  validates :benefits, :cultures, length: { minimum: 1, maximum: 10 }
+  # validates :city, :zip_code, :state, :country, presence: true,  length: { maximum: 100 }
+  validates :max_salary, numericality: { only_integer: true, greater_than: 0}, on: :update
+  validates :remote, inclusion: { in: [["remote"], ["office"], ["remote", "office"]]}, on: :create
+  validates :employment_type, presence: true, length: { maximum: 100 }, on: :update
+  validates :benefits, :cultures, length: { minimum: 1, maximum: 10 }, on: :update
   before_save :geocode, if: :city_changed?
 
   scope :full_list, -> {where.not(id: nil)}

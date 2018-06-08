@@ -17,16 +17,8 @@
 
 
 <div id="form-skills"
+  data-resource="developers"
+  data-id="<%= developer.id %>"
   data-competences="<%= Competence.all.to_json(only: [:value, :level]) %>"
   data-devskills="<%= developer.skills.to_json(only: [:name, :level])  %>">
 </div>
-
-<%= simple_form_for [developer, Skill.new], url: admin_developer_skills_path(developer) do |f| %>
-  <%= f.input :name, collection: Competence.all, label_method: :value, value_method: :value %>
-  <%= f.input :level, as: :range, input_html: {min: 1, max: 5, step: 1} %>
-  <%= f.submit "Add", class: "btn btn-primary" %>
-<% end %>
-
-<% developer.skills.each do |skill| %>
-  <%= skill.name %> - <%=  skill.level %> <%= link_to "remove", admin_developer_skill_path(developer, skill), method: :delete %><br />
-<% end %>

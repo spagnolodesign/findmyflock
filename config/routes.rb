@@ -26,8 +26,14 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :developers, only: [:create] do
-      resources :skills, only: [:index, :create, :destroy]
+      resources :skills, only: [:index, :create]
+    end
+    resources :jobs, only: [:create] do
+      resources :skills, only: [:index, :create]
     end
   end
+  delete "/api/developers/:developer_id/skills/:name", to: "api/skills#destroy"
+  delete "/api/jobs/:job_id/skills/:name", to: "api/skills#destroy"
+
 
 end

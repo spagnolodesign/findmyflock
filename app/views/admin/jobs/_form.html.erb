@@ -24,12 +24,9 @@
     <%= f.submit "Update", class: "btn btn-primary btn-lg" %>
 <% end %>
 
-<%= simple_form_for [job, Skill.new], url: admin_job_skills_path(job) do |f| %>
-  <%= f.input :name, collection: Competence.all, label_method: :value, value_method: :value %>
-  <%= f.input :level, as: :range, input_html: {min: 1, max: 5, step: 1} %>
-  <%= f.submit "Add", class: "btn btn-primary" %>
-<% end %>
-
-<% job.skills.each do |skill| %>
-  <%= skill.name %> - <%=  skill.level %> <%= link_to "remove", admin_job_skill_path(job, skill), method: :delete %><br />
-<% end %>
+<div id="form-skills"
+  data-resource="jobs"
+  data-id="<%= job.id %>"
+  data-competences="<%= Competence.all.to_json(only: [:value, :level]) %>"
+  data-devskills="<%= job.skills.to_json(only: [:name, :level])  %>">
+</div>
