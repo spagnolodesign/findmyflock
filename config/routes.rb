@@ -11,10 +11,12 @@ Rails.application.routes.draw do
   authenticate :admin do
     namespace :admin do
       root 'dashboard#index'
+      resources :dashboard, only: :index
       resources :competences
       resources :benefits
       resources :cultures
       resources :companies
+      resources :recruiters
       resources :jobs
       resources :developers
       resources :matches

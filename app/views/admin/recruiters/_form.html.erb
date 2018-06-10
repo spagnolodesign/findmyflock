@@ -1,0 +1,11 @@
+<%= simple_form_for recruiter, url: url, action: :update, local: true do |f| %>
+  <div class="field">
+    <%= f.input :email %>
+    <%= f.input :password %>
+    <%= f.association :company %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Save", class: "btn btn-primary" %>
+  </div>
+<% end %>

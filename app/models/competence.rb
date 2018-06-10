@@ -1,4 +1,4 @@
 class Competence < ApplicationRecord
-  validates :value, presence: true, length: { maximum: 15 }
+  validates :value, presence: true, length: { maximum: 30 }
 
 end

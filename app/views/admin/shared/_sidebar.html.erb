@@ -2,15 +2,21 @@
   <div class="sidebar-sticky">
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <%= active_link_to admin_dashboard_index_path, class: "nav-link" do %>
           <i class="fas fa-columns"></i>
           Dashboard
-        </a>
+        <% end %>
       </li>
       <li class="nav-item">
         <%= active_link_to admin_developers_path, class: "nav-link" do %>
           <i class="fas fa-users"></i>
           Developers
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= active_link_to admin_recruiters_path, class: "nav-link" do %>
+          <i class="fas fa-briefcase"></i>
+          Recruiters
         <% end %>
       </li>
       <li class="nav-item">

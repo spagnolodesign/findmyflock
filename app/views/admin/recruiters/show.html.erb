@@ -1,0 +1,12 @@
+<p>
+  <strong>Email:</strong>
+  <%= @recruiter.email %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @recruiter.company.name %>
+</p>
+
+<%= link_to 'Edit', edit_admin_recruiter_path(@recruiter) %> |
+<%= link_to 'Back', admin_recruiters_path %>
