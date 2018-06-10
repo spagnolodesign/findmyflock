@@ -2,13 +2,13 @@
     <%= f.input :email %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
+    <%= f.input :avatar, as: :file, direct_upload: true, :input_html => { :data => {"direct-upload-url":  "#{root_url}rails/active_storage/direct_uploads" } } %>
     <%= f.input :min_salary %>
     <%= f.input :city %>
     <%= f.input :zip_code %>
     <%= f.input :country %>
     <%= f.input :linkedin_url %>
     <%= f.input :github_url %>
-
     <%= f.collection_check_boxes :remote, [['remote', 'remote'],['office', 'office']], :first, :last, include_hidden: false %>
     <%= f.input :need_us_permit %>
     <%= f.submit "Update", class: "btn btn-primary" %>
