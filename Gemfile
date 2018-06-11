@@ -21,6 +21,7 @@ gem 'bootstrap', '~> 4.1.1'
 gem 'active_link_to'
 gem 'country_select'
 gem 'mini_magick'
+gem "aws-sdk-s3", require: false
 
 
 group :development, :test do
