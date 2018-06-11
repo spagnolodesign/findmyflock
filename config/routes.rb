@@ -4,9 +4,24 @@ Rails.application.routes.draw do
   get 'skills/destroy'
   devise_for :admins, skip: [:registrations], path: 'admins'
   devise_for :developers, path: 'developers'
+  devise_for :recruiters, path: 'recruiters'
 
   root 'pages#home'
   get "/pages/:page", to: "pages#show", as: :pages
+
+
+  resources :companies do
+    collection do
+      get 'dashboard'
+    end
+  end
+  
+  resources :developers do
+    collection do
+      get 'dashboard'
+    end
+  end
+
 
   authenticate :admin do
     namespace :admin do

@@ -8,6 +8,10 @@ class PagesController < ApplicationController
     end
   end
 
+  def home
+
+  end
+
   private
 
   def valid_page?

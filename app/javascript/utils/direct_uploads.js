@@ -1,5 +1,3 @@
-console.log('HELLO');
-
 addEventListener("direct-upload:initialize", event => {
   console.log(event.target);
 

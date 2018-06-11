@@ -1,1 +1,20 @@
 <h1>Home page</h1>
+<% if recruiter_signed_in? %>
+  <li>
+  <%= link_to('Logout Recruiter', destroy_recruiter_session_path, method: :delete) %>
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Login Recruiter', new_recruiter_session_path)  %>
+  </li>
+<% end %>
+
+<% if developer_signed_in? %>
+  <li>
+  <%= link_to('Logout Developer', destroy_developer_session_path, method: :delete) %>
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Login Developer', new_developer_session_path)  %>
+  </li>
+<% end %>

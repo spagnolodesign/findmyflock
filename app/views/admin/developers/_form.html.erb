@@ -2,7 +2,7 @@
     <%= f.input :email %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
-    <%= f.input :avatar, as: :file, direct_upload: true, :input_html => { :data => {"direct-upload-url":  "#{root_url}rails/active_storage/direct_uploads" }, accept: "image/x-png,image/gif,image/jpeg" } %>
+    <%= f.input :avatar, as: :file, :input_html => { :data => {"direct-upload-url":  "#{root_url}rails/active_storage/direct_uploads" }, accept: "image/x-png,image/jpeg" } %>
     <%= f.input :min_salary %>
     <%= f.input :city %>
     <%= f.input :zip_code %>
