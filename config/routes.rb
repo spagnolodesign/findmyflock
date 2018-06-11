@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       get 'dashboard'
     end
   end
-  
+
   resources :developers do
     collection do
       get 'dashboard'

@@ -20,7 +20,7 @@ class Admin::CompaniesController < Admin::BaseController
 
     respond_to do |format|
       if @company.save
-        format.html { redirect_to admin_comapies_path, notice: 'Company was successfully created.' }
+        format.html { redirect_to admin_companies_path, notice: 'Company was successfully created.' }
       else
         format.html { render :new }
       end

@@ -1,1 +1,2 @@
-console.log('Hello World from Webpacker');
+import * as ActiveStorage from "activestorage";
+import "../utils/direct_uploads.js"

@@ -1,1 +1,12 @@
-Dashboard for company
+<h3>Dashboard for company:</h3>
+
+<% if recruiter_signed_in? %>
+  <%= link_to('Logout Recruiter', destroy_recruiter_session_path, method: :delete) %>
+<% end %>
+
+
+<div class="row">
+  <div class="col-4">
+    <%= render "utils/carousel", images: @company.images %>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<%= simple_form_for company, url: url, action: :update, local: true do |form| %>
+  <%= form.input :name %>
+  <%= form.input :url %>
+  <%= form.file_field :images, multiple: true, direct_upload: true %>
+  <%= form.submit %>
+<% end %>
