@@ -5,7 +5,8 @@
   </li>
 <% else %>
   <li>
-  <%= link_to('Login Recruiter', new_recruiter_session_path)  %>
+  <%= link_to('Login Recruiter', new_recruiter_session_path)  %> |
+  <%= link_to('Signup Recruiter', new_recruiter_registration_path)  %>
   </li>
 <% end %>
 
@@ -15,6 +16,7 @@
   </li>
 <% else %>
   <li>
-  <%= link_to('Login Developer', new_developer_session_path)  %>
+  <%= link_to('Login Developer', new_developer_session_path)  %> |
+  <%= link_to('Signup Developer', new_developer_registration_path)  %>
   </li>
 <% end %>
