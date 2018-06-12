@@ -1,6 +1,6 @@
 <%= simple_form_for job, url: url, action: :update, local: true do |f| %>
     <%= f.input :title %>
-    <%= f.input :description %>
+    <%= f.input :description, input_html: { class: 'editable' } %>
     <%= f.input :city %>
     <%= f.input :zip_code %>
     <%= f.input :state %>
