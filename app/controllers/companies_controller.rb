@@ -22,7 +22,8 @@ class CompaniesController < ApplicationController
   end
 
   def dashboard
-    @company = Company.last
+    @company = current_recruiter.company
+    @jobs = @company.jobs
   end
 
   private

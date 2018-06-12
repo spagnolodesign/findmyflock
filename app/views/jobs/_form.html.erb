@@ -1,0 +1,33 @@
+<%= simple_form_for job, url: url, action: :update, local: true do |f| %>
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :city %>
+    <%= f.input :zip_code %>
+    <%= f.input :state %>
+    <%= f.input :country %>
+    <%= f.input :max_salary %>
+    <%= f.input :can_sponsor %>
+    <%= f.input :employment_type %>
+    <%= f.collection_check_boxes :remote, [['remote', 'remote'],['office', 'office']], :first, :last, include_hidden: false %>
+    <hr />
+    <div class="d-flex flex-column mb-3">
+      <label class="form-control-label select required">Benefits:</label>
+      <%= f.collection_check_boxes :benefits, Benefit.all, :value, :value, include_hidden: false %>
+    </div>
+    <hr />
+    <div class="d-flex flex-column bd-highlight mb-3">
+      <label class="form-control-label select required">Culture:</label>
+      <%= f.collection_check_boxes :cultures, Culture.all, :value, :value, include_hidden: false %>
+    </div>
+    <br />
+    <%= f.submit "Update", class: "btn btn-primary btn-lg" %>
+<% end %>
+
+<hr />
+
+<div id="form-skills"
+  data-resource="jobs"
+  data-id="<%= job.id %>"
+  data-competences="<%= Competence.all.to_json(only: [:value, :level]) %>"
+  data-devskills="<%= job.skills.to_json(only: [:name, :level])  %>">
+</div>

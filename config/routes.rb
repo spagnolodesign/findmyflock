@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'skills/create'
-  get 'skills/destroy'
   devise_for :admins, skip: [:registrations], path: 'admins'
   devise_for :developers, path: 'developers'
   devise_for :recruiters, path: 'recruiters'
@@ -9,8 +7,7 @@ Rails.application.routes.draw do
   root 'pages#home'
   get "/pages/:page", to: "pages#show", as: :pages
 
-
-  resources :companies do
+  resources :companies, only: [:new, :create] do
     collection do
       get 'dashboard'
     end
@@ -22,6 +19,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :jobs, only: [:new, :create] do
+    member do
+      get 'add_skills'
+    end
+  end
 
   authenticate :admin do
     namespace :admin do
@@ -48,6 +50,5 @@ Rails.application.routes.draw do
   end
   delete "/api/developers/:developer_id/skills/:name", to: "api/skills#destroy"
   delete "/api/jobs/:job_id/skills/:name", to: "api/skills#destroy"
-
 
 end
