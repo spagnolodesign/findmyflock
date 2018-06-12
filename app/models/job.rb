@@ -5,7 +5,7 @@ class Job < ApplicationRecord
   has_many :developers, through: :matches
   has_many :applications, through: :matches
   geocoded_by :location
-  validates :title, :description, presence: true,  length: { maximum: 500 }
+  validates :title, :description, presence: true,  length: { maximum: 2000 }
   # validates :city, :zip_code, :state, :country, presence: true,  length: { maximum: 100 }
   validates :max_salary, numericality: { only_integer: true, greater_than: 0}, on: :update
   validates :remote, inclusion: { in: [["remote"], ["office"], ["remote", "office"]]}, on: :create

@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   before_action :authenticate_recruiter!
-  before_action :set_job, only: [:show, :edit, :update, :skills]
+  before_action :set_job, only: [:show, :edit, :update, :skills, :benefits]
 
   def new
     @job = Job.new
@@ -13,9 +13,14 @@ class JobsController < ApplicationController
     @job = Job.new(job_params)
     @job.company = current_recruiter.company
 
+    step = params[:job][:navigate_to]
     respond_to do |format|
       if @job.save
-        format.html { redirect_to dashboard_companies_path, notice: 'Job was successfully created.' }
+        if step == "skills"
+          format.html { redirect_to skills_job_path(@job) }
+        elsif step == "dashboard"
+          format.html { redirect_to dashboard_companies_path }
+        end
       else
         format.html { render :new }
       end
@@ -23,9 +28,15 @@ class JobsController < ApplicationController
   end
 
   def update
+    step = params[:job][:navigate_to]
+
     respond_to do |format|
       if @job.update(job_params)
-        format.html { redirect_to dashboard_companies_path, notice: 'Job was successfully updated.' }
+        if step == "skills"
+          format.html { redirect_to skills_job_path(@job) }
+        elsif step == "dashboard"
+          format.html { redirect_to dashboard_companies_path }
+        end
       else
         format.html { render :edit }
       end
@@ -33,6 +44,9 @@ class JobsController < ApplicationController
   end
 
   def skills
+  end
+
+  def benefits
   end
 
   private

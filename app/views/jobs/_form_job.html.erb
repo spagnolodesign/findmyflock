@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-body">
+    <%= simple_form_for job, url: url, action: :update, local: true do |f| %>
+      <%= f.input :title %>
+      <%= f.input :description, input_html: { class: 'editable' } %>
+      <%= f.input :city %>
+      <%= f.input :zip_code %>
+      <%= f.input :state %>
+      <%= f.input :country %>
+      <%= f.input :max_salary %>
+      <%= f.input :can_sponsor %>
+      <%= f.input :employment_type %>
+      <% if action_name == "edit" %>
+        <%= f.input :active %>
+      <% end %>
+      <%= f.collection_check_boxes :remote, [['remote', 'remote'],['office', 'office']], :first, :last, include_hidden: false %>
+      <br />
+      <%= f.hidden_field :navigate_to, value: "skills" %>
+      <%= f.button :submit, class: "btn-primary" %>
+    <% end %>
+  </div>
+</div>
