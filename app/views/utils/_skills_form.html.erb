@@ -1,0 +1,6 @@
+<div id="form-skills"
+  data-resource="<%= url_api %>"
+  data-id="<%= resource.id %>"
+  data-competences="<%= Competence.all.to_json(only: [:value, :level]) %>"
+  data-devskills="<%= resource.skills.to_json(only: [:name, :level])  %>">
+</div>

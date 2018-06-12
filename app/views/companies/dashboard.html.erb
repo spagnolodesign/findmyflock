@@ -1,7 +1,8 @@
 <h3>Dashboard for company <%= @company.name %></h3>
 
 <% if recruiter_signed_in? %>
-  <%= link_to('Logout Recruiter', destroy_recruiter_session_path, method: :delete) %>
+  <%= link_to('Logout Recruiter', destroy_recruiter_session_path, method: :delete) %> -
+  <%= link_to "Post a job", new_job_path %>
 <% end %>
 
 
@@ -14,9 +15,10 @@
 
 <div class="row">
   <div class="col-4">
-    Active jobs:<br />
-    <% @jobs.each do |job| %>
-      <%= job.title %>
+    <b>Active jobs:</b>
+    <br />
+    <% @jobs.each_with_index do |job, index| %>
+      <%= index + 1 %> - <%= job.title %> <%= link_to "Edit", edit_job_path(job) %><br/>
     <% end %>
   </div>
 </div>

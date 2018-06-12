@@ -8,6 +8,9 @@
     <%= f.input :max_salary %>
     <%= f.input :can_sponsor %>
     <%= f.input :employment_type %>
+    <% if action_name == "edit" %>
+      <%= f.input :active %>
+    <% end %>
     <%= f.collection_check_boxes :remote, [['remote', 'remote'],['office', 'office']], :first, :last, include_hidden: false %>
     <hr />
     <div class="d-flex flex-column mb-3">
@@ -22,12 +25,3 @@
     <br />
     <%= f.submit "Update", class: "btn btn-primary btn-lg" %>
 <% end %>
-
-<hr />
-
-<div id="form-skills"
-  data-resource="jobs"
-  data-id="<%= job.id %>"
-  data-competences="<%= Competence.all.to_json(only: [:value, :level]) %>"
-  data-devskills="<%= job.skills.to_json(only: [:name, :level])  %>">
-</div>

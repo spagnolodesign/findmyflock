@@ -19,9 +19,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :jobs, only: [:new, :create] do
+  resources :jobs do
     member do
-      get 'add_skills'
+      get 'skills'
     end
   end
 
