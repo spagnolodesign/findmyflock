@@ -12,6 +12,7 @@ class Job < ApplicationRecord
   validates :employment_type, presence: true, length: { maximum: 100 }, on: :update
   validates :benefits, :cultures, length: { minimum: 1, maximum: 10 }, on: :update
   before_save :geocode, if: :city_changed?
+  before_validation :sanitaze_benefits_cultures
 
   scope :active, -> {where(active: true)}
   scope :remote_or_office_jobs, -> (array) {where("remote <@ ARRAY[?]::text[] OR remote @> ARRAY[?]::text[]", array, array)}
@@ -28,6 +29,11 @@ class Job < ApplicationRecord
 
   def deactivate
     self.active = false
+  end
+
+  def sanitaze_benefits_cultures
+    benefits.reject!(&:empty?)
+    cultures.reject!(&:empty?)
   end
 
 end

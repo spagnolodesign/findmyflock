@@ -14,12 +14,12 @@
     <hr />
     <div class="d-flex flex-column mb-3">
       <label class="form-control-label select required">Benefits:</label>
-      <%= f.collection_check_boxes :benefits, Benefit.all, :value, :value, include_hidden: false %>
+      <%= f.collection_check_boxes :benefits, Benefit.all, :value, :value %>
     </div>
     <hr />
     <div class="d-flex flex-column bd-highlight mb-3">
       <label class="form-control-label select required">Culture:</label>
-      <%= f.collection_check_boxes :cultures, Culture.all, :value, :value, include_hidden: false %>
+      <%= f.collection_check_boxes :cultures, Culture.all, :value, :value %>
     </div>
     <br />
     <%= f.submit "Update", class: "btn btn-primary btn-lg" %>

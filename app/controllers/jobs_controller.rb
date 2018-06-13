@@ -22,14 +22,13 @@ class JobsController < ApplicationController
           format.html { redirect_to dashboard_companies_path }
         end
       else
-        format.html { render :new }
+          format.html { render :edit }
       end
     end
   end
 
   def update
     step = params[:job][:navigate_to]
-
     respond_to do |format|
       if @job.update(job_params)
         if step == "skills"
@@ -38,7 +37,11 @@ class JobsController < ApplicationController
           format.html { redirect_to dashboard_companies_path }
         end
       else
-        format.html { render :edit }
+        if step == "skills"
+          format.html { render :edit }
+        elsif step == "dashboard"
+          format.html { render :benefits, notice: "Please select at least one value." }
+        end
       end
     end
   end
