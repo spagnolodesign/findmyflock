@@ -18,9 +18,6 @@
 <p>Us permit? <%= @developer.need_us_permit %></p>
 <p>linkedin_url <%= @developer.linkedin_url %></p>
 <p>githu_url <%= @developer.github_url %></p>
-<% if @developer.avatar.attachments.any? %>
-<%= image_tag @developer.avatar.variant(resize: "300x300^", gravity:"center", extent: "300x300") %>
-<% end %>
 
 <!-- app/views/posts/show.html.erb -->
 <% if @developer.resumes.attached? %>
@@ -28,19 +25,19 @@
   <strong>Resumes:</strong>
   <br>
   <ul>
-  <% @developer.resumes.each do |resume| %>
+    <% @developer.resumes.each do |resume| %>
     <li><%= link_to "Download file", rails_blob_path(resume, disposition: "attachment") %></li>
-  <% end %>
+    <% end %>
   </ul>
 
 
 
-Add Comment
+  Add Comment
 
 </p>
 <% end %>
 
 
 <% @developer.skills.each do |skill| %>
-  <p><%= skill.name %> / <%= skill.level %></p>
+<p><%= skill.name %> / <%= skill.level %></p>
 <% end %>
