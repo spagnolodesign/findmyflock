@@ -39,12 +39,15 @@ class DeviseCreateDevelopers < ActiveRecord::Migration[5.2]
       t.integer :min_salary
       t.string :city
       t.string :zip_code
+      t.string :state
       t.string :country
-      t.float :latitude
-      t.float :longitude
+      t.float :latitude, default: nil
+      t.float :longitude,  default: nil
       t.text :skills_array, array: true, default: []
       t.text :remote, array: true, default: []
-
+      t.integer :mobility, default: 30
+      t.boolean :full_mobility
+      t.boolean :first_login, default: false
       t.timestamps null: false
     end
 

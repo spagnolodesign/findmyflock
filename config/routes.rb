@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   resources :developers do
     collection do
+      get 'add_skills'
+      get 'edit_profile'
       get 'dashboard'
     end
   end

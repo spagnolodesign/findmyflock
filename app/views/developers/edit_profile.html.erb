@@ -1,0 +1,70 @@
+<style media="screen">
+.show_in_user_form {
+  opacity: 1;
+  height: auto;
+  width: auto;
+  transition: all .3s ease .15s;
+}
+.hide_in_user_form {
+  height: 0px !important;
+  transition: all .3s ease .15s;
+  overflow: hidden;
+  opacity: 0
+}
+</style>
+
+<div class="container">
+  <h1>complete profile dev</h1>
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <%= simple_form_for @developer, method: :patch do |f| %>
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+      <p>Which kind of job. Flag both if you are open to any kind of job</p>
+      <%= f.collection_check_boxes :remote, [['remote', 'remote'],['office', 'office']], :first, :last, include_hidden: false%>
+      <div id="location-info">
+        <h2>Insert the infos about your location</h2>
+        <%= f.input :city, label: "Where are you from", input_html: { id: "locality", value: "#{@developer.city}" } %>
+        <%= f.input :state, input_html: { id: "administrative_area_level_1" }%>
+        <%= f.input :country, input_html: { id: "country" }, as: :string %>
+        <div id="select-distance" class="hidden">
+          <p>How far are you available to move?
+            <span id="range-distance"><%= @developer.mobility%> Mi</span></p>
+          <%= f.input :mobility, input_html: { type: "range", value: "#{@developer.mobility}", min: 20, max: 1000, step: 20 }, label: false %>
+        </div>
+        <%= f.input :full_mobility, label: "I don't care about distance. Full mobility ok" %>
+
+      </div>
+      <div class="d-flex justify-content-between">
+        <div class="w-75">
+          <%= f.input :min_salary, input_html: { type: "range", value: "#{@developer.min_salary.nil? || 10000 }", min: 0, max: 200000, step: 10000}, label: "Minumum Salary" %>
+        </div>
+        <div class="w-25">
+          <p id="salary"><%= @developer.min_salary.nil? || 10000 %>$</p>
+        </div>
+      </div>
+      <%= f.input :avatar, as: :file, :input_html => { :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "image/x-png,image/jpeg" } %>
+      <%= f.input :resumes, as: :file, :input_html => { :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "image/x-png,image/jpeg" } %>
+      <p>Need us permit</p>
+      <%= f.input :need_us_permit %>
+      <%= f.input :linkedin_url do %>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">https://www.linkedin.com/in/</span>
+        </div>
+        <input type="text" class="form-control string" id="basic-url" aria-describedby="basic-addon3" id="linkedin_url" type="text" name="developer[linkedin_url]" value="<%= @developer.linkedin_url.split("/")[-1] if  @developer.linkedin_url%>" placeholder="Your name">
+      </div>
+    <% end  %>
+    <%= f.input :github_url do %>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon3">https://github.com/</span>
+      </div>
+      <input type="text" class="form-control string" id="basic-url" aria-describedby="basic-addon3" id="github_url" type="text" name="developer[github_url]", value="<%= @developer.github_url.split("/")[-1] if @developer.github_url%>" placeholder="Your name">
+    </div>
+  <% end  %>
+    <%= f.submit "Continue to skills" %>
+  <% end  %>
+</div>
+</div>
+</div>
