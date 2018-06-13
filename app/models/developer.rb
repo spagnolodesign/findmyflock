@@ -13,15 +13,15 @@ class Developer < ApplicationRecord
   geocoded_by :developer_location
   before_validation :email_downcase
   before_validation :capitalize_name
-  after_validation :geocode
+  after_validation :geocode, on: :update
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   validate :password_complexity
   validates :first_name, :last_name, presence: true, length: { maximum: 50 }, on: :update
   validates :city, :country, :state, presence: true, if: :wants_office, on: :update
-  validates :latitude, :longitude, presence: :true, on: :update
+  # validates :latitude, :longitude, presence: :true, on: :update
   validates :min_salary, numericality: { only_integer: true, greater_than: 0, less_than: 200000 }, on: :update
   validates :remote, inclusion: { in: [['remote'], ['office'], %w[remote office]] }, on: :update
-  before_update :check_cordinates
+  before_update :check_cordinates, if: :city_changed?
   before_update :set_mobility
 
 

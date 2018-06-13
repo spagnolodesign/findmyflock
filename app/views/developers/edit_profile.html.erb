@@ -44,7 +44,7 @@
         </div>
       </div>
       <%= f.input :avatar, as: :file, :input_html => { :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "image/x-png,image/jpeg" } %>
-      <%= f.input :resumes, as: :file, :input_html => { :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "image/x-png,image/jpeg" } %>
+      <%= f.input :resumes, as: :file, :input_html => {multiple: true , :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "pdf" } %>
       <p>Need us permit</p>
       <%= f.input :need_us_permit %>
       <%= f.input :linkedin_url do %>

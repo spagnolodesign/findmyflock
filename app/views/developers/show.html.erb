@@ -1,0 +1,46 @@
+
+<h1>Dev Dsahboard</h1>
+<p>First name: <%= @developer.first_name %></p>
+<p>Last name: <%= @developer.last_name %></p>
+<p>Remote: <%= @developer.remote %></p>
+<p>City <%= @developer.city %></p>
+<p>State <%= @developer.state %></p>
+<p>Country <%= @developer.country %></p>
+<p>Latitude <%= @developer.latitude %></p>
+<p>Longitude <%= @developer.longitude %></p>
+<% if @developer.mobility %>
+<p>Mobility <%= @developer.mobility %></p>
+<% else %>
+<p>Max mobility</p>
+<% end %>
+<p>Full mobility <%= @developer.full_mobility %></p>
+<p>Min salary <%= @developer.min_salary %></p>
+<p>Us permit? <%= @developer.need_us_permit %></p>
+<p>linkedin_url <%= @developer.linkedin_url %></p>
+<p>githu_url <%= @developer.github_url %></p>
+<% if @developer.avatar.attachments.any? %>
+<%= image_tag @developer.avatar.variant(resize: "300x300^", gravity:"center", extent: "300x300") %>
+<% end %>
+
+<!-- app/views/posts/show.html.erb -->
+<% if @developer.resumes.attached? %>
+<p>
+  <strong>Resumes:</strong>
+  <br>
+  <ul>
+  <% @developer.resumes.each do |resume| %>
+    <li><%= link_to "Download file", rails_blob_path(resume, disposition: "attachment") %></li>
+  <% end %>
+  </ul>
+
+
+
+Add Comment
+
+</p>
+<% end %>
+
+
+<% @developer.skills.each do |skill| %>
+  <p><%= skill.name %> / <%= skill.level %></p>
+<% end %>
