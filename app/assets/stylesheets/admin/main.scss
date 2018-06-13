@@ -1,4 +1,7 @@
 @import "bootstrap";
+@import "utils/beagle-editor";
+@import "utils/direct_uploads";
+@import "utils/skills-form";
 
 body {
   font-size: .875rem;
@@ -116,20 +119,4 @@ body {
 
 .was-validated .form-control:valid, .form-control.is-valid, .was-validated .custom-select:valid, .custom-select.is-valid {
   border-color: #ced4da;
-}
-
-
-.skill-list{
-  padding: 1em 0;
-  border-bottom: 1px solid #f2f2f2;
-}
-.skill-icon{
-  font-size: 1.5em;
-}
-.skill-icon i{
-  margin-left: 0.7em;
-  margin-right: 0.4em;
-}
-.skill-name {
-  text-transform:capitalize;
 }

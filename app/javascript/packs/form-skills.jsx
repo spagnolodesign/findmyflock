@@ -11,7 +11,15 @@ class FormSkill extends Component {
       competences: props.competences,
       skills: props.devskills,
       skillLevel:1,
-      selectedValue: []
+      selectedValue: [],
+      valuesLevels: ["1", "2", "3", "4", "5"],
+      rangeLevels: {
+        "1": "<h5>Familiarity</h5><p>Needs mentorship</p><p>Generally 0-1 years of professional experience</p>",
+        "2": "<h5>Gaining Competency</h5><p>Occasionally needs mentorship</p><p>Generally 1-3 years of professional experience</p>",
+        "3": "<h5>Individual Competency</h5><p>No longer needs daily mentorship</p><p>Generally 3-5 years of professional experience</p>",
+        "4": "<h5>Strong Competency</h5><p>Could mentor others</p><p>5+ years of professional experience</p>",
+        "5": "<h5>Leadership</h5><p>Has lead or managed a team in this subject</p><p>Expert competency</p>"
+      }
     }
   }
 
@@ -92,21 +100,28 @@ class FormSkill extends Component {
   }
 
   render() {
-    const { skills, competences, skillLevel, selectedSkill, selectedValue } = this.state;
+    const { skills, competences, skillLevel, selectedSkill, selectedValue, valuesLevels, rangeLevels} = this.state;
+
     const listOfSkills = skills.map((el, i) => (
-      <div className="skill-list d-flex justify-content-between" key={i}>
-        <div className="skill-icon">
+      <div className="skill-form-list d-flex justify-content-between" key={i}>
+        <div className="skill-form-icon">
           <i className={`devicon-${el.name}-plain colored`}></i>
-          <span className="skill-name">{el.name}</span> - {el.level}
+          <span className="skill-form-name">{el.name}</span> - {el.level}
         </div>
         <button className="btn btn-sm btn-outline-warning" onClick={(e) => this.remove(i)}>remove</button>
+      </div>
+    ))
+
+    const rangeValues = valuesLevels.map((el, i) => (
+      <div key={i}>
+        {el}
       </div>
     ))
 
     return(
       <div>
         {listOfSkills}
-        <div className="form-group">
+        <div className="mt-3 form-group">
           <Typeahead
             labelKey="value"
             options={competences}
@@ -120,11 +135,15 @@ class FormSkill extends Component {
         </div>
         {selectedValue.length > 0 &&
         <div>
-          <p>Please select the level:</p>
-          <div className="form-group">
+          <div className="form-group shadow-sm p-3 my-2 bg-white rounded">
+            <p className="mb-2">Please select the level:</p>
             <input className="form-control-range" type="range" min="1" max="5" value={skillLevel} onChange={this.onChangeLevel} step="1"/>
+            <div className="d-flex justify-content-between">
+              {rangeValues}
+            </div>
+            <div className="my-2" dangerouslySetInnerHTML={{ __html: rangeLevels[skillLevel] }} />
+            <button className="btn btn-primary" onClick={(e) => this.add(e)}>Add skill</button>
           </div>
-          <button className="btn btn-primary" onClick={(e) => this.add(e)}>add skill</button>
         </div>
         }
       </div>

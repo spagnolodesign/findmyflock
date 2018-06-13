@@ -1,6 +1,17 @@
-@import "bootstrap";
-@import "progressbar";
 
 body {
   background: #f2f2f2;
+}
+
+.show_in_user_form {
+  opacity: 1;
+  height: auto;
+  width: auto;
+  transition: all .3s ease .15s;
+}
+.hide_in_user_form {
+  height: 0px !important;
+  transition: all .3s ease .15s;
+  overflow: hidden;
+  opacity: 0
 }

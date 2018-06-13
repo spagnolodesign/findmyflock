@@ -1,18 +1,6 @@
+@import "bootstrap";
 @import "utils/beagle-editor";
 @import "utils/direct_uploads";
-@import "bootstrap";
-@import "app/progressbar";
+@import "utils/skills-form";
+@import "utils/progressbar";
 @import "app/main";
-
-.show_in_user_form {
-  opacity: 1;
-  height: auto;
-  width: auto;
-  transition: all .3s ease .15s;
-}
-.hide_in_user_form {
-  height: 0px !important;
-  transition: all .3s ease .15s;
-  overflow: hidden;
-  opacity: 0
-}
