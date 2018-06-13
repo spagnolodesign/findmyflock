@@ -4,8 +4,8 @@
 const displayLocationInfo = () => {
   let office = document.getElementById('developer_remote_office')
   let locationInfo = document.getElementById('location-info')
-  // console.log(!office)
   if (!office) return;
+
   if (office != null && office.checked) {
     locationInfo.classList.add("show_in_user_form")
   }
@@ -18,20 +18,19 @@ const displayLocationInfo = () => {
       } else {
         locationInfo.classList.remove("show_in_user_form")
         locationInfo.classList.add("hide_in_user_form")
-
       }
     })
   }
 }
 
 
-const rangeDistance = () =>{
-  var rangeDistance = document.getElementById('range-distance')
-  var slider = document.getElementById('developer_mobility')
+const rangeDistance = () => {
+  var rangeDistance = document.getElementById('range-distance');
+  var slider = document.getElementById('developer_mobility');
   if (slider != null){
     slider.addEventListener("input", function(){
-      rangeDistance.innerHTML = ""
-      rangeDistance.innerHTML = `${slider.value} Mi`
+      rangeDistance.innerHTML = "";
+      rangeDistance.innerHTML = `${slider.value} Mi`;
     })
   }
 }

@@ -1,4 +1,4 @@
-<ul class="progressbar">
+<ul class="progressbar <%= classname %>">
   <% navigations.each_with_index do |nav, index| %>
     <li class="<%= 'active' if step > index %>"><%= nav %></li>
   <% end %>

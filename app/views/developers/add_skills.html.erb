@@ -1,16 +1,18 @@
-
-
 <div class="container">
-  <div class="row">
-    <div class="col-lg-10">
-      <h4 class="ml-3">Skills:</h4>
-      <div id="form-skills"
-        data-resource="developers"
-        data-id="<%= @developer.id %>"
-        data-competences="<%= Competence.all.to_json(only: [:value, :level]) %>"
-        data-devskills="<%= @developer.skills.to_json(only: [:name, :level])  %>">
+  <div class="row justify-content-md-center">
+    <div class="col col-md-8">
+      <%= render 'utils/progressbar', classname: "small", step: 2, navigations: ["Dev profile", "Skills"] %>
+      <div class="card">
+        <div class="card-body">
+          <div id="form-skills"
+            data-resource="developers"
+            data-id="<%= @developer.id %>"
+            data-competences="<%= Competence.all.to_json(only: [:value, :level]) %>"
+            data-devskills="<%= @developer.skills.to_json(only: [:name, :level])  %>">
+          </div>
+          <%= link_to "Continue to your dashboard", dashboard_developers_path, class: "btn btn-primary" %>
+        </div>
       </div>
     </div>
   </div>
-  <%= link_to "Go to your Dashboard", dashboard_developers_path %>
 </div>

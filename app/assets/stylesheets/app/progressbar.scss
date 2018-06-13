@@ -10,10 +10,13 @@
 	list-style-type: none;
 	color: #795548;
 	text-transform: uppercase;
-	font-size: 0.6em;
+	font-size: 1em;
 	width: 33.33%;
 	float: left;
 	position: relative;
+}
+.progressbar.small li {
+	width: 50%;
 }
 .progressbar li:before {
 	content: counter(step);

@@ -11,9 +11,9 @@ const googleLocation = () => {
         country: 'long_name',
         postal_code: 'short_name'
       };
-      autocomplete = new google.maps.places.Autocomplete(
-      /** @type {!HTMLInputElement} */
-      (el), {types: ['geocode']});
+
+      autocomplete = new google.maps.places.Autocomplete((el), {types: ['geocode']});
+
       if (autocomplete != null) {
         autocomplete.addListener('place_changed', function(){
           var place = autocomplete.getPlace();
@@ -25,18 +25,9 @@ const googleLocation = () => {
               document.getElementById(addressType).value = val;
             }
           }
-
-
         });
       }
   })
 }
-  function fillInAddress() {
-  }
-
-  function initAutocomplete(){
-  }
-
-
 
 export { googleLocation }
