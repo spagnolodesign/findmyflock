@@ -4,6 +4,8 @@
 const displayLocationInfo = () => {
   let office = document.getElementById('developer_remote_office')
   let locationInfo = document.getElementById('location-info')
+  // console.log(!office)
+  if (!office) return;
   if (office != null && office.checked) {
     locationInfo.classList.add("show_in_user_form")
   }
@@ -37,6 +39,7 @@ const rangeDistance = () =>{
 const hideRange = () => {
   var selectDistance = document.getElementById('select-distance')
   var fullMobility = document.getElementById('developer_full_mobility')
+  if (!fullMobility) return;
   if (fullMobility.checked) selectDistance.classList.add("hide_in_user_form")
   if (!fullMobility.checked) selectDistance.classList.add("show_in_user_form")
   if (fullMobility != null){

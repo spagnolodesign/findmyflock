@@ -1,8 +1,8 @@
 const googleLocation = () => {
+  const el = document.getElementById('locality');
+  if (!el) return;
   document.addEventListener("DOMContentLoaded", function(event){
-    console.log("lòkòlkòkòkòklòklkòkò");
-      var placeSearch,
-        autocomplete;
+      var placeSearch, autocomplete;
       var componentForm = {
         street_number: 'short_name',
         route: 'long_name',
@@ -13,7 +13,7 @@ const googleLocation = () => {
       };
       autocomplete = new google.maps.places.Autocomplete(
       /** @type {!HTMLInputElement} */
-      (document.getElementById('locality')), {types: ['geocode']});
+      (el), {types: ['geocode']});
       if (autocomplete != null) {
         autocomplete.addListener('place_changed', function(){
           var place = autocomplete.getPlace();
