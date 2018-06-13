@@ -11,6 +11,7 @@ gem 'webpacker'
 gem 'figaro'
 gem 'pry-rails'
 gem 'devise'
+gem 'jquery-rails'
 gem 'simple_form'
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
@@ -22,6 +23,7 @@ gem 'active_link_to'
 gem 'country_select'
 gem 'mini_magick'
 gem "aws-sdk-s3", require: false
+gem 'turbolinks'
 
 
 group :development, :test do

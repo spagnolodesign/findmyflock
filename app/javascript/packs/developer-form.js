@@ -7,7 +7,7 @@ const displayLocationInfo = () => {
   if (office != null && office.checked) {
     locationInfo.classList.add("show_in_user_form")
   }
-  if (!office.checked) locationInfo.classList.add("hide_in_user_form")
+  if (office != null && !office.checked) locationInfo.classList.add("hide_in_user_form")
   if (office != null){
     office.addEventListener("change", function() {
       if (office.checked){
@@ -37,8 +37,8 @@ const rangeDistance = () =>{
 const hideRange = () => {
   var selectDistance = document.getElementById('select-distance')
   var fullMobility = document.getElementById('developer_full_mobility')
-  if (fullMobility.checked) selectDistance.classList.add("hide_in_user_form")
-  if (!fullMobility.checked) selectDistance.classList.add("show_in_user_form")
+  if (fullMobility != null && fullMobility.checked) selectDistance.classList.add("hide_in_user_form")
+  if (fullMobility != null && !fullMobility.checked) selectDistance.classList.add("show_in_user_form")
   if (fullMobility != null){
     fullMobility.addEventListener("change", function(){
       if (!fullMobility.checked){
