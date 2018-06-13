@@ -14,6 +14,7 @@ class Job < ApplicationRecord
   before_save :geocode, if: :city_changed?
 
   scope :active, -> {where(active: true)}
+  scope :check_location, -> (miles, lat, long) {near([lat,long], miles, :units => :mi)}
   scope :remote_or_office_jobs, -> (array) {where("remote <@ ARRAY[?]::text[] OR remote @> ARRAY[?]::text[]", array, array)}
   scope :can_sponsor, -> {where("can_sponsor = true ")}
   scope :match_skills_type, -> (array) { where.not(skills_array: []).where("skills_array <@ ARRAY[?]::text[]", array) }

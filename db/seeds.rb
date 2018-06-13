@@ -1043,27 +1043,27 @@ p "Creating Developer"
 
 5.times do
 
-    dev = Developer.create!(
+    dev = Developer.new(
     email: Faker::Internet.email,
     password: 'Developer9)',
     password_confirmation: 'Developer9)',
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     city: 'Los Angeles',
-    zip_code: '90009',
+    state: 'CA',
     country: 'United States',
     need_us_permit: Faker::Boolean.boolean(0.2),
     min_salary: salary = [10_000, 20_000, 30_000].sample,
     remote: [['remote'], ['office'], %w[remote office]].sample,
   )
+ dev.save
+ p "One developer created"
 
 3.times do
-  a = dev.skills.new(name: Competence.all.sample.value, level: rand(3..5))
-  dev.password = 'Developer1!'
-  dev.save
-  a.save
+a = dev.skills.new(name: Competence.all.sample.value, level: rand(3..5))
+a.save
 end
- p "One developer created"
+ p "3 skills added"
 end
 
 Developer.check_for_first_matches

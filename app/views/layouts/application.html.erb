@@ -16,8 +16,12 @@
       <p class="alert"><%= alert %></p>
     <% end %>
     <%= yield %>
+    <%= javascript_pack_tag 'google-autocomplete' %>
+
 
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
+    <%= javascript_pack_tag 'form-skills' %>
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyA7K6g78F78NhFmIXvpYkICOIdeGrtdGIk&libraries=places" %>
   </body>
 </html>

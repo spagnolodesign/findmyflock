@@ -112,11 +112,15 @@ ActiveRecord::Schema.define(version: 2018_06_10_035815) do
     t.integer "min_salary"
     t.string "city"
     t.string "zip_code"
+    t.string "state"
     t.string "country"
     t.float "latitude"
     t.float "longitude"
     t.text "skills_array", default: [], array: true
     t.text "remote", default: [], array: true
+    t.integer "mobility", default: 30
+    t.boolean "full_mobility"
+    t.boolean "first_login", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_developers_on_email", unique: true
