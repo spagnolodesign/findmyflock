@@ -1,114 +1,31 @@
 <div class="container mt-5" style="min-height: 100vh">
+
+  <%= link_to "Edit your profile", edit_profile_developers_path %>
+  <%= link_to "See your profile", developer_path(current_developer) %>
+  <%= link_to "Manage your skills", add_skills_developers_path %>
+
   <div class="row">
     <div class="col-lg-3">
-
       <div class="accordion" id="accordion">
-        <div class="card">
-          <div class="card-header" id="headingOne">
-            <%= form_for(:developer, :url => { :action => "dashboard" }, :html => {:method => :get, id: "filter"}, remote: true) do |f| %>
-            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Benefits
-            </button>
-          </h5>
-        </div>
+        <%= form_for(:developer, :url => { :action => "dashboard" }, :html => {:method => :get, id: "filter"}, remote: true) do |f| %>
 
-        <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
-          <div class="card-body">
-            <% @benefits.each do |benefit| %>
-              <div class='checkbox'><%= check_box_tag 'benefits[]', benefit %><%= benefit %></div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header" id="headingTwo">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Cultures
-            </button>
-          </h5>
-        </div>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-          <div class="card-body">
-            <% @cultures.each do |culture| %>
-              <div class='checkbox'><%= check_box_tag 'cultures[]', culture %><%= culture %></div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header" id="headingThree">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              Cities
-            </button>
-          </h5>
-        </div>
-        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-          <div class="card-body">
-            <% @cities.each do |city| %>
-              <div class='checkbox'><%= check_box_tag 'cities[]', city %><%= city %></div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-header" id="headingFour">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-              Salary
-            </button>
-          </h5>
-        </div>
-        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-          <div class="card-body">
-            <% @salaries.each do |salary| %>
-              <div class='checkbox'><%= check_box_tag 'salaries[]', salary %> >= <%= salary %></div>
-            <% end %>
-        </div>
+          <%= render "utils/checkboxes_filter", title: "Benefits", dataset: @benefits, value: "benefits[]", collapse_name: "benefitsCollapse" %>
+          <%= render "utils/checkboxes_filter", title: "Cultures", dataset: @cultures, value: "cultures[]", collapse_name: "culturesCollapse" %>
+          <%= render "utils/checkboxes_filter", title: "Cities", dataset: @cities, value: "cities[]", collapse_name: "citiesCollapse" %>
+          <%= render "utils/checkboxes_filter", title: "Salary", dataset: @salaries, value: "salaries[]", collapse_name: "salaryCollapse" %>
+
+          <% if @developer.remote == ["remote", "office"] %>
+            <%= render "utils/checkboxes_filter", title: "Remote/Office", dataset: ["Remote", "Office", "Both"], value: "remote[]", collapse_name: "remoteCollapse" %>
+          <% end %>
+
+          <%= submit_tag("Search")%>
+        <% end %>
       </div>
     </div>
-    <% if @developer.remote == ["remote", "office"] %>
-    <div class="card">
-      <div class="card-header" id="headingFifth">
-        <h5 class="mb-0">
-          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFifth" aria-expanded="false" aria-controls="collapseFifth">
-            Remote/Office
-          </button>
-        </h5>
-      </div>
-      <div id="collapseFifth" class="collapse" aria-labelledby="headingFifth" data-parent="#accordion">
-        <div class="card-body">
-          <div class='checkbox'>
-            <input type="checkbox" name="remote[]" id="remote_" value='remote'>
-            Remote
-          </div>
-          <div class='checkbox'>
-            <input type="checkbox" name="remote[]" id="remote_" value='office'>
-            Office
-          </div>
-          <div class='checkbox'>
-            <input type="checkbox" name="remote[]" id="remote_" value='both'>
-            Both
-          </div>
 
-      <% end %>
+    <div class="col-lg-8" id="jobs-list">
+      <%= render @jobs %>
     </div>
   </div>
-</div>
-<%= submit_tag("Search")%>
-<% end %>
-</div>
 
 </div>
-<div class="col-lg-8" id="jobs-list">
-<%= render @jobs %>
-</div>
-
-</div>
-
-</div>
-
-<%= link_to "Edit your profile", edit_profile_developers_path %>
-<%= link_to "See your profile", developer_path(current_developer) %>
-<%= link_to "Manage your skills", add_skills_developers_path %>

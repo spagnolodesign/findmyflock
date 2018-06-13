@@ -14,10 +14,10 @@ class Job < ApplicationRecord
   before_save :geocode, if: :city_changed?
   before_validation :sanitaze_benefits_cultures
 
-  scope :active, -> {where(active: true)}
+  scope :active, -> { where(active: true) }
   scope :check_location, -> (miles, lat, long) {
     if !lat.nil?
-      near([lat,long], miles, :units => :mi)
+      geocoded.near([lat,long], miles, :units => :mi, :order => nil)
     else
       all
     end

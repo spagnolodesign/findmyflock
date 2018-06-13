@@ -1002,6 +1002,25 @@ end
 end
 
 
+PLACES = [
+  {city: "Los Angeles",
+    state: "CA",
+    country: "United States"
+  },
+  {city: "Chicago",
+    state: "MI",
+    country: "United States"
+  },
+  {city: "New York",
+    state: "NY",
+    country: "United States"
+  },
+  {city: "San Francisco",
+    state: "CA",
+    country: "United States"
+  }
+]
+
 Company.all.each do |company|
   15.times do
     cultures = []
@@ -1017,33 +1036,14 @@ Company.all.each do |company|
       benefits << Benefit.find(rand(1..Benefit.count)).value
     end
 
-    PLACE = [
-      {city: "Los Angeles",
-        state: "CA",
-        country: "United States"
-      },
-      {city: "Chicago",
-        state: "MI",
-        country: "United States"
-      },
-      {city: "New York",
-        state: "NY",
-        country: "United States"
-      },
-      {city: "San Francisco",
-        state: "CA",
-        country: "United States"
-      }
-
-    ]
     i = rand(0..3)
     job = Job.new(
       title: Faker::FamilyGuy.character,
       description: Faker::Lorem.paragraph(2, false, 4),
       remote: remote.sample,
-      city: PLACE[i][:city],
-      state: PLACE[i][:state],
-      country: PLACE[i][:country],
+      city: PLACES[i][:city],
+      state: PLACES[i][:state],
+      country: PLACES[i][:country],
       employment_type: EMPLOYMENT_TYPE.sample,
       latitude: nil,
       longitude: nil,

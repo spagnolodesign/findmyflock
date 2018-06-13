@@ -76,19 +76,20 @@ class Developer < ApplicationRecord
   def matched_job
     if full_mobility
       if need_us_permit
-        Job.remote_or_office_jobs(remote).match_skills_type(skills_array).can_sponsor.active
+        Job.active.remote_or_office_jobs(remote).match_skills_type(skills_array).can_sponsor
       else
-        Job.remote_or_office_jobs(remote).match_skills_type(skills_array).active
+        Job.active.remote_or_office_jobs(remote).match_skills_type(skills_array)
       end
     else
       if need_us_permit
-        Job.remote_or_office_jobs(remote).match_skills_type(skills_array).can_sponsor.active.check_location(mobility, latitude, longitude)
+        Job.active.check_location(mobility, latitude, longitude).remote_or_office_jobs(remote).match_skills_type(skills_array).can_sponsor
       else
-        Job.remote_or_office_jobs(remote).match_skills_type(skills_array).active.check_location(mobility, latitude, longitude)
+        Job.active.check_location(mobility, latitude, longitude).remote_or_office_jobs(remote).match_skills_type(skills_array)
       end
     end
   end
 
+  # .check_location(mobility, latitude, longitude)
   def self.check_for_first_matches
     all.each do |developer|
       developer.matched_job.each do |job|
