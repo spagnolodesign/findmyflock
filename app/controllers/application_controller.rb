@@ -15,7 +15,7 @@ protected
     elsif resource.class == Admin
      request.env['omniauth.origin'] || stored_location_for(resource) || admin_dashboard_index
     else
-    request.env['omniauth.origin'] || stored_location_for(resource) || root_path
+     request.env['omniauth.origin'] || stored_location_for(resource) || root_path
     end
   end
 end
