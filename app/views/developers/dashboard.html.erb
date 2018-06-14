@@ -13,6 +13,10 @@
     transform: translateY(2px);
   }
 
+  .filter-title:hover{
+    cursor: pointer;
+  }
+
   .close-params {
     font-weight: bold;
     margin-left: 12px;
@@ -24,19 +28,23 @@
     cursor: pointer;
   }
 </style>
+<%= link_to "Edit your profile", edit_profile_developers_path %>
+<br>
+<%= link_to "See your profile", developer_path(current_developer) %>
+<br>
+<%= link_to "Manage your skills", add_skills_developers_path %>
+<br>
+<%= link_to "Edit your email and password", edit_developer_registration_path %>
 
-<div id ="dashboard-container" class="container mt-5" style="min-height: 100vh">
+<div id="dashboard-container" class="container mt-5" style="min-height: 100vh">
   <div class="d-flex my-3" id="params-container"></div>
   <div class="row">
     <div class="col-lg-3">
       <div class="accordion" id="accordion">
         <div class="card filter-card">
-          <div class="card-header" id="headingOne">
+          <div class="card-header " id="headingOne">
             <%= form_for(:developer, :url => { :action => "dashboard" }, :html => {:method => :get, id: "filter"}, remote: true) do |f| %>
-            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Benefits
-            </button>
-          </h5>
+            <p class="filter-title">Benefits</p>
         </div>
 
         <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
@@ -48,12 +56,8 @@
         </div>
       </div>
       <div class="card filter-card">
-        <div class="card-header" id="headingTwo">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              Cultures
-            </button>
-          </h5>
+        <div class="card-header " id="headingTwo">
+          <p class="filter-title">Cultures</p>
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
           <div class="card-body">
@@ -64,12 +68,8 @@
         </div>
       </div>
       <div class="card filter-card">
-        <div class="card-header" id="headingThree">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              Cities
-            </button>
-          </h5>
+        <div class="card-header " id="headingThree">
+          <p class="filter-title">Cities</p>
         </div>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
           <div class="card-body">
@@ -80,12 +80,8 @@
         </div>
       </div>
       <div class="card filter-card">
-        <div class="card-header" id="headingFour">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-              Salary
-            </button>
-          </h5>
+        <div class="card-header " id="headingFour">
+          <p class="filter-title">Salaries</p>
         </div>
         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
           <div class="card-body">
@@ -99,12 +95,8 @@
       </div>
       <% if @developer.remote == ["remote", "office"] %>
         <div class="card filter-card">
-          <div class="card-header" id="headingFifth">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFifth" aria-expanded="false" aria-controls="collapseFifth">
-                Remote/Office
-              </button>
-            </h5>
+          <div class="card-header " id="headingFifth">
+            <p class="filter-title">Remote or office</p>
           </div>
           <div id="collapseFifth" class="collapse" aria-labelledby="headingFifth" data-parent="#accordion">
             <div class="card-body">
@@ -128,16 +120,14 @@
       <%= submit_tag("Search")%>
     <% end %>
   </div>
-
-</div>
-<div class="col-lg-8" id="jobs-list">
-  <%= render @jobs %>
 </div>
 
-</div>
+
+    <div class="col-lg-8" id="jobs-list">
+      <p><%= @jobs.size %> jobs Match your request</p>
+      <%= render @jobs %>
+    </div>
 
 </div>
 
-<%= link_to "Edit your profile", edit_profile_developers_path %>
-<%= link_to "See your profile", developer_path(current_developer) %>
-<%= link_to "Manage your skills", add_skills_developers_path %>
+</div>
