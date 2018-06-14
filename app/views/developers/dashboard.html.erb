@@ -1,13 +1,56 @@
+<<<<<<< HEAD
 <div id ="dashboard-container" class="container mt-5" style="min-height: 100vh">
 
   <%= link_to "Edit your profile", edit_profile_developers_path %>
   <%= link_to "See your profile", developer_path(current_developer) %>
   <%= link_to "Manage your skills", add_skills_developers_path %>
+=======
+<style media="screen">
+  .params {
+    width: auto;
+    height: auto;
+    background-color: #bfb6b6;
+    border-radius: 3px;
+    padding: 0 9px;
+    margin-left: 6px;
+  }
+
+  .params:active {
+    background-color: #747774;
+    transform: translateY(2px);
+  }
+
+  .filter-title:hover{
+    cursor: pointer;
+  }
+
+  .close-params {
+    font-weight: bold;
+    margin-left: 12px;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .close-params:hover {
+    cursor: pointer;
+  }
+</style>
+<%= link_to "Edit your profile", edit_profile_developers_path %>
+<br>
+<%= link_to "See your profile", developer_path(current_developer) %>
+<br>
+<%= link_to "Manage your skills", add_skills_developers_path %>
+<br>
+<%= link_to "Edit your email and password", edit_developer_registration_path %>
+
+<div id="dashboard-container" class="container mt-5" style="min-height: 100vh">
+>>>>>>> edit email and small change on search
   <div class="d-flex my-3" id="params-container"></div>
 
   <div class="row">
     <div class="col-lg-3">
       <div class="accordion" id="accordion">
+<<<<<<< HEAD
         <%= form_for(:developer, :url => { :action => "dashboard" }, :html => {:method => :get, id: "filter"}, remote: true) do |f| %>
 
           <%= render "utils/checkboxes_filter", title: "Benefits", dataset: @benefits, value: "benefits[]", collapse_name: "benefitsCollapse" %>
@@ -30,3 +73,95 @@
   </div>
 
 </div>
+=======
+        <div class="card filter-card">
+          <div class="card-header " id="headingOne">
+            <%= form_for(:developer, :url => { :action => "dashboard" }, :html => {:method => :get, id: "filter"}, remote: true) do |f| %>
+            <p class="filter-title">Benefits</p>
+        </div>
+
+        <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body">
+            <% @benefits.each do |benefit| %>
+              <div class='checkbox-dashboard'><%= check_box_tag 'benefits[]', benefit %><%= benefit %></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="card filter-card">
+        <div class="card-header " id="headingTwo">
+          <p class="filter-title">Cultures</p>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+          <div class="card-body">
+            <% @cultures.each do |culture| %>
+              <div class='checkbox-dashboard'><%= check_box_tag 'cultures[]', culture %><%= culture %></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="card filter-card">
+        <div class="card-header " id="headingThree">
+          <p class="filter-title">Cities</p>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+          <div class="card-body">
+            <% @cities.each do |city| %>
+              <div class='checkbox-dashboard'><%= check_box_tag 'cities[]', city %><%= city %></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="card filter-card">
+        <div class="card-header " id="headingFour">
+          <p class="filter-title">Salaries</p>
+        </div>
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+          <div class="card-body">
+            <% @salaries.each do |salary| %>
+              <div class='checkbox-dashboard'><%= check_box_tag 'salaries[]', salary %>
+                >=
+                <%= salary %></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% if @developer.remote == ["remote", "office"] %>
+        <div class="card filter-card">
+          <div class="card-header " id="headingFifth">
+            <p class="filter-title">Remote or office</p>
+          </div>
+          <div id="collapseFifth" class="collapse" aria-labelledby="headingFifth" data-parent="#accordion">
+            <div class="card-body">
+              <div class='checkbox-dashboard'>
+                <input type="checkbox" name="remote[]" id="remote_" value='remote'>
+                Remote
+              </div>
+              <div class='checkbox-dashboard'>
+                <input type="checkbox" name="remote[]" id="remote_" value='office'>
+                Office
+              </div>
+              <div class='checkbox-dashboard'>
+                <input type="checkbox" name="remote[]" id="remote_" value='both'>
+                Both
+              </div>
+
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <%= submit_tag("Search")%>
+    <% end %>
+  </div>
+</div>
+
+
+    <div class="col-lg-8" id="jobs-list">
+      <p><%= @jobs.size %> jobs Match your request</p>
+      <%= render @jobs %>
+    </div>
+
+</div>
+
+</div>
+>>>>>>> edit email and small change on search
