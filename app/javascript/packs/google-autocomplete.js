@@ -2,7 +2,9 @@ const googleLocation = () => {
   const el = document.getElementById('locality');
   if (!el) return;
   document.addEventListener("DOMContentLoaded", function(event){
-      var placeSearch, autocomplete;
+    if (document.querySelector("#locality") != null) {
+      var placeSearch,
+        autocomplete;
       var componentForm = {
         street_number: 'short_name',
         route: 'long_name',
@@ -27,6 +29,9 @@ const googleLocation = () => {
           }
         });
       }
+
+    }
+
   })
 }
 

@@ -15,3 +15,27 @@ body {
   overflow: hidden;
   opacity: 0
 }
+.params {
+  width: auto;
+  height: auto;
+  background-color: #bfb6b6;
+  border-radius: 3px;
+  padding: 0 9px;
+  margin-left: 6px;
+}
+
+.params:active {
+  background-color: #747774;
+  transform: translateY(2px);
+}
+
+.close-params {
+  font-weight: bold;
+  margin-left: 12px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.close-params:hover {
+  cursor: pointer;
+}

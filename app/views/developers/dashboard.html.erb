@@ -1,8 +1,9 @@
-<div class="container mt-5" style="min-height: 100vh">
+<div id ="dashboard-container" class="container mt-5" style="min-height: 100vh">
 
   <%= link_to "Edit your profile", edit_profile_developers_path %>
   <%= link_to "See your profile", developer_path(current_developer) %>
   <%= link_to "Manage your skills", add_skills_developers_path %>
+  <div class="d-flex my-3" id="params-container"></div>
 
   <div class="row">
     <div class="col-lg-3">
