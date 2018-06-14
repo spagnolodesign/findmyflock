@@ -89,7 +89,6 @@ class Developer < ApplicationRecord
     end
   end
 
-  # .check_location(mobility, latitude, longitude)
   def self.check_for_first_matches
     all.each do |developer|
       developer.matched_job.each do |job|

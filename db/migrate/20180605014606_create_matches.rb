@@ -3,7 +3,6 @@ class CreateMatches < ActiveRecord::Migration[5.2]
     create_table :matches do |t|
       t.references :job, foreign_key: true
       t.references :developer, foreign_key: true
-      t.boolean :application, default: false
       t.timestamps
     end
   end

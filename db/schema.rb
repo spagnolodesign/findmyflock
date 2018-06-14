@@ -56,8 +56,7 @@ ActiveRecord::Schema.define(version: 2018_06_10_035815) do
 
   create_table "applications", force: :cascade do |t|
     t.text "message"
-    t.boolean "application_readed", default: false
-    t.boolean "contact_candidate", default: false
+    t.integer "status", default: 0
     t.bigint "match_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -153,7 +152,6 @@ ActiveRecord::Schema.define(version: 2018_06_10_035815) do
   create_table "matches", force: :cascade do |t|
     t.bigint "job_id"
     t.bigint "developer_id"
-    t.boolean "application", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["developer_id"], name: "index_matches_on_developer_id"

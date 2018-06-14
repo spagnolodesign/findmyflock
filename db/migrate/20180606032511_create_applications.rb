@@ -2,8 +2,7 @@ class CreateApplications < ActiveRecord::Migration[5.2]
   def change
     create_table :applications do |t|
       t.text :message
-      t.boolean :application_readed, default: false
-      t.boolean :contact_candidate, default: false
+      t.integer :status, default: 0
       t.references :match, foreign_key: true
       t.timestamps
     end

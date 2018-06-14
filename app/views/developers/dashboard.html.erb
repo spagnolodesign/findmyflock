@@ -31,3 +31,13 @@
   </div>
 
 </div>
+
+<div class="row">
+  <div class="col-4">
+    <b>Your job applications:</b>
+    <br />
+    <% @developer.applications.each_with_index do |application, index| %>
+      <p><%= index+1 %> For: <%= application.match.job.title %> - State: <%= application.status %> <%= link_to "See application", new_job_application_path(application.match.job) %></p>
+    <% end %>
+  </div>
+</div>

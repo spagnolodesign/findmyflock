@@ -22,11 +22,18 @@ Rails.application.routes.draw do
   end
 
   resources :jobs do
+    resources :applications, only: [:new, :create, :show] do
+      member do
+        post 'contact'
+      end
+    end
     member do
       get 'skills'
       get 'benefits'
     end
   end
+
+
 
   authenticate :admin do
     namespace :admin do

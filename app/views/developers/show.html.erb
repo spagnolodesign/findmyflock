@@ -19,7 +19,7 @@
 <p>linkedin_url <%= @developer.linkedin_url %></p>
 <p>githu_url <%= @developer.github_url %></p>
 
-<!-- app/views/posts/show.html.erb -->
+applications
 <% if @developer.resumes.attached? %>
 <p>
   <strong>Resumes:</strong>
@@ -29,11 +29,6 @@
     <li><%= link_to "Download file", rails_blob_path(resume, disposition: "attachment") %></li>
     <% end %>
   </ul>
-
-
-
-  Add Comment
-
 </p>
 <% end %>
 

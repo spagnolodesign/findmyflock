@@ -1,0 +1,19 @@
+
+<div class="fluid-container">
+  <div class="row">
+    <div class="col-6">
+      <%= render @job %>
+    </div>
+    <div class="col-6">
+      <% if !@is_posted %>
+        <%= simple_form_for([@job, @application]) do |f| %>
+          <%= f.input :message %>
+          <%= f.submit 'Send application' %>
+        <% end %>
+      <% else %>
+        <p>Your application has beeing sent to <%= @job.company.name %> to be revied!</p>
+        <p>We will keep you posted if they are going to open the applicaitons.</p>
+      <% end %>
+    </div>
+  </div>
+</div>

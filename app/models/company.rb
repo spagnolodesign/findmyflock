@@ -4,5 +4,15 @@ class Company < ApplicationRecord
   has_many_attached :images
 
   validates :name, :url, presence: true,  length: { maximum: 500 }
-  validates :url, format: URI::regexp(%w(http https)) 
+  validates :url, format: URI::regexp(%w(http https))
+
+
+  ## Refactor this method possible error in schema relation?
+  def applications
+    job_ids = jobs.pluck(:id)
+    matches_ids = Match.where(job_id: job_ids).pluck(:id)
+    Application.where(match_id: matches_ids)
+  end
+
+
 end

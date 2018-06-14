@@ -1,0 +1,22 @@
+JOB: <%= @job.title %><br />
+DEVELOPER: <%= @developer.full_name %><br />
+APPLICATION STATUS: <%= @application.status %><br />
+<% if @developer.resumes.attached? %>
+<p>
+  <strong>Resumes:</strong>
+  <br>
+  <ul>
+    <% @developer.resumes.each do |resume| %>
+    <li><%= link_to "Download file", rails_blob_path(resume, disposition: "attachment") %></li>
+    <% end %>
+  </ul>
+</p>
+<% end %>
+
+<h2>Contact candidate directly on his email:</h2>
+<%= simple_form_for :application,  url: contact_job_application_path(@job), method: :post do |f| %>
+  <div class="form-group">
+    <textarea rows="4" cols="50" name="private_message" class="input-group" placeholder="Type your personal message for the candidate"></textarea>
+  </div>
+  <%= f.submit 'Send an email' %>
+<% end %>
