@@ -1,6 +1,7 @@
 const googleLocation = () => {
   const el = document.getElementById('locality');
   if (!el) return;
+
   document.addEventListener("DOMContentLoaded", function(event){
     if (document.querySelector("#locality") != null) {
       var placeSearch,
@@ -29,10 +30,11 @@ const googleLocation = () => {
           }
         });
       }
-
     }
-
+    
   })
 }
+
+
 
 export { googleLocation }
