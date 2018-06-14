@@ -1,9 +1,36 @@
-<div class="container mt-5" style="min-height: 100vh">
+<style media="screen">
+  .params {
+    width: auto;
+    height: auto;
+    background-color: #bfb6b6;
+    border-radius: 3px;
+    padding: 0 9px;
+    margin-left: 6px;
+  }
+
+  .params:active {
+    background-color: #747774;
+    transform: translateY(2px);
+  }
+
+  .close-params {
+    font-weight: bold;
+    margin-left: 12px;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .close-params:hover {
+    cursor: pointer;
+  }
+</style>
+
+<div id ="dashboard-container" class="container mt-5" style="min-height: 100vh">
+  <div class="d-flex my-3" id="params-container"></div>
   <div class="row">
     <div class="col-lg-3">
-
       <div class="accordion" id="accordion">
-        <div class="card">
+        <div class="card filter-card">
           <div class="card-header" id="headingOne">
             <%= form_for(:developer, :url => { :action => "dashboard" }, :html => {:method => :get, id: "filter"}, remote: true) do |f| %>
             <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -15,12 +42,12 @@
         <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
           <div class="card-body">
             <% @benefits.each do |benefit| %>
-              <div class='checkbox'><%= check_box_tag 'benefits[]', benefit %><%= benefit %></div>
+              <div class='checkbox-dashboard'><%= check_box_tag 'benefits[]', benefit %><%= benefit %></div>
             <% end %>
           </div>
         </div>
       </div>
-      <div class="card">
+      <div class="card filter-card">
         <div class="card-header" id="headingTwo">
           <h5 class="mb-0">
             <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -31,12 +58,12 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
           <div class="card-body">
             <% @cultures.each do |culture| %>
-              <div class='checkbox'><%= check_box_tag 'cultures[]', culture %><%= culture %></div>
+              <div class='checkbox-dashboard'><%= check_box_tag 'cultures[]', culture %><%= culture %></div>
             <% end %>
           </div>
         </div>
       </div>
-      <div class="card">
+      <div class="card filter-card">
         <div class="card-header" id="headingThree">
           <h5 class="mb-0">
             <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -47,12 +74,12 @@
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
           <div class="card-body">
             <% @cities.each do |city| %>
-              <div class='checkbox'><%= check_box_tag 'cities[]', city %><%= city %></div>
+              <div class='checkbox-dashboard'><%= check_box_tag 'cities[]', city %><%= city %></div>
             <% end %>
           </div>
         </div>
       </div>
-      <div class="card">
+      <div class="card filter-card">
         <div class="card-header" id="headingFour">
           <h5 class="mb-0">
             <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
@@ -63,46 +90,48 @@
         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
           <div class="card-body">
             <% @salaries.each do |salary| %>
-              <div class='checkbox'><%= check_box_tag 'salaries[]', salary %> >= <%= salary %></div>
+              <div class='checkbox-dashboard'><%= check_box_tag 'salaries[]', salary %>
+                >=
+                <%= salary %></div>
             <% end %>
+          </div>
         </div>
       </div>
-    </div>
-    <% if @developer.remote == ["remote", "office"] %>
-    <div class="card">
-      <div class="card-header" id="headingFifth">
-        <h5 class="mb-0">
-          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFifth" aria-expanded="false" aria-controls="collapseFifth">
-            Remote/Office
-          </button>
-        </h5>
-      </div>
-      <div id="collapseFifth" class="collapse" aria-labelledby="headingFifth" data-parent="#accordion">
-        <div class="card-body">
-          <div class='checkbox'>
-            <input type="checkbox" name="remote[]" id="remote_" value='remote'>
-            Remote
+      <% if @developer.remote == ["remote", "office"] %>
+        <div class="card filter-card">
+          <div class="card-header" id="headingFifth">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFifth" aria-expanded="false" aria-controls="collapseFifth">
+                Remote/Office
+              </button>
+            </h5>
           </div>
-          <div class='checkbox'>
-            <input type="checkbox" name="remote[]" id="remote_" value='office'>
-            Office
-          </div>
-          <div class='checkbox'>
-            <input type="checkbox" name="remote[]" id="remote_" value='both'>
-            Both
-          </div>
+          <div id="collapseFifth" class="collapse" aria-labelledby="headingFifth" data-parent="#accordion">
+            <div class="card-body">
+              <div class='checkbox-dashboard'>
+                <input type="checkbox" name="remote[]" id="remote_" value='remote'>
+                Remote
+              </div>
+              <div class='checkbox-dashboard'>
+                <input type="checkbox" name="remote[]" id="remote_" value='office'>
+                Office
+              </div>
+              <div class='checkbox-dashboard'>
+                <input type="checkbox" name="remote[]" id="remote_" value='both'>
+                Both
+              </div>
 
-      <% end %>
-    </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <%= submit_tag("Search")%>
+    <% end %>
   </div>
-</div>
-<%= submit_tag("Search")%>
-<% end %>
-</div>
 
 </div>
 <div class="col-lg-8" id="jobs-list">
-<%= render @jobs %>
+  <%= render @jobs %>
 </div>
 
 </div>

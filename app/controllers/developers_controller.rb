@@ -58,7 +58,7 @@ class DevelopersController < ApplicationController
         list.push(benefit)
       end
     end
-    return list
+    return list.uniq.sort
   end
 
   def cultures_list(jobs)
@@ -68,7 +68,7 @@ class DevelopersController < ApplicationController
         list << benefit
       end
     end
-    list.uniq
+    list.uniq.sort
   end
 
   def salary_list(jobs)
@@ -76,7 +76,7 @@ class DevelopersController < ApplicationController
     jobs.each do |job|
         list << job.max_salary
       end
-    list.uniq
+    list.uniq.sort
   end
 
   def cities_list(jobs)
@@ -84,7 +84,7 @@ class DevelopersController < ApplicationController
     jobs.each do |job|
         list << job.city
       end
-    list.uniq
+    list.uniq.sort
   end
 
 

@@ -1,6 +1,6 @@
 const googleLocation = () => {
   document.addEventListener("DOMContentLoaded", function(event){
-    console.log("lòkòlkòkòkòklòklkòkò");
+    if (document.querySelector("#locality") != null) {
       var placeSearch,
         autocomplete;
       var componentForm = {
@@ -25,10 +25,11 @@ const googleLocation = () => {
               document.getElementById(addressType).value = val;
             }
           }
-
-
         });
       }
+
+    }
+
   })
 }
   function fillInAddress() {
