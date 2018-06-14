@@ -3,7 +3,6 @@
   <head>
     <title>Findmyflock</title>
     <meta name="robots" content="noindex">
-
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
@@ -17,8 +16,6 @@
     <% end %>
 
     <%= yield %>
-    <%= javascript_pack_tag 'google-autocomplete' %>
-
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -26,7 +23,6 @@
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyA7K6g78F78NhFmIXvpYkICOIdeGrtdGIk&libraries=places" %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
-    <%= javascript_pack_tag 'form-skills' %>
 
   </body>
 </html>

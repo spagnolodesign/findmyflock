@@ -44,7 +44,6 @@ class FormSkill extends Component {
 
 
   postSkill = (skill) => {
-    console.log(`/api/${this.props.resource}/${this.props.id}/skills`)
     fetch(`/api/${this.props.resource}/${this.props.id}/skills`,{
       method: 'POST',
       body: JSON.stringify(skill),
@@ -54,9 +53,6 @@ class FormSkill extends Component {
     })
     .then(this.handleErrors)
     .then(res => res.json())
-    .then(response => {
-      console.log(response)
-    })
     .catch(error => console.log(error));
   }
 
@@ -90,9 +86,6 @@ class FormSkill extends Component {
       headers: new Headers({ 'Content-Type': 'application/json' })
     })
     .catch(error => console.error('Error:', error))
-    .then(response => {
-      console.log(response)
-    })
   }
 
   onChangeLevel = (e) => {
@@ -153,7 +146,7 @@ class FormSkill extends Component {
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
+const initFormSkill = document.addEventListener('DOMContentLoaded', () => {
   const el = document.getElementById('form-skills');
   if (!el) return;
 
@@ -166,3 +159,5 @@ document.addEventListener('DOMContentLoaded', () => {
     <FormSkill  competences={competences} devskills={devSkills} id={id} resource={resource} />, document.getElementById('form-skills')
   )
 })
+
+export {initFormSkill};
