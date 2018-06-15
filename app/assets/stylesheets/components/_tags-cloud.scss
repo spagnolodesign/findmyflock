@@ -1,0 +1,33 @@
+.tagcloud ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+.tagcloud ul li {
+  display: inline-block;
+  margin: 0 .3em .3em 0;
+  padding: 0;
+  display: inline-block;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 1em;
+  background-color: #fff;
+  border: 1px solid #ffffff;
+  border-radius: 3px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #333;
+  font-size: 13px;
+  text-decoration: none;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.tagcloud ul li:hover {
+  background-color: #ffa67b;
+  border: 1px solid #ffa67b;
+  color: #fff;
+  cursor: default;
+}

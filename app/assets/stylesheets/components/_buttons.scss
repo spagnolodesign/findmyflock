@@ -1,0 +1,129 @@
+// Home Page orange buttons to see matches, create an account, edit your profile.
+
+.btn-orange {
+  padding: 10px 10px;
+  height: 45px;
+  width: 140px;
+  margin: 1vh;
+  border: 1px solid #ffa67b;
+  transition: 0.1s background-color ease-in-out;
+  text-decoration: none;
+  color: white;
+  letter-spacing: 5px;
+  background-color: #ffa67b;
+  font-weight: 900;
+  font-family: "Montserrat", "sans-serif";
+  font-size: 10px;
+  transition: all 0.6s ease 0s;
+  border-radius: 0.25rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+
+.btn-orange:hover {
+  background-color: #ff935f;
+  border: 1px solid #ff935f;
+  text-decoration: none;
+  color: white;
+  letter-spacing: 5px;
+}
+
+.btn-orange.btn-back {
+  border: 1px solid gray;
+  background-color: gray;
+  margin: 20px auto;
+  height: 38px;
+}
+
+.btn-orange.btn-back:hover {
+  border: 1px solid #3c3b3a;
+  background-color: #3c3b3a;
+}
+
+
+.btn-orange.joinbutton {
+  padding: 10px 15px;
+  height: 45px;
+  width: 140px;
+  margin: 1vh;
+  border: 1px solid #67bacb;
+  transition: 0.1s background-color ease-in-out;
+  text-decoration: none;
+  color: white;
+  letter-spacing: 5px;
+  background-color: #67bacb;
+  font-weight: 900;
+  font-family: "Montserrat", "sans-serif";
+  font-size: 15px;
+  transition: all 0.6s ease 0s;
+}
+
+.btn-orange.loginbutton {
+  padding: 10px 15px;
+  height: 45px;
+  width: 140px;
+  margin: 1vh;
+  transition: 0.1s background-color ease-in-out;
+  text-decoration: none;
+  color: white;
+  letter-spacing: 5px;
+  font-weight: 900;
+  font-family: "Montserrat", "sans-serif";
+  font-size: 15px;
+  transition: all 0.6s ease 0s;
+}
+
+.btn-awaiting {
+  border: 1px solid #b7b7b7;
+  background-color: #b7b7b7;
+  color: white;
+  border-radius: 5px;
+  width: 100px;
+  font-family: Montserrat;
+  text-transform: uppercase;
+  font-size: 13px;
+  margin-top: 1vh;
+}
+
+.btn-read {
+  border: 1px solid #76c0cb;
+  background-color: #76c0cb;
+  color: white;
+  border-radius: 5px;
+  width: 100px;
+  font-family: Montserrat;
+  text-transform: uppercase;
+  font-size: 13px;
+  margin-top: 1vh;
+}
+
+.btn-processed {
+  border: 1px solid #3db39e;;
+  background-color: #3db39e;;
+  color: white;
+  border-radius: 5px;
+  width: 100px;
+  font-family: Montserrat;
+  text-transform: uppercase;
+  font-size: 13px;
+  margin-top: 1vh;
+}
+
+.btn-connect {
+  font-size: 12px;
+  color: white;
+  padding: 10px;
+  font-family: Montserrat;
+  width: 200px;
+  text-align: center;
+}
+
+.btn-connect.btn-facebook {
+  background-color: #325595;
+
+}
+
+.btn-connect.btn-github {
+  background-color: #24292e;
+}

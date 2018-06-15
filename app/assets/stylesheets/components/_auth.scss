@@ -1,0 +1,97 @@
+.auth-form {
+  margin-top: 3vh;
+  margin-right: 10px;
+  margin-left: 10px;
+  box-shadow: 0px 0px 57px -10px rgb(215, 215, 215);
+
+
+  a.nav-link  {
+    color: #c6c6c6;
+
+    &:hover {
+      color: gray;
+    }
+  }
+  .nav-item {
+    width: 50%;
+  }
+
+  .nav-link {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 1px solid #dee2e6;
+    border-top-left-radius: 0.25rem;
+    border-bottom: none;
+    border-top-right-radius: 0.25rem;
+
+    &:hover {
+      border-color: #dee2e6;
+
+    }
+
+  }
+  .nav-link.active {
+    border-left: 1px solid #dee2e6;
+  }
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.form-signup {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.login-form {
+  padding-left: 14%;
+  padding-right: 14%;
+  padding-bottom: 2vh;
+  padding-top: 2vh;
+  border: 1px solid #dee2e6;
+  background-color: white;
+  border-top: none;
+}
+
+.login-form-bottom {
+  padding-left: 14%;
+  padding-right: 14%;
+  padding-bottom: 2vh;
+  padding-top: 2vh;
+  border: 1px solid #3c3b3a;
+  background-color: #3c3b3a;
+  color: #b7b7b7;
+  font-size: 15px;
+  line-height: 2;
+  text-align: left;
+  margin-bottom: 3vh;
+
+  a {
+    font-family: Lora;
+    color: #42a8b7
+  }
+}
+
+.inside-login-form {
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+
+@media (max-width: 800px) {
+  .inside-login-form {
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+}
+
+.log-in-button {
+  margin-bottom: 3vh;
+  margin-top: 3vh;
+}

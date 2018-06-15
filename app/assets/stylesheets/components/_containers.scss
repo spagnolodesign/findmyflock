@@ -1,0 +1,24 @@
+.company-dashboard-container {
+  max-width: 1500px;
+}
+
+.user-dashboard-container {
+  max-width: 1500px;
+}
+
+.user-job-show-container {
+  padding-top: 30px;
+}
+
+.company-job-matched-container {
+  padding-top: 30px;
+}
+
+.company-job-show-container {
+  padding-top: 30px;
+  max-width: 600px;
+
+  .job-details-container {
+    border: none;
+  }
+}

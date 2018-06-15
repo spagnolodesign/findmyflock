@@ -1,0 +1,38 @@
+// Import Google fonts
+@import url('https://fonts.googleapis.com/css?family=IM+Fell+Double+Pica|Montserrat:200,300,400|Roboto:300,400');
+// Define fonts for body and headers
+$body-font: "Roboto", sans-serif;
+$headers-font: 'Montserrat', sans-serif;
+
+h1, h2, h3, h4, h5 {
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-weight: 300;
+}
+
+a {
+  font-family: "Montserrat", sans-serif;
+  text-decoration: none;
+
+}
+  a:hover, a:focus {
+    text-decoration: none !important;
+  }
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-size: 15px;
+}
+
+.centered {
+  text-align: center;
+}
+
+.blue-text {
+  color: #68b9c6;
+}
+
+.letter-spacing {
+  letter-spacing: 5px;
+}

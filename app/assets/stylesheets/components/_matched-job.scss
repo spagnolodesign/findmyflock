@@ -1,0 +1,134 @@
+.matched-jobs {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.matched-job {
+  align-content: center;
+  border: 1px solid #d0d0d0;
+  background-color: white;
+  min-height: 190px;
+  width: 100%;
+  padding: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+  display: flex;
+
+  ul {
+    padding-left: 0;
+  }
+  li {
+    list-style: none;
+  }
+  .row {
+    height: 100%;
+    width: 100%
+  }
+  h4 {
+    font-size: 20px;
+  }
+  h5 {
+    font-size: 13px;
+  }
+  .icon-resized {
+    width: 30px;
+    height: 30px;
+  }
+  .matched-job-button {
+    padding: 0;
+  }
+
+  .matched-job-title {
+    h4 {
+      font-size: 17px;
+    }
+    h5 {
+      font-size: 12px;
+    }
+  }
+
+  .matched-job-skills {
+    min-width: 170px;
+
+    .table th, .table td {
+     border-top: none !important;
+     line-height: 25px;
+     padding-top: 0px;
+     padding-bottom: 0px;
+   }
+
+   .matched-job-skills-title {
+    font-weight: bolder;
+    text-align: center;
+    justify-content: center;
+    margin-left: 0;
+    font-size: 15px;
+  }
+}
+}
+
+.btn-orange.btn-apply {
+  width: 90px
+}
+
+.btn-orange.btn-see-job {
+  width: 90px;
+  height: 30px;
+  padding: 0;
+}
+
+.btn-orange.btn-edit-job {
+  width: 90px;
+  height: 30px;
+  padding: 0;
+  background-color: #76c0cb;
+  border: 1px solid #76c0cb;
+
+  &:hover {
+    background-color: #3c8a96;
+    border: 1px solid #3c8a96;
+  }
+}
+
+.btn-orange.btn-delete-job {
+  width: 90px;
+  height: 30px;
+  padding: 0;
+  background-color: #797877;
+  border: 1px solid #797877;
+  &:hover {
+    background-color: #3c3b3a;
+    border: 1px solid #3c3b3a;
+  }
+}
+
+@media (min-width: 768px) {
+ .matched-job-separator {
+  border-right: 1px #d0d0d0 solid;
+}
+}
+
+@media (max-width: 767px) {
+
+  .matched-job {
+    max-width: 450px;
+  }
+  .matched-job-skills {
+    padding-top: 20px;
+  }
+
+  .matched-job-skills-title {
+    border-top: 1px solid #e9e9e9;
+    padding-top: 20px;
+  }
+
+}
+
+.nav-pills .nav-item.show .nav-link, .nav-pills .nav-link.active {
+  background-color: #ffa67b !important;
+
+}
+a.nav-link {
+  color: gray;
+}

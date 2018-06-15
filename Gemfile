@@ -26,6 +26,7 @@ gem "aws-sdk-s3", require: false
 gem 'turbolinks'
 gem 'sendgrid-ruby'
 gem "letter_opener", :group => :development
+gem 'font-awesome-sass'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Findmyflock</title>
-    <meta name="robots" content="noindex">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-  </head>
+<head>
+  <title>Findmyflock</title>
+  <meta name="robots" content="noindex">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+</head>
 
-  <body>
-    <% if notice || alert %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-    <% end %>
+<body>
+  <% if notice || alert %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <% end %>
 
-    <%= yield %>
+  <body class="main-body">
+
+    <%= render 'shared/navbar/main-navbar' %>
+    <main>
+      <%= yield %>
+    </main>
+        <%= render 'shared/footer' %>
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -25,4 +31,4 @@
     <%= javascript_pack_tag 'application' %>
 
   </body>
-</html>
+  </html>
