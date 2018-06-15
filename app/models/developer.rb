@@ -97,6 +97,13 @@ class Developer < ApplicationRecord
     end
   end
 
+  def check_for_first_matches
+      self.matched_job.each do |job|
+        Match.create(developer_id: self.id, job_id: job.id)
+    end
+  end
+
+
   def self.check_for_new_matches
     string = ''
     job_titles = []
