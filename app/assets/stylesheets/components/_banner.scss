@@ -1,0 +1,30 @@
+.banner {
+  display: flex;
+  // height: calc(85vh - 15vh);
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.headline {
+  color: black;
+  font-size: 30px;
+  margin-right: 12%;
+  margin-left: 12%;
+}
+
+@media (max-width: 590px) {
+  .headline {
+    color: black;
+    font-size: 25px;
+    margin-right: 0%;
+    margin-left: 0%;
+  }
+}
+
+.home-list {
+  text-align: center;
+  margin: auto;
+  margin-top: 28vh;
+}

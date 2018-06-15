@@ -1,15 +1,10 @@
-<div id ="dashboard-container" class="container mt-5" style="min-height: 100vh">
+<div class="container-fluid user-dashboard-container">
+  <div id ="dashboard-container">
+    <div class="row">
 
-  <%= link_to "Edit your profile", edit_profile_developers_path %> -
-  <%= link_to "Edit email and password", edit_developer_registration_path %> -
-  <%= link_to "See your profile", developer_path(current_developer) %> -
-  <%= link_to "Manage your skills", add_skills_developers_path %>
-  <div class="d-flex my-3" id="params-container"></div>
-
-  <div class="row">
-    <div class="col-lg-3">
-      <div class="accordion" id="accordion">
-        <%= form_for(:developer, :url => { :action => "dashboard" }, :html => {:method => :get, id: "filter"}, remote: true) do |f| %>
+      <nav class="col-md-3 d-none pt-3 d-md-block bg-white sidebar">
+        <div class="accordion" id="accordion">
+          <%= form_for(:developer, :url => { :action => "dashboard" }, :html => {:method => :get, id: "filter"}, remote: true) do |f| %>
 
           <%= render "utils/checkboxes_filter", title: "Benefits", dataset: @benefits, value: "benefits[]", collapse_name: "benefitsCollapse" %>
           <%= render "utils/checkboxes_filter", title: "Cultures", dataset: @cultures, value: "cultures[]", collapse_name: "culturesCollapse" %>
@@ -17,27 +12,54 @@
           <%= render "utils/checkboxes_filter", title: "Salary", dataset: @salaries, value: "salaries[]", collapse_name: "salaryCollapse" %>
 
           <% if @developer.remote == ["remote", "office"] %>
-            <%= render "utils/checkboxes_filter", title: "Remote/Office", dataset: ["Remote", "Office", "Both"], value: "remote[]", collapse_name: "remoteCollapse" %>
+          <%= render "utils/checkboxes_filter", title: "Remote/Office", dataset: ["Remote", "Office", "Both"], value: "remote[]", collapse_name: "remoteCollapse" %>
           <% end %>
 
           <%= submit_tag("Search")%>
-        <% end %>
-      </div>
-    </div>
+          <% end %>
+        </div>
+      </nav>
 
-    <div class="col-lg-8" id="jobs-list">
-      <%= render @jobs %>
-    </div>
-  </div>
+      <div role="main" class="col-md-9 col-lg-9 pt-3 px-4 mx-auto" style="max-width: 90%;">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
+          <h1 style="color:gray;">Dashboard</h1>
+        </div>
 
-</div>
+<!--         <nav class="nav nav-pills flex-column flex-sm-row mb-4">
+          <a class="flex-sm-fill text-sm-center nav-link active" href="#">Matched Jobs</a>
+          <a class="flex-sm-fill text-sm-center nav-link" href="#">Applications</a>
+        </nav> -->
 
-<div class="row">
-  <div class="col-4">
-    <b>Your job applications:</b>
-    <br />
-    <% @developer.applications.each_with_index do |application, index| %>
-      <p><%= index+1 %> For: <%= application.match.job.title %> - State: <%= application.status %> <%= link_to "See application", new_job_application_path(application.match.job) %></p>
-    <% end %>
-  </div>
+        <nav class="nav nav-pills flex-column flex-sm-row mb-4">
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="flex-sm-fill text-sm-center nav-link nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Matched Jobs</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Applications</a>
+
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="container matched-jobs" id="jobs-list">
+
+              <%= render @jobs %>
+
+            </div>
+          </div>
+          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+               <b>Your job applications:</b>
+               <br />
+               <% @developer.applications.each_with_index do |application, index| %>
+               <p><%= index+1 %> For: <%= application.match.job.title %> - State: <%= application.status %> <%= link_to "See application", new_job_application_path(application.match.job) %></p>
+               <% end %>
+         </div>
+         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+       </div>
+
+       <div class="d-flex my-3" id="params-container"></div>
+
+
+     </div>
+
+   </div>
+ </div>
 </div>

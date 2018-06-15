@@ -1,0 +1,163 @@
+.navbar-container {
+  li {
+    list-style: none;
+  }
+
+  #Logo, #NavContent, #NavJobs, #NavEmployers {
+    transition: all 0.3s;
+  }
+}
+
+.navbar-content {
+  background-color: #ffffff;
+  height: 70px;
+  width: 100vw;
+  padding-right: 5vw;
+  padding-left: 5vw;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  z-index:99999;
+  top: 0px;
+
+  li {
+    font-size: 14px;
+  }
+
+  ul {
+    margin-bottom: 0px;
+  }
+
+
+  a {
+    text-decoration: none;
+    color: black;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+    margin-top: 8px;
+  }
+}
+
+.nav-left {
+  display: inline-flex;
+  justify-content: space-between;
+
+  img {
+    max-width: 45px;
+  }
+}
+
+// LINKS ON THE RIGHT SIDE
+
+// Variables needed for the animation when hovering the navbar elements.
+
+$red: #ff9279;
+$duration: .2s;
+$distance: 8px;
+$easeOutBack: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+$light-orange: #ffa67b;
+
+.nav-right-padding {
+  margin-right: 5vw;
+  font-size: 11px;
+  text-transform: uppercase;
+  display: block;
+  font-weight: 400;
+  padding-bottom: 8px;
+  margin-top: 8px;
+
+
+  a {
+    color: black;
+
+    position: relative;
+    text-decoration: none;
+    padding-bottom: 8px;
+    margin-top: 8px;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0px;
+      left: -1px; right: 3px;
+      height: 2px;
+      background-color: $light-orange;
+    }
+    &:before {
+      opacity: 0;
+      transform: translateY(- $distance);
+      transition: transform 0s $easeOutBack, opacity 0s;
+    }
+    &:after {
+      opacity: 0;
+      transform: translateY($distance/2);
+      transition: transform $duration $easeOutBack, opacity $duration;
+    }
+
+    &:hover,
+    &:focus {
+      &:before,
+      &:after {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      &:before {
+        transition: transform $duration $easeOutBack, opacity $duration;
+      }
+      &:after {
+        transition: transform 0s $duration $easeOutBack, opacity 0s $duration;
+      }
+    }
+  }
+}
+
+
+
+.nav-right {
+  font-size: 11px;
+  text-transform: uppercase;
+  display: inline-flex;
+  font-weight: 400;
+  a {
+    color: black;
+    position: relative;
+    text-decoration: none;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0px;
+      left: -1px; right: 3px;
+      height: 2px;
+      background-color: $light-orange;
+    }
+    &:before {
+      opacity: 0;
+      transform: translateY(- $distance);
+      transition: transform 0s $easeOutBack, opacity 0s;
+    }
+    &:after {
+      opacity: 0;
+      transform: translateY($distance/2);
+      transition: transform $duration $easeOutBack, opacity $duration;
+    }
+
+    &:hover,
+    &:focus {
+      &:before,
+      &:after {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      &:before {
+        transition: transform $duration $easeOutBack, opacity $duration;
+      }
+      &:after {
+        transition: transform 0s $duration $easeOutBack, opacity 0s $duration;
+      }
+    }
+  }
+}

@@ -1,35 +1,37 @@
-<p id ="size-string"></p>
-<div class="card">
-  <div class="card-header">
-    <%= job.title %> / <%= job.id %>
+  <div class="row centered matched-job">
+
+<!--     <div class="col-xs-1 col-sm-1 col-md-1 col-md-1">
+      <%= image_tag "checked.png", class: "icon-resized" %>
+    </div> -->
+
+    <div class="col-xs-11 col-sm-11 col-md-5 col-md-5">
+      <h4><%= job.title %></h4>
+      <h5 class="text-muted"><%= job.company.name %></h5>
+      <div><%= job.city %></div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-4 col-md-4 matched-job-skills">
+     <h5 class="row matched-job-skills-title">Main skills</h5>
+     <div class="row">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td><i class="devicon-javascript-plain colored"></i></td>
+            <td>Javascript</td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td><i class="devicon-css3-plain colored"></i></td>
+            <td>CSS</td>
+            <td>3</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div class="card-body">
-    <p><%= job.city %></p>
-    <h5>Benefit</h5>
-    <div class="d-flex">
-      <% job.benefits.each do |benefit| %>
-        <p class="card-text ml-3"><%= benefit %></p>
-      <% end %>
-    </div>
-    <h5>Cultures</h5>
-    <div class="d-flex">
-      <% job.cultures.each do |culture| %>
-        <p class="card-text ml-3"><%= culture %></p>
-      <% end %>
-    </div>
-    <div class="d-flex">
-      Salary:
-      <%= job.max_salary %>
-      Remote:
-      <%= job.remote %>
-    </div>
-    <div class="d-flex">
-      <% job.skills.each do |skill| %>
-        <p class="card-text ml-3"><%= skill.name %>
-          / lvl:
-          <%= skill.level %></p>
-      <% end %>
-    </div>
-    <%= link_to "See more and apply", new_job_application_path(job), class:"float-right"  %>
+
+  <div class="col-xs-12 col-sm-12 col-md-2 col-md-2">
+    <%= link_to "Apply", new_job_application_path(job), class:"btn-orange btn-apply"  %>
   </div>
+
 </div>
