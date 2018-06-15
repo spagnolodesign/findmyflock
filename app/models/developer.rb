@@ -99,16 +99,18 @@ class Developer < ApplicationRecord
 
   def self.check_for_new_matches
     string = ''
+    job_titles = []
     all.each do |developer|
       new_matches = 0
       developer.matched_job.each do |job|
         match = Match.new(developer_id: developer.id, job_id: job.id)
         new_matches += 1 if match.save
+        # Extra
+        job_titles << job.title if match.save
       end
       if new_matches > 0
-        string << "Sending an email to #{developer.first_name}. He has #{new_matches} new matches!"
+        DeveloperMailer.new_match_advise(developer, job_titles).deliver
       end
     end
-    p string
   end
 end
