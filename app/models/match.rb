@@ -1,7 +1,7 @@
 class Match < ApplicationRecord
+  has_one :application, dependent: :destroy
   belongs_to :developer
   belongs_to :job
-  has_one :application, dependent: :destroy
   validates_uniqueness_of :developer_id, :scope => :job_id
   validate :match_is_valid?
 
