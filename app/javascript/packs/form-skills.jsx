@@ -25,21 +25,28 @@ class FormSkill extends Component {
 
 
   add() {
+    let canBeAdded = false;
     const skillName = this.state.selectedValue[0].value;
     const skillValue = this.state.skillLevel;
-
     const skillObj = { name: skillName, level: skillValue }
     const newSkills = [ ...this.state.skills, skillObj ]
     const updatedList = this.newListCompetences(skillName);
 
-    this.setState({
-      skills: newSkills,
-      skillLevel:1,
-      selectedValue: [],
-      competences: updatedList
-    })
+    if (this.props.resource === "developers" && this.state.skills.length < 10) {
+      canBeAdded = true;
+    }else if (this.props.resource === "jobs" && this.state.skills.length < 2){
+      canBeAdded = true;
+    }
 
-    this.postSkill(skillObj);
+    if (canBeAdded){
+      this.setState({
+        skills: newSkills,
+        skillLevel:1,
+        selectedValue: [],
+        competences: updatedList
+      })
+      this.postSkill(skillObj);
+    }
   }
 
 
@@ -113,7 +120,6 @@ class FormSkill extends Component {
 
     return(
       <div>
-        {listOfSkills}
         <div className="mt-3 form-group">
           <Typeahead
             labelKey="value"
@@ -121,6 +127,7 @@ class FormSkill extends Component {
             placeholder="Select a skill..."
             onChange={this.onSelectSkill}
             selected={selectedValue}
+            className="skills-select"
             renderMenuItemChildren={(option, props, index) => {
                return (<p><i className={`devicon-${option.value}-plain colored`}></i> {option.value}</p>)
              }}
@@ -128,17 +135,18 @@ class FormSkill extends Component {
         </div>
         {selectedValue.length > 0 &&
         <div>
-          <div className="form-group shadow-sm p-3 my-2 bg-white rounded">
-            <p className="mb-2">Please select the level:</p>
+          <div className="form-group p-3 my-2 bg-white rounded text-center">
+            <p className="mb-2">Please select your {selectedValue[0].value} level:</p>
             <input className="form-control-range" type="range" min="1" max="5" value={skillLevel} onChange={this.onChangeLevel} step="1"/>
             <div className="d-flex justify-content-between">
               {rangeValues}
             </div>
             <div className="my-2" dangerouslySetInnerHTML={{ __html: rangeLevels[skillLevel] }} />
-            <button className="btn btn-primary" onClick={(e) => this.add(e)}>Add skill</button>
+            <button className="btn btn btn-outline-primary" onClick={(e) => this.add(e)}>Add to your skills</button>
           </div>
         </div>
         }
+        {listOfSkills}
       </div>
     )
   }

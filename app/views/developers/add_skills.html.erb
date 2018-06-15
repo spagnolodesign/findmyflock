@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-5">
   <div class="row justify-content-md-center">
     <div class="col col-md-8">
       <%= render 'utils/progressbar', classname: "small", step: 2, navigations: ["Dev profile", "Skills"] %>
@@ -10,7 +10,9 @@
             data-competences="<%= Competence.all.to_json(only: [:value, :level]) %>"
             data-devskills="<%= @developer.skills.to_json(only: [:name, :level])  %>">
           </div>
-          <%= link_to "Continue to your dashboard", dashboard_developers_path, class: "btn btn-primary" %>
+          <div class="text-center">
+            <%= link_to "Continue to your dashboard", dashboard_developers_path, class: "btn btn-primary mt-4 mb-2" %>
+          </div>
         </div>
       </div>
     </div>
