@@ -3,24 +3,30 @@
 <head>
   <title>Findmyflock</title>
   <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+  <link rel="stylesheet" href="//cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+  <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <%= stylesheet_link_tag 'application', media: 'all' %>
 </head>
 
 <body>
   <% if notice || alert %>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
   <% end %>
 
   <body class="main-body">
 
     <%= render 'shared/navbar/main-navbar' %>
+
     <main>
       <%= yield %>
     </main>
-        <%= render 'shared/footer' %>
+
+
+    <%= render 'shared/footer' %>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
