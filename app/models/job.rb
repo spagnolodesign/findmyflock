@@ -6,12 +6,14 @@ class Job < ApplicationRecord
   has_many :applications, through: :matches
   geocoded_by :location
   validates :title, :description, presence: true,  length: { maximum: 2000 }
-  # validates :city, :zip_code, :state, :country, presence: true,  length: { maximum: 100 }
+  validates :city, :state, :country, presence: true,  length: { maximum: 100 }
   validates :max_salary, numericality: { only_integer: true, greater_than: 0}, on: :update
   validates :remote, inclusion: { in: [["remote"], ["office"], ["remote", "office"]]}, on: :create
   validates :employment_type, presence: true, length: { maximum: 100 }, on: :update
   validates :benefits, :cultures, length: { minimum: 1, maximum: 10 }, on: :update
-  before_save :geocode, if: :city_changed?
+  after_validation :geocode
+  validate :check_cordinates, on: [:save, :update]
+
   before_validation :sanitaze_benefits_cultures
 
   scope :active, -> { where(active: true) }
@@ -43,6 +45,10 @@ class Job < ApplicationRecord
   def sanitaze_benefits_cultures
     benefits.reject!(&:empty?)
     cultures.reject!(&:empty?)
+  end
+
+  def check_cordinates
+    errors.add(:city, "There is a problem with your location. Please try again") if latitude.nil?
   end
 
 end
