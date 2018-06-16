@@ -1,0 +1,9 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3>Hello! <%= @developer.full_name %> just applied for your job offer <%= @job.title %></h3>
+    <%= link_to "see the application", job_application_url(@job.id, @application.id) %>               
+ </body>
+</html>

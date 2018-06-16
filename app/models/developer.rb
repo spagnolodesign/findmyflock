@@ -4,12 +4,8 @@ class Developer < ApplicationRecord
   has_many :applications, through: :matches
   has_one_attached :avatar
   has_many_attached :resumes
-
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable
-
-  # devise :database_authenticatable, :registerable,
-  #         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   geocoded_by :developer_location
   before_validation :email_downcase
   before_validation :capitalize_name
@@ -116,7 +112,7 @@ class Developer < ApplicationRecord
         job_titles << job.title if match.save
       end
       if new_matches > 0
-        DeveloperMailer.new_match_advise(developer, job_titles).deliver
+        DeveloperMailer.new_match_advise(developer, job_titles).deliver_later
       end
     end
   end
