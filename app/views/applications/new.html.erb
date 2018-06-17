@@ -5,7 +5,6 @@
       <%= render @job %>
     </div>
     <div class="col-6">
-
       <% if !@is_posted %>
         <%= simple_form_for([@job, @application]) do |f| %>
           <%= f.input :message %>

@@ -1098,13 +1098,13 @@ Developer.check_for_first_matches
 end
 
 
-Admin.create!(email: "admin@findmyflock.com", password:"flock2018", password_confirmation:"flock2018")
+Admin.create!(email: "admin@findmyflock.com", password:"Flock-2018", password_confirmation:"flock2018")
 
 
 a = Developer.new(
-  email: "test@test.com",
-  password: "Password1!",
-  password_confirmation: 'Password1!',
+  email: "luca@wearerose.com",
+  password: "Flock-2018",
+  password_confirmation: 'Flock-2018',
   first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name,
   city: 'New York',
