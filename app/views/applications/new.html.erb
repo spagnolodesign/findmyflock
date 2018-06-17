@@ -5,9 +5,17 @@
       <%= render @job %>
     </div>
     <div class="col-6">
+
       <% if !@is_posted %>
         <%= simple_form_for([@job, @application]) do |f| %>
           <%= f.input :message %>
+          <% if !@developer.resumes.attached? %>
+            <%= f.simple_fields_for @developer do |f| %>
+              <%= f.input :resumes, as: :file, :input_html => {multiple: true , :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "application/pdf" } %>
+            <% end  %>
+            <% else %>
+              <p>We will attach the resume uploaded on your profile with this request.</p>
+            <% end  %>
           <%= f.submit 'Send application' %>
         <% end %>
       <% else %>

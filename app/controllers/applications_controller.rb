@@ -12,6 +12,7 @@ class ApplicationsController < ApplicationController
 
   def new
     @application = Application.new
+    @developer = current_developer
     set_match
     @is_posted = application_is_posted?(@match)
   end
@@ -25,10 +26,17 @@ class ApplicationsController < ApplicationController
     @developer = @match.developer
     @company = @match.job.company
     @mail_addresses = @company.recruiters_mail.join(",")
+
+    attach_resumes(params[:application][:developer][:resumes],  @developer) if !params[:application][:developer].nil?
+
+    if !@developer.resumes.attached?
+      redirect_to new_job_application_path(@job), alert: "You need to upload a resume in order to apply."  and return
+    end
+
     respond_to do |format|
       if @application.save
         format.html { redirect_to new_job_application_path(@match.job), notice: "Yeah, your application is traveling!" }
-          CompanyMailer.new_application_advise(@mail_addresses, @match, @developer).deliver_later
+        CompanyMailer.new_application_advise(@mail_addresses, @match, @developer).deliver_later
       else
         format.html { render :new }
       end
@@ -46,6 +54,12 @@ class ApplicationsController < ApplicationController
   end
 
   private
+
+  def attach_resumes(resumes, developer)
+    if resumes.any?
+      developer.resumes.attach(resumes)
+    end
+  end
 
   def set_job
     @job = Job.find(params[:job_id])
