@@ -1098,7 +1098,7 @@ Developer.check_for_first_matches
 end
 
 
-Admin.create!(email: "admin@findmyflock.com", password:"Flock-2018", password_confirmation:"flock2018")
+Admin.create!(email: "admin@findmyflock.com", password:"flock2018", password_confirmation:"flock2018")
 
 
 a = Developer.new(

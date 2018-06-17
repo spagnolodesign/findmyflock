@@ -22,4 +22,12 @@ Things you may want to cover:
 
 * Deployment instructions
 
+  STAGING
+  Deploy from Heroku Dashboard (Deploy -> Select Branch master -> deploy)
+
+  In case of pending migrations or new db changes run:
+  `heroku restart; heroku pg:reset DATABASE --confirm staging-findmyflock;  heroku run rake db:migrate; heroku run rake db:seed`
+
+
+
 * ...

@@ -19,7 +19,6 @@ class DevelopersController < ApplicationController
     @developer.update(developer_params)
     @developer.set_url
     @developer.first_login = true
-    byebug
     if @developer.save
       redirect_to add_skills_developers_path
     else
