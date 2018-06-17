@@ -7,9 +7,9 @@ class Job < ApplicationRecord
   geocoded_by :location
   validates :title, :description, presence: true,  length: { maximum: 2000 }
   validates :city, :state, :country, presence: true,  length: { maximum: 100 }
-  validates :max_salary, numericality: { only_integer: true, greater_than: 0}, on: :update
-  validates :remote, inclusion: { in: [["remote"], ["office"], ["remote", "office"]]}, on: :create
-  validates :employment_type, presence: true, length: { maximum: 100 }, on: :update
+  validates :max_salary, numericality: { only_integer: true, greater_than: 0}
+  validates :remote, inclusion: { in: [["remote"], ["office"], ["remote", "office"]]}
+  validates :employment_type, presence: true, length: { maximum: 100 }
   validates :benefits, :cultures, length: { minimum: 1, maximum: 10 }, on: :update
   after_validation :geocode
   validate :check_cordinates, on: [:save, :update]

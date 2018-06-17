@@ -1,6 +1,9 @@
 <div class="card">
   <div class="card-body">
     <%= simple_form_for job, url: url, action: :update, local: true do |f| %>
+      <% if job.errors.any? %>
+        <%= render "/utils/validation_alert", resource: job  %>
+      <% end %>
       <div class="d-flex flex-column mb-3">
         <label class="form-control-label select required">Benefits:</label>
         <%= f.collection_check_boxes :benefits, Benefit.all, :value, :value %>

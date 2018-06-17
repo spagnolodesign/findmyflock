@@ -22,7 +22,7 @@ class JobsController < ApplicationController
           format.html { redirect_to dashboard_companies_path }
         end
       else
-          format.html { render :edit }
+          format.html { render :new }
       end
     end
   end
