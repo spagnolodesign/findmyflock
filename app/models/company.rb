@@ -14,5 +14,9 @@ class Company < ApplicationRecord
     Application.where(match_id: matches_ids)
   end
 
+  def recruiters_mail
+    self.recruiters.pluck(:email).flatten.uniq
+  end
+
 
 end
