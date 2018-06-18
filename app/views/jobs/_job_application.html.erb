@@ -1,0 +1,28 @@
+<div class="row centered matched-job">
+
+  <!--
+  <div class="col-xs-1 col-sm-1 col-md-1 col-md-1">
+  <%= image_tag "checked.png", class: "icon-resized" %>
+</div>
+-->
+
+<div class="col-xs-11 col-sm-11 col-md-5 col-md-5">
+  <h4><%= job.title %></h4>
+  <h5 class="text-muted"><%= job.company.name %></h5>
+  <div><%= job.city %></div>
+</div>
+
+<div class="col-xs-12 col-sm-12 col-md-3 matched-job-skills">
+  <h5 class="row matched-job-skills-title">Main skills</h5>
+  <%= render "jobs/shared/skills_table", skills: job.skills %>
+</div>
+
+<div>
+  <%= application.status %>
+</div>
+
+<div class="col-xs-12 col-sm-12 col-md-2 col-md-2">
+  <%= link_to "View", new_job_application_path(job), class:"btn-orange btn-apply"  %>
+</div>
+
+</div>
