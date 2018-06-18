@@ -85,6 +85,13 @@
   margin-top: 1vh;
   margin-bottom: 2vh;
   width: 100%;
+  transition: 0.4s;
+
+  &:hover {
+    color: white;
+    border: 1px solid  #636363;
+    background-color: #636363;
+  }
 
 }
 
@@ -98,13 +105,18 @@
   font-size: 12px;
   margin-top: 1vh;
   margin-bottom: 2vh;
-
   width: 100%;
+
+  &:hover {
+    color: white;
+    border: 1px solid #29a1b3;
+    background-color: #29a1b3;
+  }
 }
 
 .btn-contacted {
-  border: 1px solid #3db39e;;
-  background-color: #3db39e;;
+  border: 1px solid #3db39e;
+  background-color: #3db39e;
   color: white;
   border-radius: 5px;
   font-family: Montserrat;
@@ -112,9 +124,14 @@
   font-size: 12px;
   margin-top: 1vh;
   margin-bottom: 2vh;
-
   width: 100%;
 
+  &:hover {
+    color: white;
+    border: 1px solid #049c81;
+    background-color: #049c81;
+
+  }
 }
 
 .btn-connect {
