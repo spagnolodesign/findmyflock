@@ -993,7 +993,7 @@ p "Created #{Culture.all.count} cultures"
 end
 
 5.times do
-  company = Company.create(url: Faker::Internet.url, name: Faker::Company.name)
+  company = Company.create(url: Faker::Internet.url, name: Faker::Company.name, industry: Faker::Company.name)
   r = Recruiter.all.sample
   r.company = company
   r.save
