@@ -1,0 +1,109 @@
+      <div class="job-show-titles">
+       <h4 class="row justify-content-center underlined-orange-dark"><%= @job.title %></h4>
+     </div>
+
+     <h5 class="centered">Need Industry Here</h5>
+     <h6 class="text-muted centered"><%= @job.city %></h6>
+     <p class="job-description"><%= @job.description %></p>
+
+     <div class="row centered justify-content-center pt-4 pb-4">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-md-12 job-show-skills">
+       <div class="job-show-titles">
+         <h5 class="h6 row justify-content-center underlined-orange pt-3">Main skills</h5>
+       </div>
+       <div class="row">
+        <table class="table">
+          <tbody>
+            <% @job.skills.each do |skill| %>
+            <tr>
+              <td><i class="devicon-<%= skill.name %>-plain colored"></i></td>
+              <td><%= skill.name %></td>
+              <td><%= skill.level %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-md-12 col-lg-12">
+          <div class="job-show-titles">
+           <h5 class="h6 row justify-content-center underlined-orange pt-3">Location</h5>
+         </div>
+         <div class="row justify-content-center">
+          <% if @job.remote == ["remote"] %>
+          <p class="centered">Remote opportunity</p>
+          <% elsif @job.remote == ["office"] %>
+          <p class="centered">Office opportunity</p>
+          <% else %>
+          <p class="centered">Remote and office opportunity</p>
+          <% end %>
+
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-12 col-md-12 col-lg-12">
+        <div class="job-show-titles">
+         <h5 class="h6 row justify-content-center underlined-orange pt-3">Sponsorship</h5>
+       </div>
+       <div class="row justify-content-center">
+        <% if @job.can_sponsor == true %>
+
+        <p class="centered">Yes</p>
+        <% else %>
+        <p class="centered">No</p>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<table class="table">
+          <tbody>
+            <% @job.skills.each do |skill| %>
+            <tr>
+              <td><i class="devicon-<%= skill.name %>-plain colored"></i></td>
+              <td><%= skill.name %></td>
+              <td><%= skill.level %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+<div class="row pb-4">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-md-12 mb-3">
+    <div class="job-show-titles">
+     <h5 class="h6 row justify-content-center underlined-orange pt-3">Benefits</h5>
+   </div>
+   <div class="row justify-content-center">
+    <div class="tagcloud pt-3">
+      <ul>
+        <% @job.benefits.each do |benefit| %>
+        <li data-toggle="popover" data-placement="top" data-content="Your puppy friends are allowed inside the office."><%= benefit %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+<div class="row pb-4">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-md-12 mb-3">
+    <div class="job-show-titles">
+     <h5 class="h6 row justify-content-center underlined-orange pt-3">Company Values</h5>
+   </div>
+   <div class="row justify-content-center">
+    <div class="tagcloud pt-3">
+      <ul>
+        <li>Family-like team</li>
+        <li>No cubicles</li>
+        <li>Pair programming</li>
+        <li>Ping pong</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>

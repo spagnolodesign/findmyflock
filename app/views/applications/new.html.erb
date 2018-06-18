@@ -1,3 +1,78 @@
+<div class="container-fluid user-job-show-container">
+  <div class="row">
+    <!-- Job details -->
+    <div class="col-sm-12 col-md-6 job-details-container">
+
+      <%= render 'jobs/full_job' %>
+
+    </div>
+
+
+    <!-- Application -->
+    <div class="col-sm-12 col-md-6 job-application-container">
+      <div class="job-show-titles">
+       <h4 class="row justify-content-center underlined" style=>Apply to this job</h4>
+     </div>
+
+     <form>
+      <div class="form-group pt-4">
+
+        <div class="input-group mb-3">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="applicationAddResume">
+            <label class="custom-file-label" for="applicationAddResume">Upload your resume</label>
+          </div>
+          <div class="input-group-append">
+            <span class="input-group-text" id="">Upload</span>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="applicationAddCoverLetter">
+            <label class="custom-file-label" for="applicationAddCoverLetter">Cover letter (optionnal)</label>
+          </div>
+          <div class="input-group-append">
+            <span class="input-group-text" id="">Upload</span>
+          </div>
+        </div>
+        <label for="applicationMessageRecruiter">Write a message to the recruiter</label>
+        <textarea class="form-control" id="applicationMessageRecruiter" rows="3" placeholder="" value="" required=""></textarea>
+        <hr class="mb-4">
+        <button class="btn-orange btn-application" style="display: block; width: 100%; margin: 0;" type="submit">Apply</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+<div class="btn-orange btn-back">Back</div>
+</div>
+
+<script>
+  $('.custom-file-input').on('change', function() {
+   let fileName = $(this).val().split('\\').pop().slice(0,22)+"...";
+   $(this).next('.custom-file-label').addClass("selected").html(fileName);
+ });
+
+  $(function () {
+  $('[data-toggle="popover"]').popover()
+})
+</script>
+
+
+
+
+
+
+
+
+
+
+///////////////
+
+
+
+
+
 
 <div class="fluid-container">
   <div class="row">
