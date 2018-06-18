@@ -1,0 +1,13 @@
+<div class="row">
+  <table class="table">
+    <tbody>
+      <% skills.each do |skill| %>
+      <tr>
+        <td><i class="devicon-<%= skill.name %>-plain colored"></i></td>
+        <td><%= skill.name %></td>
+        <td><%= skill.level %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

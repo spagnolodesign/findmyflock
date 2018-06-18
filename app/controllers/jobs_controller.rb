@@ -1,12 +1,16 @@
 class JobsController < ApplicationController
-  before_action :authenticate_recruiter!
+  before_action :authenticate_recruiter!, only: [:new, :edit, :create, :update]
   before_action :set_job, only: [:show, :edit, :update, :skills, :benefits]
+  before_action :authorize_action, only: [:edit, :update, :skills, :benefits]
 
   def new
     @job = Job.new
   end
 
   def edit
+  end
+
+  def show
   end
 
   def create
@@ -56,6 +60,9 @@ class JobsController < ApplicationController
 
   def set_job
     @job = Job.all.find(params[:id])
+  end
+
+  def authorize_action
     if !current_recruiter.company.jobs.include?(@job)
       redirect_to dashboard_companies_path, notice: 'Not authorized.'
     end
