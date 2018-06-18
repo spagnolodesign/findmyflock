@@ -11,7 +11,6 @@ import { uncheckFilter } from 'packs/params-list';
 import { googleLocation } from 'packs/google-autocomplete';
 import { rangeSalary } from 'packs/developer-form';
 import { formRequest } from 'packs/index-search';
-import { filterToggle } from 'packs/index-search';
 import { initFormSkill } from 'packs/form-skills';
 
 displayLocationInfo()
@@ -22,4 +21,3 @@ rangeSalary()
 formRequest()
 listParams()
 uncheckFilter()
-filterToggle()

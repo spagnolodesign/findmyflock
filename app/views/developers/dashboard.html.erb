@@ -3,6 +3,7 @@
     <div class="row">
 
       <nav class="col-md-3 d-none pt-3 d-md-block bg-white sidebar">
+          <h5 class="h6 pl-3 pt-2" style="color: #6c757d">Filter by:</h5>
         <div class="accordion" id="accordion">
           <%= form_for(:developer, :url => { :action => "dashboard" }, :html => {:method => :get, id: "filter"}, remote: true) do |f| %>
 
@@ -12,22 +13,22 @@
           <%= render "utils/checkboxes_filter", title: "Salary", dataset: @salaries, value: "salaries[]", collapse_name: "salaryCollapse" %>
 
           <% if @developer.remote == ["remote", "office"] %>
-          <%= render "utils/checkboxes_filter", title: "Remote/Office", dataset: ["Remote", "Office", "Both"], value: "remote[]", collapse_name: "remoteCollapse" %>
+          <%= render "utils/checkboxes_filter", title: "Remote/Office", dataset: ["remote", "office", "both"], value: "remote[]", collapse_name: "remoteCollapse" %>
           <% end %>
-
-          <%= submit_tag("Search")%>
           <% end %>
         </div>
       </nav>
 
       <div role="main" class="col-md-9 col-lg-9 pt-3 px-4 mx-auto" style="max-width: 90%;">
-        <nav class="nav nav-pills flex-column flex-sm-row mb-4">
-          <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <a class="flex-sm-fill text-sm-center nav-link nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Matched Jobs</a>
-            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Applications</a>
-          </div>
+        <div class="dashboard-header">
+          <h5>Welcome, <%= @developer.first_name %></h5>
+        </div>
+        <nav class="nav nav-pills flex-column flex-sm-row mb-4" id="nav-tab" role="tablist">
+          <a class="flex-sm-fill text-sm-center nav-link nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Matched Jobs</a>
+          <a class="flex-sm-fill text-sm-center nav-link nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Applications</a>
         </nav>
-        <div class="d-flex my-3" id="params-container"></div>
+
+        <div class="d-flex my-1" id="params-container"></div>
 
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -35,17 +36,53 @@
               <%= render @jobs %>
             </div>
           </div>
-          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-            <div class="container matched-jobs">
-              <% @developer.applications.each do |application| %>
-                <%= render "jobs/job_application", job: application.match.job, application: application %>
-              <% end %>
-            </div>
-          </div>
-         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
-       </div>
-     </div>
 
-   </div>
- </div>
+          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="container matched-job">
+             <% @developer.applications.each_with_index do |application, index| %>
+                <div class="row centered">
+
+                  <div class="col-xs-11 col-sm-11 col-md-5">
+                    <h4><%= application.match.job.title %></h4>
+                    <h5 class="text-muted"><%= application.match.job.company.name %></h5>
+                    <div><%= application.match.job.city %></div>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-12 col-md-4 matched-job-skills">
+                   <h5 class="row matched-job-skills-title">Main skills</h5>
+                   <div class="row">
+                    <table class="table">
+                      <tbody>
+                        <% application.match.job.skills.each do |skill| %>
+                        <tr>
+                          <td><i class="devicon-<%= skill.name %>-plain colored"></i></td>
+                          <td><%= skill.name %></td>
+                          <td><%= skill.level %></td>
+                        </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
+                    </div>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-12 col-md-3">
+                  <h5 class="matched-job-skills-title">Current state</h5>
+                  <div class="application-buttons">
+                    <% if application.status == "contacted" %>
+                    <%= link_to "Contacted", new_job_application_path(application.match.job), class:"badge btn-contacted"  %>
+                    <% elsif application.status == "opened" %>
+                    <%= link_to "Opened", new_job_application_path(application.match.job), class:"badge btn-opened"  %>
+                    <% else %>
+                    <%= link_to "Pending", new_job_application_path(application.match.job), class:"badge btn-pending"  %>
+                    <% end %>
+                  </div>
+                </div>
+                </div>
+              <% end %>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
 </div>

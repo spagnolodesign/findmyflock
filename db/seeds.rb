@@ -1102,7 +1102,7 @@ Admin.create!(email: "admin@findmyflock.com", password:"flock2018", password_con
 
 
 a = Developer.new(
-  email: "luca@wearerose.com",
+  email: "diana@codegull.com",
   password: "Flock-2018",
   password_confirmation: 'Flock-2018',
   first_name: Faker::Name.first_name,
