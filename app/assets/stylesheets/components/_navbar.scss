@@ -8,3 +8,10 @@
 #Logo, #NavJobs, #NavEmployers {
   transition: all 0.6s;
 }
+
+.avatar-navbar img {
+  height: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
+}

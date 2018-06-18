@@ -74,40 +74,47 @@
   transition: all 0.6s ease 0s;
 }
 
-.btn-awaiting {
+.btn-pending {
   border: 1px solid #b7b7b7;
   background-color: #b7b7b7;
   color: white;
   border-radius: 5px;
-  width: 100px;
   font-family: Montserrat;
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: 12px;
   margin-top: 1vh;
+  margin-bottom: 2vh;
+  width: 100%;
+
 }
 
-.btn-read {
+.btn-opened {
   border: 1px solid #76c0cb;
   background-color: #76c0cb;
   color: white;
   border-radius: 5px;
-  width: 100px;
   font-family: Montserrat;
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: 12px;
   margin-top: 1vh;
+  margin-bottom: 2vh;
+
+  width: 100%;
 }
 
-.btn-processed {
+.btn-contacted {
   border: 1px solid #3db39e;;
   background-color: #3db39e;;
   color: white;
   border-radius: 5px;
-  width: 100px;
   font-family: Montserrat;
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: 12px;
   margin-top: 1vh;
+  margin-bottom: 2vh;
+
+  width: 100%;
+
 }
 
 .btn-connect {
@@ -126,4 +133,13 @@
 
 .btn-connect.btn-github {
   background-color: #24292e;
+}
+
+.dropdown-navbar {
+  background-color: #80808000;
+  margin-top: 8px;
+  font-size: 25px;
+  padding-left: 0px;
+  color: #69b5c3;
+  margin-left: -4px;
 }
