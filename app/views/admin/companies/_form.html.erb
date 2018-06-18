@@ -1,13 +1,7 @@
-<%= form_for company, url: url, action: :update, local: true do |form| %>
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-    <br/>
-    <%= form.label :url %>
-    <%= form.text_field :url %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<%= simple_form_for company, url: url, action: :update, local: true do |form| %>
+  <%= form.input :name %>
+  <%= form.input :url %>
+  <%= form.input :industry %>
+  <%= form.file_field :images, multiple: true, direct_upload: true %>
+  <%= form.submit %>
 <% end %>

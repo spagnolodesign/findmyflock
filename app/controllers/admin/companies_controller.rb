@@ -50,6 +50,6 @@ class Admin::CompaniesController < Admin::BaseController
     end
 
     def company_params
-      params.require(:company).permit(:name, :url)
+      params.require(:company).permit(:name, :url, :industry, images: [])
     end
 end
