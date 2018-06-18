@@ -101,3 +101,22 @@
   padding-left: 25px;
 }
 
+
+// Side bar developer dashboard
+
+.filter-card {
+  border: none;
+  width: 100%;
+
+  .btn-link {
+    text-decoration: none;
+    font-family: Roboto;
+  }
+  .btn-link:hover {
+    color: #3b8e9c;
+  }
+
+  .card-header {
+    background-color: white;
+  }
+}
