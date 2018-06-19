@@ -5,7 +5,9 @@
       <div class="card">
         <div class="card-body">
           <%= render 'utils/skills_form', resource: @job, url_api: "jobs" %>
-          <%= link_to "Next", benefits_job_path, class: "btn btn-primary" %>
+          <div class="text-center">
+            <%= link_to "Continue", benefits_job_path, class: "btn btn-primary btn-lg mt-4 mb-2" %>
+          </div>
         </div>
       </div>
     </div>

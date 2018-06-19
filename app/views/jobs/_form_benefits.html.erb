@@ -1,22 +1,49 @@
 <div class="card">
   <div class="card-body">
     <%= simple_form_for job, url: url, action: :update, local: true do |f| %>
+      <h4 class="text-center my-3">About your company values</h4>
       <% if job.errors.any? %>
         <%= render "/utils/validation_alert", resource: job  %>
       <% end %>
-      <div class="d-flex flex-column mb-3">
-        <label class="form-control-label select required">Benefits:</label>
-        <%= f.collection_check_boxes :benefits, Benefit.all, :value, :value %>
+
+      <div class="mt-5">
+        <h5 class="mb-3">Benefits provided</h5>
+        <div class="row">
+        <% Benefit.all.each_slice(5) do |benefits| %>
+            <div class="col col-6">
+              <% benefits.each do |benefit| %>
+                <div class="custom-control custom-checkbox mr-3">
+                  <input type="checkbox" <%= "checked" if job.benefits.include?(benefit.value) %> class="custom-control-input" value="<%= benefit.value %>" name="job[benefits][]" id="job_benefits_<%= benefit.value %>">
+                  <label class="custom-control-label" for="job_benefits_<%= benefit.value %>"><%= benefit.value %></label>
+                </div>
+              <% end %>
+            </div>
+        <% end %>
+        </div>
       </div>
       <hr />
-      <div class="d-flex flex-column bd-highlight mb-3">
-        <label class="form-control-label select required">Culture:</label>
-        <%= f.collection_check_boxes :cultures, Culture.all, :value, :value %>
+
+      <div class="mt-5">
+        <h5 class="mb-3">List some of your company values:</h5>
+        <div class="row">
+        <% Culture.all.each_slice(5) do |cultures| %>
+            <div class="col col-6">
+              <% cultures.each do |culture| %>
+                <div class="custom-control custom-checkbox mr-3">
+                  <input type="checkbox" <%= "checked" if job.cultures.include?(culture.value) %> class="custom-control-input" value="<%= culture.value %>" name="job[cultures][]" id="job_cultures_<%= culture.value %>">
+                  <label class="custom-control-label" for="job_cultures_<%= culture.value %>"><%= culture.value %></label>
+                </div>
+              <% end %>
+            </div>
+        <% end %>
+        </div>
       </div>
-      <br />
       <%= f.hidden_field :navigate_to, value: "dashboard" %>
 
-      <%= f.submit "Update", class: "btn btn-primary btn-lg" %>
+      <div class="text-center">
+        <%= f.submit "Publish", class: "btn btn-primary btn-lg mt-4 mb-2" %>
+      </div>
+
     <% end %>
   </div>
 </div>

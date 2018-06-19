@@ -1,21 +1,81 @@
 <div class="card">
   <div class="card-body">
     <%= simple_form_for job, url: url, action: :update, local: true do |f| %>
-      <%= f.input :title %>
-      <%= f.input :description, input_html: { class: 'editable' } %>
-      <%= f.input :city, input_html: { id: "locality", value: "#{@job.city}" } %>
-      <%= f.input :state, input_html: { id: "administrative_area_level_1" }%>
-      <%= f.input :country, input_html: { id: "country" }, as: :string %>
-      <%= f.input :max_salary %>
-      <%= f.input :can_sponsor %>
-      <%= f.input :employment_type %>
-      <% if action_name == "edit" %>
-        <%= f.input :active %>
+
+      <h4 class="text-center my-3 mb-5">Create your job</h4>
+
+      <h5 class="mb-3">Basic information</h5>
+
+      <%= f.input :title do %>
+          <%= f.input_field :title, class: "form-control" %>
+          <small class="form-text text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</small>
       <% end %>
-      <%= f.collection_check_boxes :remote, [['remote', 'remote'],['office', 'office']], :first, :last, include_hidden: false %>
-      <br />
+
+      <%= f.input :description, input_html: { class: 'editable' } %>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <%= f.input :max_salary, input_html: { min: 20000, step: 5000 }, placeholder: "40000" %>
+        </div>
+        <div class="form-group col-md-6">
+          <%= f.input :employment_type, collection: [ "Full-Time", "Part-Time", "Contract"], prompt: "Please select an option" %>
+        </div>
+      </div>
+
+      <h5 class="mt-5">Can you provide sponsorship?</h5>
+      <small class="form-text text-muted mb-3">Will you now or in the future require your employer to commence ("sponsor") an immigration case in order to employ you (for example, H-1B or other employment-based immigration case)? This is sometimes called "sponsorship" for an employment-based visa status.</small>
+
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" value="1" <%= "checked" if @job.can_sponsor %> id="customRadioInline1" name="job[can_sponsor]" class="custom-control-input">
+        <label class="custom-control-label" for="customRadioInline1">Yes</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" value="0" <%= "checked" if !@job.can_sponsor %> id="customRadioInline2" name="job[can_sponsor]" class="custom-control-input">
+        <label class="custom-control-label" for="customRadioInline2">No</label>
+      </div>
+
+      <div class="mt-5">
+        <h5>Where it will be locate the job?</h5>
+        <small class="form-text text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</small>
+        <div class="form-row my-3">
+          <div class="custom-control  custom-control-inline custom-checkbox mr-3">
+            <input type="checkbox" value="remote" <%= "checked" if @job.remote.include?('remote') %> name="job[remote][]" class="custom-control-input" id="job_remote_remote">
+            <label class="custom-control-label" for="job_remote_remote">Remote</label>
+          </div>
+          <div class="custom-control  custom-control-inline custom-checkbox">
+            <input type="checkbox" value="office" <%= "checked" if @job.remote.include?('office') %> name="job[remote][]" class="custom-control-input" id="job_remote_office">
+            <label class="custom-control-label" for="job_remote_office">Office</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <%= f.input :city, input_html: { id: "locality", value: "#{@job.city}" } ,required:true %>
+        </div>
+        <div class="form-group col-md-3">
+          <%= f.input :state, input_html: { id: "administrative_area_level_1" } %>
+        </div>
+        <div class="form-group col-md-3">
+          <%= f.input :country, input_html: { id: "country" }, as: :string %>
+        </div>
+      </div>
+
+      <% if action_name == "edit" %>
+        <h5 class="mt-5">Allow job to be visibile</h5>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <%= f.input :active %>
+            <small class="form-text text-muted"> You can deactive the job anytime, will be automatically removed from the openings.</small>
+          </div>
+        </div>
+      <% end %>
+
       <%= f.hidden_field :navigate_to, value: "skills" %>
-      <%= f.button :submit, class: "btn-primary" %>
+
+      <div class="text-center">
+        <%= f.button :submit, "Continue", class: "btn btn-lg btn-primary mt-4 mb-2" %>
+      </div>
     <% end %>
   </div>
 </div>
