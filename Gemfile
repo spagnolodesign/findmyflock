@@ -9,7 +9,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker'
 gem 'figaro'
-gem 'pry-rails'
+gem 'pry-rails', :group => :development
 gem 'devise'
 gem 'jquery-rails'
 gem 'simple_form'

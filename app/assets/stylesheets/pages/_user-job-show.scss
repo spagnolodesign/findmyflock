@@ -50,11 +50,30 @@
   background-color: white;
   border-radius: 2%;
   max-width: 370px;
-      margin: 10px;
+  margin: 10px;
 }
 
 .job-application-container {
   max-width: 1200px;
   padding-left: 5vw;
   padding-right: 5vw;
+}
+
+.job-logo {
+  img {
+    width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+    padding-top: 3vh;
+    padding-bottom: 1vh;
+  }
+}
+
+.applied-message {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 21px;
+  margin-bottom: 12px;
+  border: 8px solid #e7f3f5;
 }
