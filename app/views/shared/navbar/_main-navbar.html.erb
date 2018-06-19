@@ -1,7 +1,18 @@
 <div class="navbar navbar-expand-md navbar-light fixed-top" id="NavContent" style="background-color: white;">
-  <a href="/">
-    <img class="navbar-brand ml-auto" id="Logo" src="/assets/flock_logo.png" alt="Flock logo">
-  </a>
+
+  <% if recruiter_signed_in? %>
+    <%= link_to dashboard_companies_path, class: "nav-link" do %>
+      <img class="navbar-brand ml-auto" id="Logo" src="/assets/flock_logo.png" alt="Flock logo">
+    <% end %>
+  <% elsif developer_signed_in? %>
+    <%= link_to dashboard_developers_path, class: "nav-link" do %>
+      <img class="navbar-brand ml-auto" id="Logo" src="/assets/flock_logo.png" alt="Flock logo">
+    <% end %>
+  <% else %>
+    <a href="/">
+      <img class="navbar-brand ml-auto" id="Logo" src="/assets/flock_logo.png" alt="Flock logo">
+    </a>
+  <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
