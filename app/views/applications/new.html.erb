@@ -34,15 +34,17 @@
 
      <div class="applied-message">
       <h5 class='h6 centered'>Congratulations!</h5>
-       <p>Your application has beeing sent and will be reviewed by the recruiters at <%= @job.company.name %>.</p>
-       <p>By this time, you can <b>check your application status</b> on your dashboard, under the "Applications" tab.</p>
-     </div>
+      <p>Your application has beeing sent and will be reviewed by the recruiters at <%= @job.company.name %>.</p>
+      <p>By this time, you can <b>check your application status</b> on your dashboard, under the "Applications" tab.</p>
+    </div>
 
-     <% end %>
+    <% end %>
 
-   </div>
- </div>
- <div class="btn-orange btn-back">Back</div>
+  </div>
+</div>
+
+<div class="centered my-5"> <%= link_to "Back", dashboard_developers_path(@developer), class: "btn-orange btn-back"  %>
+</div>
 </div>
 
 <script>
