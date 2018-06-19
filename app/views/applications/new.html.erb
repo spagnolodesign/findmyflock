@@ -22,7 +22,7 @@
      <% end  %>
      <% else %>
      <p class="pt-3 pb-3">We will attach the resume uploaded on your profile with this request.</p>
-     <%= f.input :message,  :input_html => {:rows => 5}, label: "Write a message to the recruiter" %>
+     <%= f.input :message,  :input_html => {:rows => 5}, label: "Write a message to the recruiter", :required %>
      <% end  %>
      <hr class="mb-4">
      <%= f.submit 'Send application', class: "btn-orange btn-application", style: "display: block; width: 100%; margin: 0;" %>
@@ -33,7 +33,7 @@
      </div>
 
      <div class="applied-message">
-      <h5 class='h6 centered'>Congratulations!</h5>
+      <h5 class="h6 centered">Congratulations!</h5>
       <p>Your application has beeing sent and will be reviewed by the recruiters at <%= @job.company.name %>.</p>
       <p>By this time, you can <b>check your application status</b> on your dashboard, under the "Applications" tab.</p>
     </div>
@@ -57,10 +57,3 @@
     $('[data-toggle="popover"]').popover()
   })
 </script>
-
-
-
-
-
-
-
