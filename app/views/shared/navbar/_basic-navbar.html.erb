@@ -5,3 +5,10 @@
 <li class="nav-item">
   <%= link_to 'For employers', new_recruiter_registration_path, class: "nav-link", id: "NavEmployers" %>
 </li>
+<li class="nav-item">
+<% if recruiter_signed_in? %>
+  <%= link_to 'My Dashboard', dashboard_companies_path, class: "nav-link", id: "NavEmployers" %>
+<% elsif developer_signed_in? %>
+  <%= link_to 'My Dashboard', dashboard_developers_path, class: "nav-link", id: "NavEmployers" %>
+<% end %>
+</li>
