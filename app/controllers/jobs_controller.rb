@@ -20,34 +20,36 @@ class JobsController < ApplicationController
     step = params[:job][:navigate_to]
     respond_to do |format|
       if @job.save
-        if step == "skills"
+        if step == "benefits"
+          format.html { redirect_to benefits_job_path(@job) }
+        elsif step == "skills"
           format.html { redirect_to skills_job_path(@job) }
-        elsif step == "dashboard"
-          format.html { redirect_to dashboard_companies_path }
         end
       else
-          format.html { render :new }
+        format.html { render :new }
       end
     end
   end
 
   def update
     step = params[:job][:navigate_to]
+
     respond_to do |format|
       if @job.update(job_params)
-        if step == "skills"
+        if step == "benefits"
+          format.html { redirect_to benefits_job_path(@job) }
+        elsif step == "skills"
           format.html { redirect_to skills_job_path(@job) }
-        elsif step == "dashboard"
-          format.html { redirect_to dashboard_companies_path }
         end
       else
-        if step == "skills"
+        if step == "benefits"
           format.html { render :edit }
-        elsif step == "dashboard"
+        elsif step == "skills"
           format.html { render :benefits, notice: "Please select at least one value." }
         end
       end
     end
+
   end
 
   def skills
