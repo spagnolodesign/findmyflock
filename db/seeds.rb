@@ -1064,8 +1064,7 @@ end
 p "Creating Developer"
 
 5.times do
-
-    dev = Developer.new(
+  dev = Developer.new(
     email: Faker::Internet.email,
     password: 'Developer9)',
     password_confirmation: 'Developer9)',
@@ -1081,10 +1080,10 @@ p "Creating Developer"
  dev.save
  p "One developer created"
 
-3.times do
-a = dev.skills.new(name: Competence.all.sample.value, level: rand(3..5))
-a.save
-end
+  3.times do
+    a = dev.skills.new(name: Competence.all.sample.value, level: rand(3..5))
+    a.save
+  end
  p "3 skills added"
 end
 

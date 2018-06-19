@@ -7,12 +7,13 @@
   </button>
   <div class="collapse navbar-collapse justify-content-end pr-4" id="navbarCollapse">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" id="NavJobs" href="#">Jobs<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'For employers', new_recruiter_registration_path, class: "nav-link", id: "NavEmployers" %>
-      </li>
+      <% if recruiter_signed_in? %>
+        <%= render "shared/navbar/company-navbar" %>
+      <% elsif developer_signed_in? %>
+        <%= render "shared/navbar/developer-navbar" %>
+      <% else %>
+        <%= render "shared/navbar/basic-navbar" %>
+      <% end %>
     </ul>
   </div>
 </div>
