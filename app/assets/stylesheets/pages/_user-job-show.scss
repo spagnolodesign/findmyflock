@@ -58,3 +58,13 @@
   padding-left: 5vw;
   padding-right: 5vw;
 }
+
+.job-logo {
+  img {
+    width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+    padding-top: 3vh;
+    padding-bottom: 1vh;
+  }
+}
