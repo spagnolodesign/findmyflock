@@ -10,31 +10,38 @@
 
     <!-- Application -->
     <div class="col-sm-12 col-md-6 job-application-container">
-      <div class="job-show-titles">
-       <h4 class="row justify-content-center underlined">Apply to this job</h4>
-     </div>
 
      <% if !@is_posted %>
-      <%= simple_form_for([@job, @application]) do |f| %>
-        <% if !@developer.resumes.attached? %>
-          <%= f.simple_fields_for @developer do |f| %>
-            <%= f.input :resumes, as: :file, :input_html => {multiple: true , :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "application/pdf" } %>
-          <% end  %>
-          <% else %>
-          <p class="pt-3 pb-3">We will attach the resume uploaded on your profile with this request.</p>
-          <%= f.input :message,  :input_html => {:rows => 5}, label: "Write a message to the recruiter" %>
-          <% end  %>
-        <hr class="mb-4">
-        <%= f.submit 'Send application', class: "btn-orange btn-application", style: "display: block; width: 100%; margin: 0;" %>
-      <% end %>
+     <%= simple_form_for([@job, @application]) do |f| %>
+     <% if !@developer.resumes.attached? %>
+     <div class="job-show-titles">
+       <h4 class="row justify-content-center underlined">Apply to this job</h4>
+     </div>
+     <%= f.simple_fields_for @developer do |f| %>
+     <%= f.input :resumes, as: :file, :input_html => {multiple: true , :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "application/pdf" } %>
+     <% end  %>
      <% else %>
-     <p>Your application has beeing sent to <%= @job.company.name %> to be revied!</p>
-     <p>We will keep you posted if they are going to open the applicaitons.</p>
+     <p class="pt-3 pb-3">We will attach the resume uploaded on your profile with this request.</p>
+     <%= f.input :message,  :input_html => {:rows => 5}, label: "Write a message to the recruiter" %>
+     <% end  %>
+     <hr class="mb-4">
+     <%= f.submit 'Send application', class: "btn-orange btn-application", style: "display: block; width: 100%; margin: 0;" %>
+     <% end %>
+     <% else %>
+     <div class="job-show-titles">
+       <h4 class="row justify-content-center underlined">Application sent</h4>
+     </div>
+
+
+
+     <p>Your application has beeing sent and will be reviewed by the recruiters at <%= @job.company.name %>!</p>
+
+     <p>By this time, you can check your application status on your dashboard, under the tab "Applications"!</p>
      <% end %>
 
-  </div>
-</div>
-<div class="btn-orange btn-back">Back</div>
+   </div>
+ </div>
+ <div class="btn-orange btn-back">Back</div>
 </div>
 
 <script>

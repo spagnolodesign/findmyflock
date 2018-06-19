@@ -35,7 +35,7 @@ class ApplicationsController < ApplicationController
 
     respond_to do |format|
       if @application.save
-        format.html { redirect_to new_job_application_path(@match.job), notice: "Yeah, your application is traveling!" }
+        format.html { redirect_to new_job_application_path(@match.job) }
         CompanyMailer.new_application_advise(@mail_addresses, @match, @developer).deliver_later
       else
         format.html { render :new }
