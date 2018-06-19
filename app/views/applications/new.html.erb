@@ -13,10 +13,10 @@
 
      <% if !@is_posted %>
      <%= simple_form_for([@job, @application]) do |f| %>
-     <% if !@developer.resumes.attached? %>
      <div class="job-show-titles">
        <h4 class="row justify-content-center underlined">Apply to this job</h4>
      </div>
+     <% if !@developer.resumes.attached? %>
      <%= f.simple_fields_for @developer do |f| %>
      <%= f.input :resumes, as: :file, :input_html => {multiple: true , :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "application/pdf" } %>
      <% end  %>
