@@ -50,7 +50,7 @@
   background-color: white;
   border-radius: 2%;
   max-width: 370px;
-      margin: 10px;
+  margin: 10px;
 }
 
 .job-application-container {
@@ -67,4 +67,13 @@
     padding-top: 3vh;
     padding-bottom: 1vh;
   }
+}
+
+.applied-message {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 21px;
+  margin-bottom: 12px;
+  border: 8px solid #e7f3f5;
 }
