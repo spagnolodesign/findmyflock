@@ -28,7 +28,7 @@
                 <% if @developer.avatar.attached? %>
                   <%= image_tag @developer.avatar.variant(resize: "300x300^", gravity:"center", extent: "300x300"), class: "d-block w-100" %>
                 <% else %>
-                  <%= image_tag "avatar", class: "d-block w-100" %>
+                  <%= image_tag "avatar.jpg", class: "d-block w-100" %>
                 <% end %>
               </div>
               <div class="col-sm-8">
