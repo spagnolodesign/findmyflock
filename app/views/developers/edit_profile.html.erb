@@ -1,12 +1,19 @@
 <div class="container mb-5">
   <div class="row justify-content-md-center">
     <div class="col col-md-8">
-      <%= render 'utils/progressbar', classname: "small", step: 1, navigations: ["Dev profile", "Skills"] %>
+      <%= render 'utils/progressbar', classname: "small", step: 1, navigations: ["Profile", "Skills"] %>
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Complete your developer profile</h5>
-          <%= simple_form_for @developer, action: :post do |f| %>
-            <div class="form-row">
+          <% if @developer.sign_in_count == 1 %>
+            <h4 class="text-center mt-3 mb-4">We are glad you are here</h4>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+          <% else %>
+            <h4 class="text-center mt-3 mb-4">Edit your dev profile</h4>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+          <% end %>
+          <%= simple_form_for @developer, action: :post, html: { autocomplete: 'off' } do |f| %>
+
+            <div class="form-row my-4">
               <div class="col">
                 <%= f.input :first_name %>
               </div>
@@ -15,46 +22,101 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <label class="form-control-label string required">Which kind of job. Flag both if you are open to any kind of job</label><br/>
-              <%= f.collection_check_boxes :remote, [['remote', 'remote'],['office', 'office']], :first, :last, include_hidden: false %>
-              <small id="passwordHelpBlock" class="form-text text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</small>
+            <h5>Profile photo</h5>
+            <div class="form-row my-4">
+              <div class="col-sm-4 mb-3">
+                <% if @developer.avatar.attached? %>
+                  <%= image_tag @developer.avatar.variant(resize: "300x300^", gravity:"center", extent: "300x300"), class: "d-block w-100" %>
+                <% else %>
+                  <%= image_tag "avatar", class: "d-block w-100" %>
+                <% end %>
+              </div>
+              <div class="col-sm-8">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                <%= f.input :avatar, as: :file, label: false, :input_html => { :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "image/x-png,image/jpeg" } %>
+              </div>
+            </div>
+
+            <h4 class="text-center my-3 mb-5">Experience</h4>
+            <h5>Upload a resume</h5>
+            <div class="form-row">
+              <div class="col">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                <%= f.input :resumes, as: :file, label: false, :input_html => {multiple: true , :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "application/pdf" } %>
+                <% if @developer.resumes.attached? %>
+                  <p>Uploaded resumes:</p>
+                  <% @developer.resumes.each do |resume| %>
+                    <%= link_to rails_blob_path(resume, disposition: "attachment") do %>
+                      <i class="far fa-file-pdf fa-3x"></i>
+                    <% end %>
+                  <% end %>
+                <% else %>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="form-row mt-5">
+              <%= f.input :linkedin_url, label: false do %>
+                <h5>Linkedin</h5>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3">https://www.linkedin.com/in/</span>
+                  </div>
+                  <input type="text" class="form-control string" id="basic-url" aria-describedby="basic-addon3" id="linkedin_url" type="text" name="developer[linkedin_url]" value="<%= @developer.linkedin_url.split("/")[-1] if  @developer.linkedin_url%>" placeholder="Your name">
+                </div>
+              <% end  %>
+
+              <%= f.input :github_url, label: false do %>
+                <h5>GITHUB</h5>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3">https://github.com/</span>
+                  </div>
+                  <input type="text" class="form-control string" id="basic-url" aria-describedby="basic-addon3" id="github_url" type="text" name="developer[github_url]", value="<%= @developer.github_url.split("/")[-1] if @developer.github_url%>" placeholder="Your name">
+                </div>
+              <% end  %>
+            </div>
+
+            <h4 class="text-center my-3 mb-5">Location</h4>
+
+            <div class="my-4">
+              <h5>What kind of job are you interested in?</h5>
+              <small class="form-text text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</small>
+              <div class="form-row my-3">
+                <div class="custom-control  custom-control-inline custom-checkbox mr-3">
+                  <input type="checkbox" value="remote" <%= "checked" if @developer.remote.include?('remote') %> name="developer[remote][]" class="custom-control-input" id="developer_remote_remote">
+                  <label class="custom-control-label" for="developer_remote_remote">Remote</label>
+                </div>
+                <div class="custom-control  custom-control-inline custom-checkbox">
+                  <input type="checkbox" value="office" <%= "checked" if @developer.remote.include?('office') %> name="developer[remote][]" class="custom-control-input" id="developer_remote_office">
+                  <label class="custom-control-label" for="developer_remote_office">Office</label>
+                </div>
+              </div>
             </div>
 
             <div id="location-info">
-              <%= f.input :city, label: "Where are you from", input_html: { id: "locality", value: "#{@developer.city}" } %>
+              <%= f.input :city, label: "Where do you live?", input_html: { id: "locality", value: "#{@developer.city}" } %>
               <%= f.input :state, input_html: { id: "administrative_area_level_1" }%>
               <%= f.input :country, input_html: { id: "country" }, as: :string %>
               <div id="select-distance" class="hidden">
-                <p>How far are you available to move? <span id="range-distance" class="float-right"><%= @developer.mobility%> Mi</span></p>
+                <h5 class="mt-5">How far are you willing to commute? <span id="range-distance" class="float-right"><%= @developer.mobility%> Mi</span></h5>
                 <%= f.input :mobility, input_html: { type: "range", value: "#{@developer.mobility}", min: 20, max: 1000, step: 20 }, label: false %>
               </div>
-              <%= f.input :full_mobility, label: "I don't care about distance. Full mobility ok" %>
+              <%= f.input :full_mobility, label: "I don't care about distance." %>
             </div>
 
-            <%= f.input :avatar, as: :file, :input_html => { :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "image/x-png,image/jpeg" } %>
-            <%= f.input :resumes, as: :file, :input_html => {multiple: true , :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "application/pdf" } %>
 
-            <%= f.label :need_us_permit, 'Do you need a work permit in the USA?' %>
-            <%= f.input :need_us_permit %>
+            <h5 class="mt-5">Do you need a sponsorship to work in USA?</h5>
+            <small class="form-text text-muted mb-3">Will you now or in the future require your employer to commence ("sponsor") an immigration case in order to employ you (for example, H-1B or other employment-based immigration case)? This is sometimes called "sponsorship" for an employment-based visa status.</small>
 
-            <%= f.input :linkedin_url do %>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon3">https://www.linkedin.com/in/</span>
-              </div>
-              <input type="text" class="form-control string" id="basic-url" aria-describedby="basic-addon3" id="linkedin_url" type="text" name="developer[linkedin_url]" value="<%= @developer.linkedin_url.split("/")[-1] if  @developer.linkedin_url%>" placeholder="Your name">
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" value="1" <%= "checked" if @developer.need_us_permit %> id="customRadioInline1" name="developer[need_us_permit]" class="custom-control-input">
+              <label class="custom-control-label" for="customRadioInline1">Yes</label>
             </div>
-            <% end  %>
-
-            <%= f.input :github_url do %>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon3">https://github.com/</span>
-                </div>
-                <input type="text" class="form-control string" id="basic-url" aria-describedby="basic-addon3" id="github_url" type="text" name="developer[github_url]", value="<%= @developer.github_url.split("/")[-1] if @developer.github_url%>" placeholder="Your name">
-              </div>
-            <% end  %>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" value="0" <%= "checked" if !@developer.need_us_permit %> id="customRadioInline2" name="developer[need_us_permit]" class="custom-control-input">
+              <label class="custom-control-label" for="customRadioInline2">No</label>
+            </div>
 
             <div class="text-center">
               <%= f.button :submit, "Continue", class: "btn btn-lg btn-primary mt-4 mb-2" %>
