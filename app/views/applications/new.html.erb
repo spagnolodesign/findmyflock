@@ -11,8 +11,27 @@
     <!-- Application -->
     <div class="col-sm-12 col-md-6 job-application-container">
       <div class="job-show-titles">
-       <h4 class="row justify-content-center underlined" style=>Apply to this job</h4>
+       <h4 class="row justify-content-center underlined">Apply to this job</h4>
      </div>
+
+     <% if !@is_posted %>
+      <%= simple_form_for([@job, @application]) do |f| %>
+        <% if !@developer.resumes.attached? %>
+          <%= f.simple_fields_for @developer do |f| %>
+            <%= f.input :resumes, as: :file, :input_html => {multiple: true , :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "application/pdf" } %>
+          <% end  %>
+          <%= f.input :message, label: "Write a message to the recruiter" %>
+          <% else %>
+          <p>We will attach the resume uploaded on your profile with this request.</p>
+          <% end  %>
+        <hr class="mb-4">
+        <%= f.submit 'Send application', class: "btn-orange btn-application", style: "display: block; width: 100%; margin: 0;" %>
+      <% end %>
+     <% else %>
+     <p>Your application has beeing sent to <%= @job.company.name %> to be revied!</p>
+     <p>We will keep you posted if they are going to open the applicaitons.</p>
+     <% end %>
+
 
      <form>
       <div class="form-group pt-4">
@@ -26,21 +45,17 @@
             <span class="input-group-text" id="">Upload</span>
           </div>
         </div>
-        <div class="input-group mb-3">
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" id="applicationAddCoverLetter">
-            <label class="custom-file-label" for="applicationAddCoverLetter">Cover letter (optionnal)</label>
-          </div>
-          <div class="input-group-append">
-            <span class="input-group-text" id="">Upload</span>
-          </div>
-        </div>
+
         <label for="applicationMessageRecruiter">Write a message to the recruiter</label>
         <textarea class="form-control" id="applicationMessageRecruiter" rows="3" placeholder="" value="" required=""></textarea>
         <hr class="mb-4">
         <button class="btn-orange btn-application" style="display: block; width: 100%; margin: 0;" type="submit">Apply</button>
       </div>
     </form>
+
+
+
+
 
   </div>
 </div>
@@ -54,8 +69,8 @@
  });
 
   $(function () {
-  $('[data-toggle="popover"]').popover()
-})
+    $('[data-toggle="popover"]').popover()
+  })
 </script>
 
 
@@ -64,38 +79,3 @@
 
 
 
-
-
-
-///////////////
-
-
-
-
-
-
-<div class="fluid-container">
-  <div class="row">
-    <div class="col-6">
-      <%= render @job %>
-    </div>
-    <div class="col-6">
-      <% if !@is_posted %>
-        <%= simple_form_for([@job, @application]) do |f| %>
-          <%= f.input :message %>
-          <% if !@developer.resumes.attached? %>
-            <%= f.simple_fields_for @developer do |f| %>
-              <%= f.input :resumes, as: :file, :input_html => {multiple: true , :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "application/pdf" } %>
-            <% end  %>
-            <% else %>
-              <p>We will attach the resume uploaded on your profile with this request.</p>
-            <% end  %>
-          <%= f.submit 'Send application' %>
-        <% end %>
-      <% else %>
-        <p>Your application has beeing sent to <%= @job.company.name %> to be revied!</p>
-        <p>We will keep you posted if they are going to open the applicaitons.</p>
-      <% end %>
-    </div>
-  </div>
-</div>
