@@ -992,7 +992,8 @@ end
 p "Created #{Culture.all.count} cultures"
 
 
-group :development do
+case Rails.env
+when "development"
 
   ## Running only in Development
   5.times do
