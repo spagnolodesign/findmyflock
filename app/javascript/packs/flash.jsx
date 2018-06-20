@@ -18,7 +18,7 @@ export class Flash extends Component {
  render(){
    const {show, type} = this.state
    if (!show){
-    return;
+    return (<div></div>);
    }
    return(
      <div className={`alert alert-primary ${type} mt-3`} role="alert">
@@ -28,7 +28,7 @@ export class Flash extends Component {
  }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+const initFlashAlert =document.addEventListener('DOMContentLoaded', () => {
   const el = document.getElementById("alert-component");
 
   if (el != null) {
@@ -39,3 +39,5 @@ document.addEventListener('DOMContentLoaded', () => {
     )
   }
 })
+
+export { initFlashAlert }
