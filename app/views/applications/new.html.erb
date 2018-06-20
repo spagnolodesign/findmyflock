@@ -22,7 +22,7 @@
      <% end  %>
      <% else %>
      <p class="pt-3 pb-3">We will attach the resume uploaded on your profile with this request.</p>
-     <%= f.input :message,  :input_html => {:rows => 5}, label: "Write a message to the recruiter", :required %>
+     <%= f.input :message,  :input_html => {:rows => 5}, label: "Write a message to the recruiter" %>
      <% end  %>
      <hr class="mb-4">
      <%= f.submit 'Send application', class: "btn-orange btn-application", style: "display: block; width: 100%; margin: 0;" %>
