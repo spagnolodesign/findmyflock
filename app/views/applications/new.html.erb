@@ -20,11 +20,11 @@
           <% if !@developer.resumes.attached? %>
             <%= f.simple_fields_for @developer do |f| %>
               <%= f.input :resumes, as: :file, :input_html => {multiple: true , :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "application/pdf" } %>
-              <% end  %>
+            <% end  %>
           <% else %>
-          <div class="alert alert-light pt-3 pb-3" role="alert">
-            <i class="fas fa-quote-left fa-2x fa-pull-left fa-border"></i> We will attach the resume uploaded on your profile with this request.
-          </div>
+            <div class="alert alert-light pt-3 pb-3" role="alert">
+              <i class="fas fa-quote-left fa-2x fa-pull-left fa-border"></i> We will attach the resume uploaded on your profile with this request.
+            </div>
           <% end  %>
 
             <hr class="mb-4">
