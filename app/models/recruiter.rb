@@ -16,4 +16,8 @@ class Recruiter < ApplicationRecord
     end
   end
 
+  def skip_confirmation
+    self.skip_confirmation!
+  end
+
 end
