@@ -1,8 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Findmyflock</title>
-  <meta name="robots" content="noindex">
+  <meta charset="UTF-8">
+  <title>Find My Flock - Jobs You Want.</title>
+  <meta name="description" content="We match your skills, experience and desired benefits to the right company for you.">
+
+  <!-- Facebook Open Graph data -->
+  <meta property="og:title" content="Find My Flock - Jobs You Want." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://app.findmyflock.com/" />
+  <meta property="og:image" content="" />
+  <meta property="og:description" content="We match your skills, experience and desired benefits to the right company for you." />
+  <meta property="og:site_name" content="Find My Flock - Jobs You Want." />
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@FindMyFlock">
+  <meta name="twitter:title" content="Find My Flock - Jobs You Want.">
+  <meta name="twitter:description" content="We match your skills, experience and desired benefits to the right company for you.">
+  <meta name="twitter:creator" content="@FindMyFlock">
+  <meta name="twitter:image:src" content="">
+
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
@@ -13,10 +31,6 @@
 
 <body>
   <%= render 'shared/flash' %>
-  <%# if notice || alert %>
-    <!-- <p class="notice"><%#= notice %></p> -->
-    <!-- <p class="alert"><%#= alert %></p> -->
-  <%# end %>
 
   <body class="main-body">
 
@@ -37,4 +51,4 @@
     <%= javascript_pack_tag 'application' %>
 
   </body>
-  </html>
+</html>

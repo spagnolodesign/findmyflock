@@ -9,9 +9,9 @@
       <img class="navbar-brand ml-auto" id="Logo" src="/assets/flock_logo.png" alt="Flock logo">
     <% end %>
   <% else %>
-    <a href="/">
-      <img class="navbar-brand ml-auto" id="Logo" src="/assets/flock_logo.png" alt="Flock logo">
-    </a>
+    <%= link_to root_path do %>
+      <%= image_tag "flock_logo.png", class: "navbar-brand ml-auto", id: "Logo", alt: "Flock logo" %>
+    <% end %>
   <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
