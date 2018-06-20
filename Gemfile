@@ -16,7 +16,6 @@ gem 'simple_form'
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'geocoder'
 gem 'bootstrap', '~> 4.1.1'
 gem 'active_link_to'
@@ -26,10 +25,10 @@ gem "aws-sdk-s3", require: false
 gem 'turbolinks'
 gem 'sendgrid-ruby'
 gem "letter_opener", :group => :development
-gem 'font-awesome-sass'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 end
 
 group :development do

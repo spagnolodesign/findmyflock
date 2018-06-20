@@ -1,4 +1,6 @@
 
+
+
 SKILLS = ['AR', 'VR', 'Cybersecurity', 'Management', 'Kubernetes', 'Docker', 'Architecture', 'Mentorship', 'AWS', 'Java', 'Python', 'C', 'Ruby', 'Javascript', 'JQuery', 'AngularJS', 'Node.js', 'React', 'PHP', 'WordPress', 'HTML', 'CSS', 'Objective-C', 'Swift', 'iOS', 'Android', 'Kotlin', 'SQL', '.NET', 'R', 'Perl', 'MATLAB', 'Erlang', 'Scala', 'Bash', 'Clojure', 'Haskell', 'Groovy', 'DevOps', 'Systems', 'Apex', 'SAS', 'Crystal', 'git', 'GitHub', 'Project Management', 'Product Management', 'Engineering Management', 'CTO', 'User Experience Design / UX', 'User Interface Design / UI', 'Quality Assurance / QA', 'Automated QA', 'Ruby on Rails', 'SaaS', 'React Native', 'Technical Sales', 'Outbound Sales', 'Business Development', 'Training', 'Django'].freeze
 DEVSKILLS = [
   {
@@ -963,7 +965,8 @@ DEVSKILLS = [
     }
   }
 ]
-EMPLOYMENT_TYPE = ['full-time', 'part-time', 'contract', 'temporary', 'seasonal', 'internship'].freeze
+
+EMPLOYMENT_TYPE = ['Full time', 'Part time', 'Contracted', 'Casual', 'Seasonal', 'Internship'].freeze
 
 BENEFITS = ['Office Dogs', 'Equity', 'Remote', '30+ Days Parental Leave', '60+ Days Parental Leave', '90+ Days Parental Leave', 'Flexible Hours', 'Social Mission', 'Environmental Mission', '401(k)', '401(k) Matching', "100\% Covered Health Insurance", "80\%+ Covered Health Insurance", 'Dental Insurance', 'Vision Insurance', 'Life Insurance', 'Trans-Inclusive Healthcare', 'Professional Development Budget', 'Unlimited Vacation', '30+ Days Vacation', 'Lunch Provided', 'Beach Within 60 Minutes', 'Mountain Within 60 Minutes', 'In-Office Gym', 'Flat Heirarchy', 'Commuter Coverage'].freeze
 
@@ -988,136 +991,141 @@ end
 
 p "Created #{Culture.all.count} cultures"
 
-5.times do
-  Recruiter.create!(email: Faker::Internet.email, password:"Flock-2018", password_confirmation:"Flock-2018")
-end
 
-5.times do
-  company = Company.create(url: Faker::Internet.url, name: Faker::Company.name, industry: Faker::Company.name)
-  r = Recruiter.all.sample
-  r.company = company
-  r.save
-  puts "created company #{company.name}"
-end
+group :development do
 
-
-PLACES = [
-  {city: "Los Angeles",
-    state: "CA",
-    country: "United States"
-  },
-  {city: "Chicago",
-    state: "MI",
-    country: "United States"
-  },
-  {city: "New York",
-    state: "NY",
-    country: "United States"
-  },
-  {city: "San Francisco",
-    state: "CA",
-    country: "United States"
-  }
-]
-
-Company.all.each do |company|
-  15.times do
-    cultures = []
-    benefits = []
-    skills = []
-    remote = [['remote'], ['office'], %w[remote office]]
-    salary = [10_000, 20_000, 30_000, 40_000, 50_000, 60_000]
-
-    rand(2..5).times do
-      cultures << Culture.find(rand(1..Culture.count)).value
-    end
-    rand(2..5).times do
-      benefits << Benefit.find(rand(1..Benefit.count)).value
-    end
-
-    i = rand(0..3)
-    job = Job.new(
-      title: Faker::FamilyGuy.character,
-      description: Faker::Lorem.paragraph(2, false, 4),
-      remote: remote.sample,
-      city: PLACES[i][:city],
-      state: PLACES[i][:state],
-      country: PLACES[i][:country],
-      employment_type: EMPLOYMENT_TYPE.sample,
-      latitude: nil,
-      longitude: nil,
-      max_salary: salary.sample,
-      benefits: benefits,
-      cultures: cultures,
-      can_sponsor: Faker::Boolean.boolean(0.2),
-      company: company
-    )
-
-    job.save
-    puts "created job #{job.title}"
-    job.skills.new(name: Competence.all.sample.value, level: rand(1..4)).save
-
+  ## Running only in Development
+  5.times do
+    Recruiter.create!(email: Faker::Internet.email, password:"Flock-2018", password_confirmation:"Flock-2018")
   end
 
-end
-#
-p "Creating Developer"
+  5.times do
+    company = Company.create(url: Faker::Internet.url, name: Faker::Company.name, industry: Faker::Company.industry)
+    r = Recruiter.all.sample
+    r.company = company
+    r.save
+    puts "created company #{company.name}"
+  end
 
-5.times do
-  dev = Developer.new(
-    email: Faker::Internet.email,
-    password: 'Developer9)',
-    password_confirmation: 'Developer9)',
+
+  PLACES = [
+    {city: "Los Angeles",
+      state: "CA",
+      country: "United States"
+    },
+    {city: "Chicago",
+      state: "MI",
+      country: "United States"
+    },
+    {city: "New York",
+      state: "NY",
+      country: "United States"
+    },
+    {city: "San Francisco",
+      state: "CA",
+      country: "United States"
+    }
+  ]
+
+  Company.all.each do |company|
+    15.times do
+      cultures = []
+      benefits = []
+      skills = []
+      remote = [['remote'], ['office'], %w[remote office]]
+      salary = [10_000, 20_000, 30_000, 40_000, 50_000, 60_000]
+
+      rand(2..5).times do
+        cultures << Culture.find(rand(1..Culture.count)).value
+      end
+      rand(2..5).times do
+        benefits << Benefit.find(rand(1..Benefit.count)).value
+      end
+
+      i = rand(0..3)
+      job = Job.new(
+        title: Faker::FamilyGuy.character,
+        description: Faker::Lorem.paragraph(2, false, 4),
+        remote: remote.sample,
+        city: PLACES[i][:city],
+        state: PLACES[i][:state],
+        country: PLACES[i][:country],
+        employment_type: EMPLOYMENT_TYPE.sample,
+        latitude: nil,
+        longitude: nil,
+        max_salary: salary.sample,
+        benefits: benefits,
+        cultures: cultures,
+        can_sponsor: Faker::Boolean.boolean(0.2),
+        company: company
+      )
+
+      job.save
+      puts "created job #{job.title}"
+      job.skills.new(name: Competence.all.sample.value, level: rand(1..4)).save
+
+    end
+
+  end
+  #
+  p "Creating Developer"
+
+  5.times do
+    dev = Developer.new(
+      email: Faker::Internet.email,
+      password: 'Developer9)',
+      password_confirmation: 'Developer9)',
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
+      city: 'Los Angeles',
+      state: 'CA',
+      country: 'United States',
+      need_us_permit: Faker::Boolean.boolean(0.2),
+      min_salary: salary = [10_000, 20_000, 30_000].sample,
+      remote: [['remote'], ['office'], %w[remote office]].sample,
+    )
+   dev.save
+   p "One developer created"
+
+    3.times do
+      a = dev.skills.new(name: Competence.all.sample.value, level: rand(3..5))
+      a.save
+    end
+   p "3 skills added"
+  end
+
+  Developer.check_for_first_matches
+
+  5.times do
+    Application.create(
+      match: Match.all.sample,
+      message: "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh."
+    )
+  end
+
+  a = Developer.new(
+    email: "dev@findmyflock.com",
+    password: "Flock-2018",
+    password_confirmation: 'Flock-2018',
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
-    city: 'Los Angeles',
-    state: 'CA',
+    city: 'New York',
+    state: 'NY',
     country: 'United States',
-    need_us_permit: Faker::Boolean.boolean(0.2),
-    min_salary: salary = [10_000, 20_000, 30_000].sample,
-    remote: [['remote'], ['office'], %w[remote office]].sample,
+    need_us_permit: false,
+    min_salary: 10_000,
+    remote:  ["remote", "office"]
   )
- dev.save
- p "One developer created"
 
-  3.times do
-    a = dev.skills.new(name: Competence.all.sample.value, level: rand(3..5))
+  p "adding 40 skills"
+
+  a.save
+  40.times do
+    a = Developer.last.skills.new(name: Competence.all.sample.value, level: rand(3..5))
     a.save
   end
- p "3 skills added"
-end
 
-Developer.check_for_first_matches
-
-5.times do
-  Application.create(
-    match: Match.all.sample,
-    message: "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh."
-  )
 end
 
 
-Admin.create!(email: "admin@findmyflock.com", password:"flock2018", password_confirmation:"flock2018")
-
-
-a = Developer.new(
-  email: "diana@codegull.com",
-  password: "Flock-2018",
-  password_confirmation: 'Flock-2018',
-  first_name: Faker::Name.first_name,
-  last_name: Faker::Name.last_name,
-  city: 'New York',
-  state: 'NY',
-  country: 'United States',
-  need_us_permit: false,
-  min_salary: 10_000,
-  remote:  ["remote", "office"]
-)
-
-p "adding 40 skills"
-
-a.save
-40.times do
-  a = Developer.last.skills.new(name: Competence.all.sample.value, level: rand(3..5))
-  a.save
-end
+Admin.create!(email: "admin@findmyflock.com", password:"Flock-2018", password_confirmation:"Flock-2018")
