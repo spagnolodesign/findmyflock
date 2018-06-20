@@ -26,7 +26,7 @@ class Admin::DevelopersController < Admin::BaseController
   # POST /admin/developers.json
   def create
     @developer = Developer.new(developer_params)
-
+    @developer.password = "NeWPassword78" if admin_signed_in?
     respond_to do |format|
       if @developer.save
         format.html { redirect_to admin_developers_path, notice: 'Developer was successfully created.' }

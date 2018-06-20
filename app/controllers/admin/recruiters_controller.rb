@@ -1,5 +1,5 @@
 class Admin::RecruitersController < Admin::BaseController
-  before_action :set_recruiter, only: [:show, :edit, :update, :destroy]
+  before_action :set_recruiter, only: %i[show edit update destroy]
 
   # GET /recruiters
   # GET /recruiters.json
@@ -9,8 +9,7 @@ class Admin::RecruitersController < Admin::BaseController
 
   # GET /recruiter/1
   # GET /recruiter/1.json
-  def show
-  end
+  def show; end
 
   # GET /recruiter/new
   def new
@@ -18,14 +17,13 @@ class Admin::RecruitersController < Admin::BaseController
   end
 
   # GET /recruiter/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /recruiter
   # POST /recruiter.json
   def create
     @recruiter = Recruiter.new(recruiter_params)
-
+    @recruiter.skip_confirmation if admin_signed_in?
     respond_to do |format|
       if @recruiter.save
         format.html { redirect_to admin_recruiter_path(@recruiter), notice: 'Recruiter was successfully created.' }
@@ -57,13 +55,15 @@ class Admin::RecruitersController < Admin::BaseController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_recruiter
-      @recruiter = Recruiter.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def recruiter_params
-      params.require(:recruiter).permit(:email, :password, :password_confirmation, :company_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_recruiter
+    @recruiter = Recruiter.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+
+  def recruiter_params
+    params.require(:recruiter).permit(:email, :password, :password_confirmation, :company_id)
+  end
 end
