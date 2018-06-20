@@ -10,7 +10,7 @@
             <%= link_to 'Join us', new_recruiter_registration_path, class: "nav-link" %>
           </li>
         </ul>
-        <form class="login-form">
+        <div class="login-form">
           <h4 class="centered mt-5 mb-5">Log in to your account</h4>
 
           <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -23,7 +23,7 @@
           </div>
           <% end %>
 
-        </form>
+        </div>
         <div class="login-form-bottom">
           <div>
             <%= render "recruiters/shared/links" %>
