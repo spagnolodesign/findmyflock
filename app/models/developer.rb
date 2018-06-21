@@ -5,7 +5,7 @@ class Developer < ApplicationRecord
   has_one_attached :avatar
   has_many_attached :resumes
   devise :database_authenticatable, :registerable,
-          :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  :recoverable, :rememberable, :trackable, :validatable, :confirmable
   geocoded_by :developer_location
   before_validation :email_downcase
   before_validation :capitalize_name
@@ -33,9 +33,9 @@ class Developer < ApplicationRecord
     self.mobility = nil if full_mobility
   end
 
-   def check_cordinates
-     errors.add(:city, "There is a problem with your location. Please try again") if !latitude
-   end
+  def check_cordinates
+    errors.add(:city, "There is a problem with your location. Please try again") if !latitude
+  end
 
   def email_downcase
     email = email.strip.downcase if email
@@ -92,10 +92,10 @@ class Developer < ApplicationRecord
       end
     end
   end
-
+  
   def check_for_first_matches
-      self.matched_job.each do |job|
-        Match.create(developer_id: self.id, job_id: job.id)
+    self.matched_job.each do |job|
+      Match.create(developer_id: self.id, job_id: job.id)
     end
   end
 

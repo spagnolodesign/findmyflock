@@ -1128,5 +1128,8 @@ when "development"
 
 end
 
-
-Admin.create!(email: "admin@findmyflock.com", password:"Flock-2018", password_confirmation:"Flock-2018")
+Admin.create!(
+  email: "info@findmyflock.com",
+  password: Rails.application.credentials.admin_password,
+  password_confirmation: Rails.application.credentials.admin_password
+)
