@@ -13,10 +13,170 @@ APPLICATION STATUS: <%= @application.status %><br />
 </p>
 <% end %>
 
+
 <h2>Contact candidate directly on his email:</h2>
 <%= simple_form_for :application,  url: contact_job_application_path(@job), method: :post do |f| %>
-  <div class="form-group">
-    <textarea rows="4" cols="50" name="private_message" class="input-group" placeholder="Type your personal message for the candidate"></textarea>
-  </div>
-  <%= f.submit 'Send an email' %>
+<div class="form-group">
+  <textarea rows="4" cols="50" name="private_message" class="input-group" placeholder="Type your personal message for the candidate"></textarea>
+</div>
+<%= f.submit 'Send an email' %>
 <% end %>
+
+////////
+<div class="container-fluid company-job-matched-container">
+  <div class="row">
+    <!-- user details -->
+    <div class="col-sm-12 col-md-6 user-details-container">
+
+      <div class="user-show-titles">
+        <h4 class="row justify-content-center underlined-orange-dark" style=>Candidate</h4>
+      </div>
+
+      <div class="row mx-auto user-introduction">
+        <div class="col-xs-12 col-md-3 avatar centered">
+          <%= image_tag @developer.avatar.variant(resize: "300x300^", gravity:"center", extent: "300x300"), class: "d-block mx-auto " %>
+        </div>
+
+        <div class="col-xs-12 col-md-9 centered">
+          <h5 class="mt-2"><%= @developer.full_name %></h5>
+
+          <% if @developer.github_url? %>
+          <i class="fab fa-github fa-2x" style="color: #24292e; text-decoration: none; margin-right: 1vh; margin-left: 1vh;"></i>
+          <% end %>
+          <% if @developer.linkedin_url? %>
+          <i class="fab fa-linkedin fa-2x" style="color: #0073b1; text-decoration: none; margin-right: 1vh; margin-left: 1vh;"></i>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row centered justify-content-center pt-4 pb-5">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-md-12 user-matched-skills">
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-md-12">
+             <table class="table">
+              <tbody>
+               <tr>
+                <td colspan="3">
+                  <div class="user-show-titles">
+                   <h5 class="h6 justify-content-center underlined-top-orange mb-0 pb-0 pt-3"><%= @developer.first_name %>'s skills</h5>
+                 </div>
+               </td>
+               <td colspan="3">
+                <div class="user-show-titles">
+                 <h5 class="h6 justify-content-center underlined-top-orange mb-0 pb-0 pt-3">Job's skills</h5>
+               </div>
+             </td>
+           </tr>
+           <tr>
+            <td><i class="devicon-javascript-plain colored"></i></td>
+
+            <td>Javascript</td>
+            <td>4</td>
+            <td><i class="devicon-javascript-plain colored"></i></td>
+
+            <td>Javascript</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td><i class="devicon-css3-plain colored"></i></td>
+            <td>CSS</td>
+            <td>3</td>
+            <td><i class="devicon-css3-plain colored"></i></td>
+
+            <td>CSS</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td><i class="devicon-html5-plain colored"></i></td>
+
+            <td>HTML</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td><i class="devicon-rails-plain colored"></i></td>
+            <td>Rails</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td><i class="devicon-angularjs-plain colored"></i></td>
+
+            <td>Angular</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+</div>
+</div>
+<!--       <div class="row">
+        <div class="col-xs-12 col-sm-12">
+        <%= image_tag "peopleoffice.jpg", class: "user-photo" %>
+        </div>
+      </div> -->
+
+
+
+      <!-- Application -->
+      <div class="col-sm-12 col-md-6 job-application-container">
+        <div class="user-show-titles">
+         <h4 class="row justify-content-center underlined">Application</h4>
+       </div>
+       <h6 class="centered"><%= @job.title %></h6>
+       <!-- Large modal -->
+       <div class="row pt-4 pb-4">
+
+        <div class="col-xs-12 col-sm-12 centered">
+          <h4 class='h6'>Resume</h4>
+          <% @developer.resumes.each do |resume| %>
+          <%= link_to "Download file", rails_blob_path(resume, disposition: "attachment"), class: "btn-orange btn-application-small" %>
+          <% end %>
+          <button type="button" class="btn-orange btn-application-small">Download</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12 px-8">
+          <h4 class='h6'>Message from Jordan</h4>
+          Drinking vinegar meh gastropub pork belly tumblr photo booth truffaut la croix, salvia meggings disrupt occupy wolf tilde artisan. Sriracha banh mi fam flannel craft beer.
+          Yuccie aesthetic af shaman, seitan listicle everyday carry slow-carb master cleanse YOLO fixie pok pok. Fixie street art hoodie craft beer tbh tacos offal kickstarter hell of pitchfork organic.
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <form>
+            <div class="user-show-titles">
+              <h5 class="h6 justify-content-center underlined-top-orange mb-0 pb-0 pt-3"></h5>
+            </div>
+            <div class="form-group">
+              <h4 class='h6'>Contact Jordan by email</h4>
+              <textarea class="form-control" id="emailToCandidate" rows="5" placeholder="" value="" required=""></textarea>
+              <div class="centered">
+                <button type="submit" class="btn-orange btn-application mx-auto">Send</button>
+              </div>
+
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="btn-orange btn-back mt-5 mb-">Back</div>
+</div>
+
+<script>
+  $('.custom-file-input').on('change', function() {
+   let fileName = $(this).val().split('\\').pop().slice(0,22)+"...";
+   $(this).next('.custom-file-label').addClass("selected").html(fileName);
+ });
+
+  $(function () {
+    $('[data-toggle="popover"]').popover()
+  })
+</script>
