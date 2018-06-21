@@ -139,7 +139,7 @@
 
               <%= simple_form_for :application,  url: contact_job_application_path(@job), method: :post do |f| %>
               <div class="form-group">
-                <textarea rows="4" cols="50" name="private_message" class="input-group" placeholder="Type your personal message for the candidate"></textarea>
+                <textarea rows="4" cols="50" name="private_message" class="input-group" placeholder="Type your personal message for the candidate" required></textarea>
               </div>
               <%= f.submit 'Send email', class: "btn btn-orange btn-application mx-auto" %>
               <% end %>
