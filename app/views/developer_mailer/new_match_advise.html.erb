@@ -34,7 +34,7 @@ p {
 <p>You are now matched as a: </p>
 <ul>
   <% @jobs.each do |job| %>
-    <li> <%=  @job.skills.first.name %>  developer at <%= @job.company.industry %>!</li>
+    <li> <%=  job.skills.first.name %>  developer at <%= job.company.industry %>!</li>
   <% end %>
 </ul>
 
