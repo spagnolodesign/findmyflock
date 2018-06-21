@@ -59,7 +59,7 @@ class Developer < ApplicationRecord
   # end
 
   def full_name
-    first_name + " " + last_name if first_name && last_name
+    first_name.capitalize + " " + last_name.capitalize if first_name && last_name
   end
 
 
@@ -92,7 +92,7 @@ class Developer < ApplicationRecord
       end
     end
   end
-  
+
   def check_for_first_matches
     self.matched_job.each do |job|
       Match.create(developer_id: self.id, job_id: job.id)
