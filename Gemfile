@@ -25,7 +25,6 @@ gem "aws-sdk-s3", require: false
 gem 'turbolinks'
 gem 'sendgrid-ruby'
 gem "letter_opener", :group => :development
-gem "open-uri"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
