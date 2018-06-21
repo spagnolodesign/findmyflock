@@ -1,7 +1,32 @@
 <%= simple_form_for company, url: url, action: :update, local: true do |form| %>
-  <%= form.input :name %>
-  <%= form.input :url %>
-  <%= form.input :industry %>
-  <%= form.file_field :images, multiple: true, direct_upload: true %>
-  <%= form.submit %>
+  <h5 class="mt-3">Basic</h5>
+  <div class="form-row">
+    <div class="col-12 col-md-6">
+      <%= form.input :name %>
+      <small class="form-text text-muted" style="margin:0;">We will only show the name to our candidate in case of 100% match.</small>
+    </div>
+    <div class="col-12 col-md-6">
+      <%= form.input :industry %>
+    </div>
+  </div>
+  <div class="form-row mt-3">
+    <div class="col col-md-6">
+      <%= form.input :url %>
+    </div>
+  </div>
+  <h5 class="mt-5 my-3">Pictures</h5>
+  <small class="form-text text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an</small>
+  <br>
+  <%= form.file_field :images, multiple: true, direct_upload: true, label:false, accept: "image/x-png,image/jpeg"  %>
+  <br /><br />
+  <div class="row">
+    <div class="col-12">
+      <p>You can view the picture alredy uploaded:</p>
+      <%= render "utils/carousel", images: @company.images %>
+    </div>
+  </div>
+
+  <div class="text-center mt-3">
+    <%= form.submit "Confirm", class: "btn btn-orange btn-application"  %>
+  </div>
 <% end %>

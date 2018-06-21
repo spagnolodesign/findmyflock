@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'pages#home'
   get "/pages/:page", to: "pages#show", as: :pages
 
-  resources :companies, only: [:new, :create] do
+  resources :companies, only: [:new, :create, :edit, :update] do
     collection do
       get 'dashboard'
     end

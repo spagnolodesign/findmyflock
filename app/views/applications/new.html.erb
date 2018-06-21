@@ -8,7 +8,6 @@
     </div>
 
     <div class="col-sm-12 col-md-6 job-application-container">
-
       <% if !@is_posted %>
         <div class="job-show-titles mb-4">
           <h4 class="row justify-content-center underlined">Apply to this job</h4>
@@ -22,7 +21,7 @@
               <%= f.input :resumes, as: :file, :input_html => {multiple: true , :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "application/pdf" } %>
             <% end  %>
           <% else %>
-            <div class="alert alert-light pt-3 pb-3" role="alert">
+            <div class="alert pt-3 pb-3" role="alert">
               <i class="fas fa-quote-left fa-2x fa-pull-left fa-border"></i> We will attach the resume uploaded on your profile with this request.
             </div>
           <% end  %>
@@ -50,6 +49,6 @@
   </div>
 
   <div class="centered my-5">
-    <%= link_to "Back", dashboard_developers_path(@developer), class: "btn-orange btn-back"  %>
+    <%= link_to "< Back", dashboard_developers_path(@developer), class: "btn-orange btn-back"  %>
   </div>
 </div>

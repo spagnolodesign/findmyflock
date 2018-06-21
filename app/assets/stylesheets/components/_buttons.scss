@@ -3,7 +3,7 @@
 .btn-orange {
   padding: 10px 10px;
   height: 45px;
-  width: 140px;
+  // width: 140px;
   margin: 1vh;
   border: 1px solid #ffa67b;
   transition: 0.1s background-color ease-in-out;
@@ -159,4 +159,12 @@
   padding-left: 0px;
   color: #69b5c3;
   margin-left: -4px;
+}
+
+.btn-add-job {
+  img {
+    height: 30px;
+    margin-right: 5px;
+    margin-bottom: 1px;
+  }
 }
