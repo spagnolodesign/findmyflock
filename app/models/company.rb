@@ -15,5 +15,4 @@ class Company < ApplicationRecord
   def recruiters_mail
     self.recruiters.pluck(:email).flatten.uniq
   end
-  
 end
