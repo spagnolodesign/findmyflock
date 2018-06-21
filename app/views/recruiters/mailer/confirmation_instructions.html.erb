@@ -1,5 +1,53 @@
-<p>Welcome <%= @email %>!</p>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=IM+Fell+Double+Pica|Montserrat:200,300,400|Roboto:300,400" rel="stylesheet">
+</head>
+<body>
 
-<p>You can confirm your account email through the link below:</p>
+<style media="screen">
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+body{
+  font-family: "Roboto", sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-weight: 300;
+}
+
+a {
+  font-family: "Montserrat", sans-serif;
+  text-decoration: none;
+
+}
+  a:hover, a:focus {
+    text-decoration: none !important;
+  }
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+}
+</style>
+
+  <p>Dear <%= @email %></p>
+
+  <p>Welcome to the Find My Flock community!</p>
+  <p>We are SO excited to connect you to your ideal new teammate within our diverse network.</p>
+
+  <p>There’s only 1 simple step left in order to finish creating your account:</p>
+
+
+  <p>===>>> Please <%= link_to 'CLICK HERE', confirmation_url(@resource, confirmation_token: @token) %> to confirm your email address. <<<===</p>
+
+  <p>You will only receive emails from Find My Flock when a developer sends you their application and resume for review.</p>
+
+  <p>As you can see, these are pretty important emails coming to you from us. Therefore, we also suggest that you add us to your contact book so that you’re sure you won’t miss an opportunity.</p>
+
+  <p>
+  With love and solidarity,</br>
+  Find My Flock Team</p>
+</body>
+</html>

@@ -1,11 +1,44 @@
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h3>Hello! <%= @developer.full_name %>. Here a message from our company about your application for the job <%= @job.title %></h3>
-    <p><%= @message %></p>
-    <hr>
-    <p>You can answer to the company just clicking reply on your mail broswer</p>
- </body>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=IM+Fell+Double+Pica|Montserrat:200,300,400|Roboto:300,400" rel="stylesheet">
+</head>
+<body>
+
+<style media="screen">
+
+body{
+  font-family: "Roboto", sans-serif;
+}
+
+
+a {
+  font-family: "Montserrat", sans-serif;
+  text-decoration: none;
+
+}
+  a:hover, a:focus {
+    text-decoration: none !important;
+  }
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+}
+</style>
+
+  <p>Dear <%= @developer.full_name %>,</p>
+
+  <p>Your application has been reviewed and  would like to further communication with you.</p>
+
+  <p>Below you will find the message from your recruiter:</p>
+
+  <p><i><%= @message %></i></p>
+
+  <p><b>To respond to your recruiter, simply reply directly to this email.</b></p>
+  <p>With love and solidarity,<br>
+  Find My Flock Team<p>
+s
+</body>
 </html>

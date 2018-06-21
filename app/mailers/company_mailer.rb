@@ -1,20 +1,20 @@
 class CompanyMailer < ApplicationMailer
-  default :from => 'job@findmyflock.com'
+  default :from => 'info@findmyflock.com'
 
   # send a signup email to the user, pass in the user object that   contains the user's email address
 
   def welcome_company(company)
     @company = company
-    mail(:from =>  'welcome@findmyflock.com',
+    mail(:from =>  'info@findmyflock.com',
       :to =>   company.recruiters.first.email,
-    :subject => 'Welcome on Findmyflock!' )
+    :subject => 'New Company Added' )
   end
   def new_application_advise(addresses, match, developer)
       @developer = developer
       @job = match.job
       @application = match.application
       mail( :to => addresses,
-      :subject => 'New applications for your job!' )
+      :subject => 'New Application Received' )
   end
 
   def contact_developer(message, application, job, developer, address)
@@ -25,7 +25,7 @@ class CompanyMailer < ApplicationMailer
       mail(
         :from =>address,
         :to => @developer.email,
-        :subject => "A new message from #{@job.company.name} for your job application" )
+        :subject => "A Message From Your Recruiter" )
   end
 
 

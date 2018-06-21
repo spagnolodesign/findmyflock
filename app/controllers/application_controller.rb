@@ -9,7 +9,6 @@ protected
     elsif resource.class == Recruiter
      dashboard_companies_path
    elsif resource.class == Developer && resource.sign_in_count == 1
-     DeveloperMailer.welcome_email(resource).deliver_later
      edit_profile_developers_path
     elsif resource.class == Developer
     dashboard_developers_path
