@@ -40,7 +40,9 @@ class DevelopersController < ApplicationController
     @jobs = @jobs.filter_by_cultures(params[:cultures]) if params[:cultures].present?
     @jobs = @jobs.where(city:  params[:cities]) if params[:cities].present?
     if params[:remote].present?
-      params[:remote] = ["remote", "office"] if params[:remote] == ["both"]
+      params[:remote] = ["remote"] if params[:remote] == ["Remote"]
+      params[:remote] = ["office"] if params[:remote] == ["Office"]
+      params[:remote] = ["remote", "office"] if params[:remote] == ["Both"]
       @jobs = @jobs.where(remote: params[:remote])
     end
     @jobs = @jobs.filter_by_user_salary(params[:salaries]) if params[:salaries].present?

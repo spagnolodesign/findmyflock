@@ -1,10 +1,40 @@
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h3>Hello! <%= @company.recruiters.first.email %>. </h3>
-    <p>Your company <%= @company.name %> is now on findmyflock</p>
-    <hr>
- </body>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=IM+Fell+Double+Pica|Montserrat:200,300,400|Roboto:300,400" rel="stylesheet">
+</head>
+<body>
+
+<style media="screen">
+
+body{
+  font-family: "Roboto", sans-serif;
+}
+
+a {
+  font-family: "Montserrat", sans-serif;
+  text-decoration: none;
+
+}
+  a:hover, a:focus {
+    text-decoration: none !important;
+  }
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+}
+</style>
+<h2>Dear <%= @company.recruiters.first.email %>,</h2>
+
+<h3>Congratulations on adding <%= @company.name %> to Find My Flock!</h3>
+
+<p>You’re one step closer to finding your ideal new teammate from our diverse network for technologists.</p>
+
+<p>If you haven’t done so already, go ahead and <%= link_to "CLICK HERE", new_job_url %> to post your first job!</p>
+
+<p>With love and solidarity,</br>
+Find My Flock Team</p>
+
+</body>
 </html>

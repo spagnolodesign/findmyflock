@@ -1,11 +1,41 @@
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h3>Hello, <span><p><%= @developer.full_name %></p> </span> your application for the job </h3>
-    <p><%= @job.title %></p>
-    <h3>Has been opened and readed by a recruiter from the </h3>
-    <p><%= @company.name %></p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=IM+Fell+Double+Pica|Montserrat:200,300,400|Roboto:300,400" rel="stylesheet">
+</head>
+<body>
+
+<style media="screen">
+
+body{
+  font-family: "Roboto", sans-serif;
+}
+
+
+a {
+  font-family: "Montserrat", sans-serif;
+  text-decoration: none;
+
+}
+  a:hover, a:focus {
+    text-decoration: none !important;
+  }
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+}
+</style>
+
+  <p>Dear <%= @developer.full_name %>,</p>
+
+  <p>Thank you for having submitted your application using Find My Flock.</p>
+
+  <p>We want to let you know that your application has been opened and is being reviewed by<%= @company.name %>.</p>
+
+  <p>You will continue to receive email updates regarding the review of your application. You can also <%= link_to "click here", dashboard_developers_url  %> to view the status of each of your applications.</p>
+
+  <p>With love and solidarity,<br>
+  Find My Flock Team<p>
+</body>
 </html>
