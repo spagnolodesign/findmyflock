@@ -1,36 +1,156 @@
-<h3>Dashboard for company <%= @company.name %></h3>
-
-<% if recruiter_signed_in? %>
-<%= link_to('Logout Recruiter', destroy_recruiter_session_path, method: :delete) %> -
-<%= link_to "Post a job", new_job_path %>
-<% end %>
-
-
-<div class="row">
+<!-- <div class="row">
   <div class="col-4">
     <%= render "utils/carousel", images: @company.images %>
   </div>
-</div>
+</div> -->
 
 
-<div class="row">
-  <div class="col-4">
-    <b>Active jobs:</b>
-    <br />
-    <% @jobs.each_with_index do |job, index| %>
-    <%= index + 1 %> - <%= job.title %> <%= link_to "Edit", edit_job_path(job) %><br/>
-    <% end %>
+<div class="container-fluid user-dashboard-container">
+  <div id ="dashboard-container">
+    <div class="row">
+
+      <main role="main" class="col-md-12 pt-3 px-4 mx-auto" style="min-height:100vh; max-width: 880px;">
+
+        <div class="dashboard-header">
+         <div class="pb-2 mb-3" style="width: 100%">
+          <h1 class="centered" style="color:gray;">Dashboard - <%= @company.name %></h1>
+          <div class="pt-2 centered">
+            <%= link_to image_tag('plus.png'), new_job_path, class: "btn-add-job" %> <%= link_to "Add a new job", new_job_path, style: "color: gray;" %>
+          </div>
+        </div>
+
+      </div>
+      <nav class="nav nav-pills flex-column flex-sm-row mb-4" id="nav-tab" role="tablist">
+        <a class="flex-sm-fill text-sm-center nav-link nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Applications</a>
+        <a class="flex-sm-fill text-sm-center nav-link nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Active jobs</a>
+      </nav>
+
+      <div class="d-flex my-1" id="params-container"></div>
+
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <div class="container matched-jobs" id="jobs-list">
+
+            <% @company.applications.each_with_index do |application, index| %>
+
+            <div class="row centered matched-job">
+
+              <div class="col-xs-12 col-sm-12 col-md-2">
+                <%= image_tag application.match.developer.avatar, class: "job-avatar" %>
+                <p class="pt-2" style="margin-bottom:0;"><%= application.match.developer.first_name %> <%= application.match.developer.last_name %></p>
+              </div>
+
+              <div class="col-xs-12 col-sm-12 col-md-4 matched-job-title matched-job-skills matched-job-separator">
+               <h5 class="row matched-job-skills-title">Matched job</h5>
+               <h4><%= application.match.job.title %></h4>
+               <h5 class="text-muted"><%= application.match.job.city %></h5>
+             </div>
+
+             <div class="col-xs-12 col-sm-12 col-md-4 matched-job-skills">
+               <h5 class="row matched-job-skills-title">Matching skills</h5>
+               <div class="row">
+                <table class="table">
+                  <tbody>
+                    <% application.match.job.skills.each do |skill| %>
+                    <tr>
+                      <td><i class="devicon-<%= skill.name %>-plain colored"></i></td>
+                      <td><%= skill.name %></td>
+                      <td><%= skill.level %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-2">
+              <h5 class="matched-job-skills-title">Current state</h5>
+              <div class="application-buttons">
+                <% if application.status == "contacted" %>
+                <%= link_to "Contacted", job_application_path(application.match.job, application), class:"badge btn-contacted"  %>
+                <% elsif application.status == "opened" %>
+                <%= link_to "Opened", job_application_path(application.match.job, application), class:"badge btn-opened"  %>
+                <% else %>
+                <%= link_to "New", job_application_path(application.match.job, application), class:"badge btn-pending"  %>
+                <% end %>
+                <%= link_to "View", job_application_path(application.match.job, application), class:"btn-orange btn-apply" %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+        <% @jobs.each_with_index do |job| %>
+
+        <div class="row centered matched-job">
+          <div class="col-xs-11 col-sm-11 col-md-4">
+            <h4><%= job.title %></h4>
+            <div>
+              <%= job.city %>
+              <% if job.remote == ["remote"] %>
+              - Remote
+              <% elsif job.remote == ["office"] %>
+              - Office
+              <% elsif job.remote == ["remote", "office"]%>
+              - Office & Remote
+              <% end %>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-12 col-md-3 matched-job-skills">
+           <h5 class="row matched-job-skills-title">Skills</h5>
+           <div class="row">
+            <table class="table">
+              <tbody>
+               <% job.skills.each do |skill| %>
+               <tr>
+                <td><i class="devicon-<%= skill.name %>-plain colored"></i></td>
+                <td><%= skill.name %></td>
+                <td><%= skill.level %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-3 centered matched-job-skills">
+       <h5 class="row matched-job-skills-title">Max Salary</h5>
+       <div class="row">
+         <table class="table">
+          <tbody>
+            <tr>
+              <td style="text-transform: uppercase; letter-spacing: 5px; font-weight: 300;">$ <%= job.max_salary.to_s.insert(-4, ',') %> </td>
+            </tr>
+            <tr>
+              <td>per year</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-2">
+      <%= link_to "See", job_path(job), class: "btn btn-orange btn-see-job"  %>
+      <%= link_to "Edit", edit_job_path(job), class: "btn btn-orange btn-edit-job"  %>
+      <%= link_to "Delete", job_path(job), method: :delete, class: "btn btn-orange btn-delete-job"  %>
+    </div>
+
   </div>
+  <% end %>
+
+
+
+
+
+
+
 </div>
-
-<br />
-
-<div class="row">
-  <div class="col-4">
-    <b>Your job applications:</b>
-    <br />
-    <% @company.applications.each_with_index do |application, index| %>
-    <p><%= index+1 %> For: <%= application.match.job.title %> - State: <%= application.status %> <%= link_to "See application", job_application_path(application.match.job, application) %></p>
-    <% end %>
-  </div>
+</div>
+</div>
+</div>
+</div>
 </div>
