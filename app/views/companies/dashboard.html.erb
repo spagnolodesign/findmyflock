@@ -36,7 +36,7 @@
             <div class="row centered matched-job">
 
               <div class="col-xs-12 col-sm-12 col-md-2">
-                <%= image_tag application.match.developer.avatar, class: "job-avatar" %>
+                <%= image_tag application.match.developer.avatar, class: "job-avatar" if !application.match.developer.avatar.attachment.nil? %>
                 <p class="pt-2" style="margin-bottom:0;"><%= application.match.developer.first_name %> <%= application.match.developer.last_name %></p>
               </div>
 
