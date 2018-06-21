@@ -1,10 +1,13 @@
 class CompaniesController < ApplicationController
-  before_action :authenticate_recruiter!, only: [:new, :create, :dashboard]
-  before_action :set_company, only: [:dashboard]
+  before_action :authenticate_recruiter!, only: [:new, :create, :dashboard, :edit]
+  before_action :set_company, only: [:dashboard, :edit]
 
   def new
     is_recruiter_in_company?
     @company = Company.new
+  end
+
+  def edit
   end
 
   def create

@@ -3,8 +3,8 @@
     <div class="col col-md-8">
       <div class="card">
         <div class="card-body">
-          <h2 class="text-center">Create your company</h2>
-          <%= render 'form', company: @company, url: companies_path %>
+          <h2 class="text-center">Edit your company</h2>
+          <%= render 'form', company: @company, url: edit_company_path(@company) %>
         </div>
       </div>
     </div>
