@@ -125,7 +125,7 @@
 
       <div class="row">
         <div class="col-md-12 px-8">
-          <h4 class='h6'>Message from Jordan</h4>
+          <h4 class='h6'>Message from <%= @developer.first_name %></h4>
           <p><%= @application.message %></p>
         </div>
       </div>
@@ -153,7 +153,9 @@
 
     </div>
   </div>
-  <div class="btn-orange btn-back mt-5 mb-">Back</div>
+  <div class="centered my-5">
+    <%= link_to "< Back", dashboard_developers_path(@developer), class: "btn-orange btn-back"  %>
+  </div>
 </div>
 
 <script>
