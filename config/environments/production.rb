@@ -105,7 +105,7 @@ Rails.application.configure do
   }
 
 
-  config.action_mailer.default_url_options = { :host => "https://staging-findmyflock.herokuapp.com" }
+  config.action_mailer.default_url_options = { :host => ENV['DOMAIN'] }
 
 
   # Do not dump schema after migrations.

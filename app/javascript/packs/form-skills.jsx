@@ -6,13 +6,13 @@ class FormSkill extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       competences: props.competences,
       skills: props.devskills,
       skillLevel:1,
       selectedValue: [],
       valuesLevels: ["1", "2", "3", "4", "5"],
+      error: "",
       rangeLevels: {
         "1": "<h5>Familiarity</h5><p>Needs mentorship</p><p>Generally 0-1 years of professional experience</p>",
         "2": "<h5>Gaining Competency</h5><p>Occasionally needs mentorship</p><p>Generally 1-3 years of professional experience</p>",
@@ -25,28 +25,35 @@ class FormSkill extends Component {
 
 
   add() {
-    let canBeAdded = false;
     const skillName = this.state.selectedValue[0].value;
     const skillValue = this.state.skillLevel;
     const skillObj = { name: skillName, level: skillValue }
     const newSkills = [ ...this.state.skills, skillObj ]
-    const updatedList = this.newListCompetences(skillName);
+    // const updatedList = this.newListCompetences(skillName);
 
-    if (this.props.resource === "developers" && this.state.skills.length < 10) {
-      canBeAdded = true;
-    }else if (this.props.resource === "jobs" && this.state.skills.length < 2){
-      canBeAdded = true;
+    if (this.props.resource === "developers" && this.state.skills.length >= 10) {
+      this.setState({ error: "Max 10 skills allowed!"})
+      return;
     }
 
-    if (canBeAdded){
-      this.setState({
-        skills: newSkills,
-        skillLevel:1,
-        selectedValue: [],
-        competences: updatedList
-      })
-      this.postSkill(skillObj);
+    if (this.props.resource === "jobs" && this.state.skills.length <= 2){
+      return;
+      this.setState({ error: "Max 2 skills allowed!"})
     }
+
+    if (this.state.skills.filter(e => e.name === skillName).length > 0) {
+      this.setState({ error: "You already have this skill, please remove it before adding it to the list."})
+      return;
+    }
+
+    this.setState({
+      skills: newSkills,
+      skillLevel:1,
+      selectedValue: [],
+      error: ""
+    })
+    this.postSkill(skillObj);
+
   }
 
 
@@ -79,10 +86,10 @@ class FormSkill extends Component {
   remove(i) {
     const toRemove = this.state.skills[i];
     const newSkills = [...this.state.skills.slice(0,i), ...this.state.skills.slice(i+1)]
-    const updatedList = this.state.competences.concat({ value: toRemove.name })
+    // const updatedList = this.state.competences.concat({ value: toRemove.name })
     this.setState({
       skills: newSkills,
-      competences: updatedList
+      error: ""
     })
     this.deleteSkill(toRemove.name);
   }
@@ -100,7 +107,7 @@ class FormSkill extends Component {
   }
 
   render() {
-    const { skills, competences, skillLevel, selectedSkill, selectedValue, valuesLevels, rangeLevels} = this.state;
+    const { error, skills, competences, skillLevel, selectedSkill, selectedValue, valuesLevels, rangeLevels} = this.state;
 
     const listOfSkills = skills.map((el, i) => (
       <div className="skill-form-list d-flex justify-content-between" key={i}>
@@ -121,6 +128,11 @@ class FormSkill extends Component {
     return(
       <div>
         <div className="mt-3 form-group">
+          {error.length > 0 &&
+            <div className="alert alert-danger" role="alert">
+              {error}
+            </div>
+          }
           <Typeahead
             labelKey="value"
             options={competences}
