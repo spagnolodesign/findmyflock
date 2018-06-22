@@ -28,6 +28,10 @@ Things you may want to cover:
   In case of pending migrations or new db changes run:
   `heroku restart; heroku pg:reset DATABASE --confirm staging-findmyflock;  heroku run rake db:migrate; heroku run rake db:seed`
 
+  PRODUCTION
+  `heroku restart  --app production-find-my-flock;
+  heroku run rake db:migrate --app production-find-my-flock;
+  heroku run rake db:seed --app production-find-my-flock;
 
 
 * ...
