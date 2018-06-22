@@ -4,31 +4,25 @@
 
     <div class="col-sm-12 col-md-12 job-details-container">
 
-     <div class="row mx-auto user-introduction justify-content-center pb-4">
-      <% if @developer.avatar.attached? %>
-      <div class="col-xs-2 col-md-4 avatar-profile centered" style="align-self: center;">
-        <%= image_tag @developer.avatar.variant(resize: "300x300^", gravity:"center", extent: "300x300") %>
-      </div>
-      <% end %>
-
-      <div class="col-xs-9 col-md-8 centered">
-        <h5 class="mt-2"><%= @developer.first_name %> <%= @developer.last_name %></h5>
-
-        <% if @developer.github_url? %>
-        <a href="<%= @developer.github_url %>" target="_blank">
-          <i class="fab fa-github fa-2x" style="color: #24292e; text-decoration: none; margin-right: 1vh; margin-left: 1vh;"></i></a>
-          <% end %>
-
-          <% if @developer.linkedin_url? %>
-          <a href="<%= @developer.linkedin_url %>" target="_blank">
-            <i class="fab fa-linkedin fa-2x" style="color: #0073b1; text-decoration: none; margin-right: 1vh; margin-left: 1vh;"></i></a>
+     <div class="user-intro mx-auto">
+        <div class="avatar">
+          <%= image_tag @developer.avatar.variant(resize: "300x300^", gravity:"center", extent: "300x300"), class: "d-block mx-auto", style: "align-self: center;" if !@developer.avatar.attachment.nil?  %>
+        </div>
+        <div class="user-info">
+          <h5 class="pt-3"><%= @developer.full_name %></h5>
+          <% if @developer.github_url? %>
+          <a href="<%= @developer.github_url %>" target="_blank">
+            <i class="fab fa-github fa-2x" style="color: #24292e; text-decoration: none; margin-right: 1vh; margin-left: 1vh;"></i></a>
             <% end %>
 
-
-            <h6 class="pt-3">Current location: <br /></h6>
-            <p><%= @developer.city %>, <%= @developer.country %></p>
+            <% if @developer.linkedin_url? %>
+            <a href="<%= @developer.linkedin_url %>" target="_blank">
+              <i class="fab fa-linkedin fa-2x" style="color: #0073b1; text-decoration: none; margin-right: 1vh; margin-left: 1vh;"></i></a>
+              <% end %>
+              <h6 class="pt-3">Current location: <br /></h6>
+              <p><%= @developer.city %>, <%= @developer.country %></p>
+            </div>
           </div>
-        </div>
 
         <div class="centered">
           <p><b>Search for</b>

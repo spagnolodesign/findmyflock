@@ -1,3 +1,24 @@
+.user-intro {
+  background-color: white;
+  border-radius: 2%;
+  max-width: 550px;
+  box-shadow: 10px 10px 69px -26px rgba(138, 138, 138, 0.75);
+  padding: 20px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.user-info {
+  flex-shrink: 1;
+  text-align: center;
+}
+
 .user-matched-skills {
   background-color: white;
   border-radius: 2%;
