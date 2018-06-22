@@ -98,7 +98,8 @@
 
 
       <div style="display: flex" class="justify-content-center">
-        <button class="btn-orange btn-edit-job">Edit</button>
+          <%= link_to "Edit", edit_profile_developers_path, class: "btn btn-orange btn-edit-job" %>
+
       </div>
 
 
@@ -106,5 +107,7 @@
 
   </div>
 </div>
-<div class="btn-orange btn-back">Back</div>
+  <div class="centered my-5">
+    <%= link_to "< Back", dashboard_developers_path(@developer), class: "btn-orange btn-back"  %>
+  </div>
 </div>
