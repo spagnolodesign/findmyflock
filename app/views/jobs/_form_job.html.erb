@@ -1,6 +1,9 @@
+<%= tinymce_assets %>
+<%= tinymce %>
+
 <div class="card">
   <div class="card-body">
-    <%= simple_form_for job, url: url, action: :update, local: true do |f| %>
+    <%= simple_form_for job, url: url, action: :update, local: true, html: { novalidate: true } do |f| %>
 
       <h4 class="text-center my-3 mb-5">Create your job</h4>
 
@@ -11,7 +14,8 @@
           <small class="form-text text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</small>
       <% end %>
 
-      <%= f.input :description, input_html: { class: 'editable' } %>
+      <%= f.input :description, input_html: { class: 'tinymce', :rows => 8, required: false } %>
+
       <div class="form-row">
         <div class="form-group col-md-6">
           <%= f.input :max_salary, input_html: { min: 20000, step: 5000 }, placeholder: "40000" %>

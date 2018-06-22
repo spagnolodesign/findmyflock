@@ -36,9 +36,9 @@ class FormSkill extends Component {
       return;
     }
 
-    if (this.props.resource === "jobs" && this.state.skills.length <= 2){
-      return;
+    if (this.props.resource === "jobs" && this.state.skills.length >= 2) {
       this.setState({ error: "Max 2 skills allowed!"})
+      return;
     }
 
     if (this.state.skills.filter(e => e.name === skillName).length > 0) {

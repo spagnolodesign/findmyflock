@@ -1,6 +1,7 @@
-<%= simple_form_for job, url: url, action: :update, local: true do |f| %>
+
+<%= simple_form_for job, url: url, action: :update, local: true, html: { novalidate: true } do |f| %>
     <%= f.input :title %>
-    <%= f.input :description, input_html: { class: 'editable' } %>
+    <%= f.input :description, input_html: { class: 'tinymce', :rows => 20, :cols => 20, required: false } %>
     <%= f.input :city %>
     <%= f.input :zip_code %>
     <%= f.input :state %>
@@ -24,6 +25,9 @@
     <br />
     <%= f.submit "Update", class: "btn btn-primary btn-lg" %>
 <% end %>
+
+<%= tinymce_assets %>
+<%= tinymce %>
 
 <hr />
 
