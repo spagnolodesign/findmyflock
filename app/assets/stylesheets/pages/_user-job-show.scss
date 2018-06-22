@@ -81,3 +81,9 @@
   margin-bottom: 12px;
   border: 8px solid #e7f3f5;
 }
+
+@media (max-width: 767px) {
+  .job-details-container {
+    border:none;
+  }
+}

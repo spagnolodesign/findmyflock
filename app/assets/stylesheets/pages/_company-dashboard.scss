@@ -51,7 +51,13 @@
 .btn-orange.btn-application {
   background-color: #338a98;
   border: 1px solid #338a98;
+
+  &:hover {
+    background-color: #3fb8cb;
+    border-color: #3fb8cb;
+  }
 }
+
 .btn-orange.btn-application-small {
   height: 30px;
   width: 160px;
@@ -61,9 +67,9 @@
   margin-bottom: 10px;
   background-color: #338a98;
   border: 1px solid #338a98;
+  &:hover {
+    background-color: #3fb8cb;
+    border-color: #3fb8cb;
+  }
 }
 
-.btn-orange.btn-application:hover {
-  background-color: #338a98;
-  border: 1px solid #338a98;
-}
