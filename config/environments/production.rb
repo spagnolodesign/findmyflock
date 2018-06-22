@@ -95,8 +95,8 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
 
   config.action_mailer.smtp_settings = {
-    :user_name => Rails.application.credentials.sendgrid[:username],
-    :password => Rails.application.credentials.sendgrid[:password],
+    :user_name => ENV['SENDGRID_USERNAME'],
+    :password => ENV['SENDGRID_PASSWORD'],
     :domain => ENV['DOMAIN'],
     :address => 'smtp.sendgrid.net',
     :port => 587,
@@ -104,7 +104,8 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
 
-  config.action_mailer.default_url_options = { :host => "https://staging-findmyflock.herokuapp.com" }
+
+  config.action_mailer.default_url_options = { :host => ENV['DOMAIN'] }
 
 
   # Do not dump schema after migrations.

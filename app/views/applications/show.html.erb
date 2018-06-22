@@ -7,9 +7,10 @@
         <h4 class="row justify-content-center underlined-orange-dark" style=>Candidate</h4>
       </div>
 
-      <div class="row mx-auto pt-3">
-        <div class="col-xs-12 col-md-12 avatar centered">
-          <%= image_tag @developer.avatar.variant(resize: "300x300^", gravity:"center", extent: "300x300"), class: "d-block mx-auto " %>
+      <div class="row mx-auto user-introduction">
+        <div class="col-xs-12 col-md-3 avatar centered">
+          <%= image_tag @developer.avatar.variant(resize: "300x300^", gravity:"center", extent: "300x300"), class: "d-block mx-auto " if !@developer.avatar.attachment.nil?  %>
+
         </div>
       </div>
       <div class="row mx-auto user-introduction">
@@ -134,30 +135,35 @@
       </div>
 
       <div class="row">
+
+        <div class="col-md-12 px-8">
+          <h4 class='h6'>Message from <%= @developer.first_name %></h4>
+          <p><%= @application.message %></p>
+        </div>
+      </div>
+
+      <div class="row">
         <div class="col-md-12">
-          <form>
             <div class="user-show-titles">
               <h5 class="h6 justify-content-center underlined-top-orange mb-0 pb-0 pt-3"></h5>
             </div>
-            <div class="form-group">
               <h4 class='h6'>Contact <%= @developer.first_name %> by email</h4>
 
               <%= simple_form_for :application,  url: contact_job_application_path(@job), method: :post do |f| %>
               <div class="form-group">
-                <textarea rows="4" cols="50" name="private_message" class="input-group" placeholder="Type your personal message for the candidate"></textarea>
+                <textarea rows="4" cols="50" name="private_message" class="input-group" placeholder="Type your personal message for the candidate" required></textarea>
               </div>
               <div class="centered">
                 <%= f.submit 'Send email', class: "btn btn-orange btn-application" %>
               </div>
               <% end %>
             </div>
-          </form>
-
         </div>
       </div>
 
     </div>
   </div>
+
   <div class="centered my-5">
     <%= link_to "< Back", dashboard_companies_path(@company), class: "btn-orange btn-back"  %>
   </div>

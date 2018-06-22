@@ -27,10 +27,9 @@
 
             <h6 class="pt-3">Current location: <br /></h6>
             <p><%= @developer.city %>, <%= @developer.country %></p>
-
-
           </div>
         </div>
+
         <div class="centered">
           <p><b>Search for</b>
             <% if @developer.remote == ["remote"] %>
@@ -106,8 +105,8 @@
     </div>
 
   </div>
+
+<div class="centered my-5">
+  <%= link_to "< Back", dashboard_developers_path(@developer), class: "btn-orange btn-back"  %>
 </div>
-  <div class="centered my-5">
-    <%= link_to "< Back", dashboard_developers_path(@developer), class: "btn-orange btn-back"  %>
-  </div>
-</div>
+

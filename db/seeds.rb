@@ -1092,7 +1092,6 @@ when "development"
    p "3 skills added"
   end
 
-  Developer.check_for_first_matches
 
   5.times do
     Application.create(
@@ -1121,6 +1120,13 @@ when "development"
   40.times do
     a = Developer.last.skills.new(name: Competence.all.sample.value, level: rand(3..5))
     a.save
+  end
+
+  p "Create matches"
+  Developer.all.each do |developer|
+    developer.matched_job.each do |job|
+      Match.create(developer_id: developer.id, job_id: job.id)
+    end
   end
 
 end

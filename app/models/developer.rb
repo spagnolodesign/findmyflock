@@ -59,7 +59,7 @@ class Developer < ApplicationRecord
   # end
 
   def full_name
-    first_name + " " + last_name if first_name && last_name
+    first_name.capitalize + " " + last_name.capitalize if first_name && last_name
   end
 
 
@@ -85,14 +85,7 @@ class Developer < ApplicationRecord
     end
   end
 
-  def self.check_for_first_matches
-    all.each do |developer|
-      developer.matched_job.each do |job|
-        Match.create(developer_id: developer.id, job_id: job.id)
-      end
-    end
-  end
-  
+
   def check_for_first_matches
     self.matched_job.each do |job|
       Match.create(developer_id: self.id, job_id: job.id)
@@ -102,17 +95,16 @@ class Developer < ApplicationRecord
 
   def self.check_for_new_matches
     string = ''
-    job_titles = []
+    jobs_array = []
     all.each do |developer|
       new_matches = 0
       developer.matched_job.each do |job|
         match = Match.new(developer_id: developer.id, job_id: job.id)
         new_matches += 1 if match.save
-        # Extra
-        job_titles << job.title if match.save
+        jobs_array << job if match.save
       end
       if new_matches > 0
-        DeveloperMailer.new_match_advise(developer, job_titles).deliver_later
+        DeveloperMailer.new_match_advise(developer, jobs_array).deliver_later
       end
     end
   end

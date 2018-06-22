@@ -1,5 +1,18 @@
-<p>Welcome <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
+  <p>Dear <%= @email %></p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+  <p>Welcome to the Find My Flock community!</p>
+  <p>We are SO excited to connect you to your ideal new teammate within our diverse network.</p>
+
+  <p>There’s only 1 simple step left in order to finish creating your account:</p>
+
+
+  <p>===>>> Please <%= link_to 'CLICK HERE', confirmation_url(@resource, confirmation_token: @token) %> to confirm your email address. <<<===</p>
+
+  <p>You will only receive emails from Find My Flock when a developer sends you their application and resume for review.</p>
+
+  <p>As you can see, these are pretty important emails coming to you from us. Therefore, we also suggest that you add us to your contact book so that you’re sure you won’t miss an opportunity.</p>
+
+  <p>
+  With love and solidarity,</br>
+  Find My Flock Team</p>

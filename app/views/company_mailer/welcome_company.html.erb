@@ -1,10 +1,11 @@
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h3>Hello! <%= @company.recruiters.first.email %>. </h3>
-    <p>Your company <%= @company.name %> is now on findmyflock</p>
-    <hr>
- </body>
-</html>
+
+<h2>Dear <%= @company.recruiters.first.email %>,</h2>
+
+<h3>Congratulations on adding <%= @company.name %> to Find My Flock!</h3>
+
+<p>You’re one step closer to finding your ideal new teammate from our diverse network for technologists.</p>
+
+<p>If you haven’t done so already, go ahead and <%= link_to "CLICK HERE", new_job_url %> to post your first job!</p>
+
+<p>With love and solidarity,</br>
+Find My Flock Team</p>
