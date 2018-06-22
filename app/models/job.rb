@@ -7,7 +7,7 @@ class Job < ApplicationRecord
   geocoded_by :location
   validates :title, :description, presence: true,  length: { maximum: 10000 }
   validates :city, :state, :country, presence: true,  length: { maximum: 100 }
-  validates :max_salary, numericality: { only_integer: true, greater_than: 0}
+  validates :max_salary, numericality: { only_integer: true, greater_than: 0}, :allow_nil => true
   validates :remote, inclusion: { in: [["remote"], ["office"], ["remote", "office"]]}
   validates :employment_type, presence: true, length: { maximum: 100 }
   validates :benefits, :cultures, length: { minimum: 1, maximum: 10 }, on: :update
@@ -27,7 +27,7 @@ class Job < ApplicationRecord
   scope :remote_or_office_jobs, -> (array) {where("remote <@ ARRAY[?]::text[] OR remote @> ARRAY[?]::text[]", array, array)}
   scope :can_sponsor, -> {where("can_sponsor = true ")}
   scope :match_skills_type, -> (array) { where.not(skills_array: []).where("skills_array <@ ARRAY[?]::text[]", array) }
-  scope :filter_by_user_salary, -> (value) {where("max_salary >= ?", value)}
+  scope :filter_by_salary, -> (value) {where("max_salary >= ?", value)}
   scope :filter_by_benefits, -> (array) { where("benefits @> ARRAY[?]::text[]", array) }
   scope :filter_by_cultures, -> (array) { where("cultures @> ARRAY[?]::text[]", array) }
   scope :filter_by_employment_type, -> (value) { where("employment_type = ?", value) }

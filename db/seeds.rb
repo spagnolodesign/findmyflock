@@ -1051,7 +1051,7 @@ when "development"
         employment_type: EMPLOYMENT_TYPE.sample,
         latitude: nil,
         longitude: nil,
-        max_salary: salary.sample,
+        # max_salary: salary.sample,
         benefits: benefits,
         cultures: cultures,
         can_sponsor: Faker::Boolean.boolean(0.2),
