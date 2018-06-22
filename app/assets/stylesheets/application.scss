@@ -1,9 +1,10 @@
-// Graphical variables
-@import "config/fonts";
-@import "config/colors";
 
 // CSS Libraries
 @import "bootstrap";
+
+// Graphical variables
+@import "config/fonts";
+@import "config/colors";
 
 @import "utils/beagle-editor";
 @import "utils/direct_uploads";
@@ -11,6 +12,7 @@
 @import "utils/form";
 @import "utils/progressbar";
 @import "app/main";
+
 
 // CSS import
 @import "components/index";
