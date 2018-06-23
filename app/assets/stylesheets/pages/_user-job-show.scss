@@ -55,6 +55,8 @@
   border-radius: 2%;
   max-width: 370px;
   margin: 10px;
+  box-shadow: 10px 10px 69px -26px rgba(138, 138, 138, 0.75);
+
 }
 
 .job-application-container {
@@ -80,4 +82,10 @@
   margin-top: 21px;
   margin-bottom: 12px;
   border: 8px solid #e7f3f5;
+}
+
+@media (max-width: 767px) {
+  .job-details-container {
+    border:none;
+  }
 }
