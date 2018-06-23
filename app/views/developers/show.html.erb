@@ -36,66 +36,55 @@
               <% end %></p></li>
 
               <li><% if @developer.mobility %>
-              <p>Mobility: <%= @developer.mobility %></p>
-              <% else %>
-              <p><b>Mobility:</b> Full mobility</p>
-              <% end %></li>
-
-              <li><p><b>Need US sponsorship:</b>
-                <% if @developer.need_us_permit == false %>
-                No
+                <p>Mobility: <%= @developer.mobility %></p>
                 <% else %>
-                Yes
-                <% end %></p></li>
+                <p><b>Mobility:</b> Full mobility</p>
+                <% end %></li>
 
-              </ul>
-            </div>
+                <li><p><b>Need US sponsorship:</b>
+                  <% if @developer.need_us_permit == false %>
+                  No
+                  <% else %>
+                  Yes
+                  <% end %></p></li>
 
-
-            <div class="centered">
-              <% if @developer.resumes.attached? %>
-              <% @developer.resumes.each do |resume| %>
-              <%= link_to "Resume", rails_blob_path(resume, disposition: "attachment"), class: "btn btn-orange btn-application-small", style: "padding-top: 6px" %>
-              <% end %>
-              <% end %>
-            </div>
+                </ul>
+              </div>
 
 
-            <div class="row centered justify-content-center pt-4 pb-4">
-              <div class="col-xs-12 col-sm-12 col-md-12 col-md-12 job-show-skills">
-               <div class="job-show-titles">
-                 <h5 class="h6 row justify-content-center underlined-orange pt-3">Skills</h5>
+              <div class="centered">
+                <% if @developer.resumes.attached? %>
+                <% @developer.resumes.each do |resume| %>
+                <%= link_to "Resume", rails_blob_path(resume, disposition: "attachment"), class: "btn btn-orange btn-application-small", style: "padding-top: 6px" %>
+                <% end %>
+                <% end %>
+              </div>
+
+
+              <div class="row centered justify-content-center pt-4 pb-4">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-md-12 job-show-skills">
+                 <div class="job-show-titles">
+                   <h5 class="h6 row justify-content-center underlined-orange pt-3">Skills</h5>
+                 </div>
+
+                 <%= render "developers/shared/skills_table" %>
+
                </div>
+             </div>
 
-               <div class="row">
-                <table class="table">
-                  <tbody>
-                   <% @developer.skills.each do |skill| %>
-                   <tr>
-                    <td><i class="devicon-<%= skill.name %>-plain colored"></i></td>
-                    <td><%= skill.name %></td>
-                    <td><%= skill.level %></td>
-                  </tr>
-                  <% end %>
-                </tbody>
-              </table>
+
+
+             <div style="display: flex" class="justify-content-center">
+              <%= link_to "Edit", edit_profile_developers_path, class: "btn btn-orange btn-edit-job" %>
+
             </div>
+
+
           </div>
-        </div>
-
-
-
-        <div style="display: flex" class="justify-content-center">
-          <%= link_to "Edit", edit_profile_developers_path, class: "btn btn-orange btn-edit-job" %>
 
         </div>
 
-
-      </div>
-
-    </div>
-
-    <div class="centered my-5">
-      <%= link_to "< Back", dashboard_developers_path(@developer), class: "btn-orange btn-back"  %>
-    </div>
+        <div class="centered my-5">
+          <%= link_to "< Back", dashboard_developers_path(@developer), class: "btn-orange btn-back"  %>
+        </div>
 
