@@ -19,6 +19,14 @@
   text-align: center;
 }
 
+.user-details {
+  text-align: left;
+  margin-left: 5vw;
+  li {
+    list-style: none;
+  }
+}
+
 .user-matched-skills {
   background-color: white;
   border-radius: 2%;
