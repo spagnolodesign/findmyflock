@@ -1,11 +1,11 @@
 <div class="card filter-card">
-  <div class="card-header" id="headingOne">
-    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#<%= collapse_name %>" aria-expanded="true" aria-controls="<%= collapse_name %>">
+  <div class="card-header" id="heading-<%= collapse_name %>">
+    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#<%= collapse_name %>" aria-expanded="false" aria-controls="<%= collapse_name %>">
       <%= title %>
     </button>
   </div>
 
-  <div id="<%= collapse_name %>" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+  <div id="<%= collapse_name %>" class="collapse" aria-labelledby="heading<%= collapse_name %>" data-parent="#accordion">
     <div class="card-body">
       <% dataset.each do |name| %>
         <div class="checkbox">

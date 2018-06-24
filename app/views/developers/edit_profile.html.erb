@@ -101,7 +101,7 @@
               <div id="select-distance" class="hidden">
                 <h5 class="mt-5">How far are you willing to commute? <span id="range-distance" class="float-right"><%= @developer.mobility%> Mi</span></h5>
                 <small class="form-text text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</small>
-                <%= f.input :mobility, input_html: { type: "range", value: "#{@developer.mobility}", min: 20, max: 1000, step: 20 }, label: false %>
+                <%= f.input :mobility, input_html: { type: "range", value: "#{@developer.mobility}", min: 5, max: 200, step: 10 }, label: false %>
               </div>
               <%= f.input :full_mobility, label: "I don't care about distance." %>
             </div>
