@@ -6,7 +6,6 @@
         <div class="card-body">
           <% if @developer.sign_in_count == 1 %>
             <h4 class="text-center mt-3 mb-4">We are glad you are here</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
           <% else %>
             <h4 class="text-center mt-3 mb-4">Edit your dev profile</h4>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
@@ -32,7 +31,7 @@
                 <% end %>
               </div>
               <div class="col-sm-8">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                <p> It is suggested that you provide a front-facing photo showing your head and shoulders. Professional dress within your photo is also encouraged.</p>
                 <%= f.input :avatar, as: :file, label: false, :input_html => { :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "image/x-png,image/jpeg" } %>
               </div>
             </div>
@@ -41,7 +40,7 @@
             <h5>Upload a resume</h5>
             <div class="form-row">
               <div class="col">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+                <p>The resume you upload will automatically be sent to an employer when you decide to apply to a job posting.</p>
                 <%= f.input :resumes, as: :file, label: false, :input_html => {multiple: true , :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "application/pdf" } %>
                 <% if @developer.resumes.attached? %>
                   <p>Uploaded resumes:</p>
@@ -81,7 +80,7 @@
 
             <div class="my-4">
               <h5>What kind of job are you interested in?</h5>
-              <small class="form-text text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</small>
+              <small class="form-text text-muted">You can choose whether you would prefer to report to a job in-person, remotely, or search for both opportunities.</small>
               <div class="form-row my-3">
                 <div class="custom-control  custom-control-inline custom-checkbox mr-3">
                   <input type="checkbox" value="remote" <%= "checked" if @developer.remote.include?('remote') %> name="developer[remote][]" class="custom-control-input" id="developer_remote_remote">
@@ -95,15 +94,14 @@
             </div>
 
             <div id="location-info">
-              <%= f.input :city, label: "Where do you live?", input_html: { id: "locality", value: "#{@developer.city}" } %>
+              <%= f.input :city, label: "Your address", input_html: { id: "locality", value: "#{@developer.city}" } %>
               <%= f.input :state, input_html: { id: "administrative_area_level_1" }%>
               <%= f.input :country, input_html: { id: "country" }, as: :string %>
               <div id="select-distance" class="hidden">
                 <h5 class="mt-5">How far are you willing to commute? <span id="range-distance" class="float-right"><%= @developer.mobility%> Mi</span></h5>
-                <small class="form-text text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</small>
                 <%= f.input :mobility, input_html: { type: "range", value: "#{@developer.mobility}", min: 5, max: 200, step: 10 }, label: false %>
               </div>
-              <%= f.input :full_mobility, label: "I don't care about distance." %>
+              <%= f.input :full_mobility, label: "I don't care about distance" %>
             </div>
 
 

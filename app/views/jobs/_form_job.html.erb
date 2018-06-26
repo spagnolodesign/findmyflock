@@ -11,7 +11,7 @@
 
       <%= f.input :title do %>
           <%= f.input_field :title, class: "form-control" %>
-          <small class="form-text text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</small>
+          <small class="form-text text-muted">A simple description that refers to the role and level of the position.</small>
       <% end %>
 
       <%= f.input :description, input_html: { class: 'tinymce', :rows => 8, required: false } %>
@@ -26,8 +26,7 @@
       </div>
 
       <h5 class="mt-5">Can you provide sponsorship?</h5>
-      <small class="form-text text-muted mb-3">Will you now or in the future require your employer to commence ("sponsor") an immigration case in order to employ you (for example, H-1B or other employment-based immigration case)? This is sometimes called "sponsorship" for an employment-based visa status.</small>
-
+      <small class="form-text text-muted mb-3">Are you willing to commence ("sponsor") an immigration case in order to employ a candidate (for example, H-1B or other employment-based immigration case)? This is sometimes called "sponsorship" for an employment-based visa status.</small>
       <div class="custom-control custom-radio custom-control-inline">
         <input type="radio" value="1" <%= "checked" if @job.can_sponsor %> id="customRadioInline1" name="job[can_sponsor]" class="custom-control-input">
         <label class="custom-control-label" for="customRadioInline1">Yes</label>
@@ -38,8 +37,8 @@
       </div>
 
       <div class="mt-5">
-        <h5>Where it will be locate the job?</h5>
-        <small class="form-text text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</small>
+        <h5>Where will the job be located?</h5>
+        <small class="form-text text-muted">Please reference the location of the office in which your job posting will be relevant to. If your job posting is for remote work only, please input your company’s registered address.</small>
         <div class="form-row my-3">
           <div class="custom-control  custom-control-inline custom-checkbox mr-3">
             <input type="checkbox" value="remote" <%= "checked" if @job.remote.include?('remote') %> name="job[remote][]" class="custom-control-input" id="job_remote_remote">
@@ -47,7 +46,7 @@
           </div>
           <div class="custom-control  custom-control-inline custom-checkbox">
             <input type="checkbox" value="office" <%= "checked" if @job.remote.include?('office') %> name="job[remote][]" class="custom-control-input" id="job_remote_office">
-            <label class="custom-control-label" for="job_remote_office">Office</label>
+            <label class="custom-control-label" for="job_remote_office">In-person</label>
           </div>
         </div>
       </div>
@@ -70,7 +69,7 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <%= f.input :active %>
-            <small class="form-text text-muted"> You can deactive the job anytime, will be automatically removed from the openings.</small>
+            <small class="form-text text-muted"> You can deactivate the job at any time. It will automatically be removed from job searches.</small>
           </div>
         </div>
       <% end %>

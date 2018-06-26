@@ -4,6 +4,7 @@
       <%= render 'utils/progressbar', step: 3, navigations: ["Job profile", "Benefits and Values", "Skills"], classname:"" %>
       <div class="card">
         <div class="card-body">
+          <p>Please choose up to 2 skills that you will need your future technologist to possess.</p>
           <%= render 'utils/skills_form', resource: @job, url_api: "jobs" %>
           <div class="text-center">
             <%= link_to "Continue", dashboard_companies_path, class: "btn btn-primary btn-lg mt-4 mb-2" %>

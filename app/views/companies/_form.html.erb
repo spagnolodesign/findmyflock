@@ -15,13 +15,13 @@
     </div>
   </div>
   <h5 class="mt-5 my-3">Pictures</h5>
-  <small class="form-text text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an</small>
+  <small class="form-text text-muted">Upload your company logo and office space to show what makes working at your company unique.</small>
   <br>
   <%= form.file_field :images, multiple: true, direct_upload: true, label:false, accept: "image/x-png,image/jpeg"  %>
   <br /><br />
   <div class="row">
     <div class="col-12">
-      <p>You can view the picture alredy uploaded:</p>
+      <p>You can view the pictures already uploaded:</p>
       <%= render "utils/carousel", images: @company.images %>
     </div>
   </div>
