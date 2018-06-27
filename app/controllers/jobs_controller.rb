@@ -16,7 +16,7 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
     @job.company = current_recruiter.company
-
+    
     step = params[:job][:navigate_to]
     respond_to do |format|
       if @job.save
