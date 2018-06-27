@@ -100,12 +100,18 @@ class Developer < ApplicationRecord
       new_matches = 0
       developer.matched_job.each do |job|
         match = Match.new(developer_id: developer.id, job_id: job.id)
-        new_matches += 1 if match.save
-        jobs_array << job if match.save
+        if match.save
+          new_matches += 1
+          jobs_array << job
+        end
       end
       if new_matches > 0
-        DeveloperMailer.new_match_advise(developer, jobs_array).deliver
+        DeveloperMailer.new_match_advise(developer, jobs_array.uniq).deliver
       end
     end
   end
+
+
+
+
 end
