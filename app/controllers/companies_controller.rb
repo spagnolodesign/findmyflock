@@ -17,7 +17,7 @@ class CompaniesController < ApplicationController
 
     respond_to do |format|
       if @company.save
-        CompanyMailer.welcome_company(@company).deliver_later
+        CompanyMailer.welcome_company(@company).deliver
         format.html { redirect_to dashboard_companies_path, notice: 'Welcome on board, add your first job!' }
       else
         format.html { render :new }

@@ -104,7 +104,7 @@ class Developer < ApplicationRecord
         jobs_array << job if match.save
       end
       if new_matches > 0
-        DeveloperMailer.new_match_advise(developer, jobs_array).deliver_later
+        DeveloperMailer.new_match_advise(developer, jobs_array).deliver
       end
     end
   end

@@ -6,7 +6,7 @@ class ApplicationsController < ApplicationController
   before_action :set_match, only: [:new, :create]
 
   def show
-    DeveloperMailer.application_opened(@application).deliver_later if @application.pending?
+    DeveloperMailer.application_opened(@application).deliver if @application.pending?
     set_opened(@application)
   end
 
@@ -36,7 +36,7 @@ class ApplicationsController < ApplicationController
     respond_to do |format|
       if @application.save
         format.html { redirect_to new_job_application_path(@match.job) }
-        CompanyMailer.new_application_advise(@mail_addresses, @match, @developer).deliver_later
+        CompanyMailer.new_application_advise(@mail_addresses, @match, @developer).deliver
       else
         format.html { render :new }
       end
@@ -47,7 +47,7 @@ class ApplicationsController < ApplicationController
     message = params[:private_message]
     if !message.empty?
       @mail_address = current_recruiter.email
-      CompanyMailer.contact_developer(message, @application, @job, @developer, @mail_address).deliver_later
+      CompanyMailer.contact_developer(message, @application, @job, @developer, @mail_address).deliver
       @application.contacted!
       redirect_to job_application_path(@job), notice: "We've sent an email to the candidate."
     end
