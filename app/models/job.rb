@@ -10,7 +10,7 @@ class Job < ApplicationRecord
   validates :max_salary, numericality: { only_integer: true, greater_than: 0}, :allow_nil => true
   validates :remote, inclusion: { in: [["remote"], ["office"], ["remote", "office"]]}
   validates :employment_type, presence: true, length: { maximum: 100 }
-  validates :benefits, :cultures, length: { minimum: 1 }, on: :update
+  validates :benefits, length: { minimum: 1 }, on: :update
   geocoded_by :location
   before_validation :geocode
   validate :check_cordinates, on: [:create, :update]
