@@ -103,6 +103,7 @@ class FormSkill extends Component {
   }
 
   onChangeLevel = (e) => {
+    console.log("triggered!", e.target.value)
     this.setState({skillLevel: e.target.value});
   }
 
@@ -137,6 +138,7 @@ class FormSkill extends Component {
             labelKey="value"
             options={competences}
             placeholder="Select a skill..."
+            paginate={false}
             onChange={this.onSelectSkill}
             selected={selectedValue}
             className="skills-select"
@@ -149,7 +151,7 @@ class FormSkill extends Component {
         <div>
           <div className="form-group p-3 my-2 bg-white rounded text-center">
             <p className="mb-2">Please select your {selectedValue[0].value} level:</p>
-            <input className="form-control-range" type="range" min="1" max="5" value={skillLevel} onChange={this.onChangeLevel} step="1"/>
+            <input className="form-control-range" type="range" min="1" max="5" value={skillLevel} onInput={this.onChangeLevel} onChange={this.onChangeLevel} />
             <div className="d-flex justify-content-between">
               {rangeValues}
             </div>
