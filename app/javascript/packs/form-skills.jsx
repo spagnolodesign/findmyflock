@@ -31,7 +31,7 @@ class FormSkill extends Component {
     const newSkills = [ ...this.state.skills, skillObj ]
     // const updatedList = this.newListCompetences(skillName);
 
-    if (this.props.resource === "developers" && this.state.skills.length >= 10) {
+    if (this.props.resource === "developers" && this.state.skills.length >= 30) {
       this.setState({ error: "Max 10 skills allowed!"})
       return;
     }

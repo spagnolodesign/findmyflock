@@ -37,6 +37,9 @@ class CompaniesController < ApplicationController
 
   def dashboard
     @company = current_recruiter.company
+    if @company.nil?
+      redirect_to new_company_path, alert: 'Please create your company' and return
+    end
     @jobs = @company.jobs
   end
 
