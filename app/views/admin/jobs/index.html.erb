@@ -8,17 +8,20 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Value</th>
+      <th>Title</th>
+      <th>Company</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @jobs.each do |job| %>
-      <tr>
+      <tr class="<%= "table-success" if job.vetted? %>">
         <td><%= job.title %></td>
+        <td><%= job.company.name %></td>
+        <td><%= render 'admin/shared/skills_list', skills: job.skills_array %></td>
         <td><%= link_to 'Edit', edit_admin_job_path(job) %></td>
-        <td><%= link_to 'Destroy', admin_job_path(job), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!-- <td><%= link_to 'Destroy', admin_job_path(job), method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
     <% end %>
   </tbody>

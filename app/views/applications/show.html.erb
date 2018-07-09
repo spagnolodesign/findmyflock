@@ -51,11 +51,6 @@
             </div>
           </div>
         </div>
-<!--       <div class="row">
-        <div class="col-xs-12 col-sm-12">
-        <%= image_tag "peopleoffice.jpg", class: "user-photo" %>
-        </div>
-      </div> -->
 
 
 
@@ -84,6 +79,8 @@
         </div>
       </div>
 
+      <% if current_recruiter.company.is_member? %>
+
       <div class="row pt-4 pb-4">
         <div class="col-xs-12 col-sm-12 centered">
           <h4 class='h6'>Resume</h4>
@@ -111,6 +108,14 @@
           <% end %>
         </div>
       </div>
+
+      <% else %>
+        <div class="alert alert-info mt-5">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <i class="fas fa-exclamation-triangle fa-3x fa-pull-left fa-border fa-border-info"></i>
+          <p><strong>We’re happy to see that you have interest in a job from a qualified developer!</strong><br>In order to review their application materials and contact them, please <%= link_to "Become a member", pages_path(:pricing) %> once again.</p>
+        </div>
+      <% end %>
     </div>
 
   </div>

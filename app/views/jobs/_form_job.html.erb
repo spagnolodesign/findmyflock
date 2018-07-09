@@ -6,12 +6,11 @@
     <%= simple_form_for job, url: url, action: :update, local: true, html: { novalidate: true } do |f| %>
 
       <h4 class="text-center my-3 mb-5">Create your job</h4>
-
       <h5 class="mb-3">Basic information</h5>
 
       <%= f.input :title do %>
-          <%= f.input_field :title, class: "form-control" %>
-          <small class="form-text text-muted">A simple description that refers to the role and level of the position.</small>
+        <%= f.input_field :title, class: "form-control" %>
+        <small class="form-text text-muted">A simple description that refers to the role and level of the position.</small>
       <% end %>
 
       <%= f.input :description, input_html: { class: 'tinymce', :rows => 8, required: false } %>
@@ -63,14 +62,18 @@
         </div>
       </div>
 
-      <% if action_name == "edit" %>
+      <% if action_name == "edit" && job.company.is_member?  %>
         <h5 class="mt-5">Allow job to be visibile</h5>
-
         <div class="form-row">
           <div class="form-group col-md-6">
             <%= f.input :active %>
             <small class="form-text text-muted"> You can deactivate the job at any time. It will automatically be removed from job searches.</small>
           </div>
+        </div>
+      <% elsif action_name == "edit" %>
+        <h5 class="mt-5">Allow job to be visibile</h5>
+        <div class="alert alert-warning" role="alert">
+        You are not anymore a member and the Job is beeing deactive. In order to active the job again please subscibe to a plan. <%= link_to "here", new_subscriber_path %>
         </div>
       <% end %>
 

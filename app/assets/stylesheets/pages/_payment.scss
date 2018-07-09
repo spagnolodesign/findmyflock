@@ -1,0 +1,20 @@
+.plan{
+  flex: 1 1 50%;
+  cursor: pointer;
+  box-shadow: 0 0 0 1px rgba(85,90,191,.4);
+  border-radius: 4px;
+  padding: 1em;
+  background: #f3f3f3;
+}
+
+.radio-plan {
+  margin-right: 15px;
+}
+.left-plan{
+  margin-left: 16px;
+}
+.plan.selected{
+  box-shadow: 0 0 0 1px rgba(85,90,191,1);
+  background: #555abf;
+  color: #FFF;
+}

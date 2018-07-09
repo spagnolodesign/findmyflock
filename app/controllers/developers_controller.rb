@@ -1,7 +1,6 @@
 class DevelopersController < ApplicationController
   before_action :authenticate_developer!, only: [:edit_profile, :add_skills, :update, :dashboard]
 
-
   def show
     @developer = Developer.find(params[:id])
   end
@@ -46,6 +45,7 @@ class DevelopersController < ApplicationController
       @jobs = @jobs.where(remote: params[:remote])
     end
     @jobs = @jobs.filter_by_salary(params[:salaries]) if params[:salaries].present?
+    @jobs = @jobs.sort_by { |j| j.vetted ? 0 : 1 }
   end
 
   private

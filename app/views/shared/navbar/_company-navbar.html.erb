@@ -9,6 +9,7 @@
     </button>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
       <%= link_to "Dashboard", dashboard_companies_path, class: "dropdown-item" %>
+      <%= link_to "My subscription", subscribers_path, class: "dropdown-item" if !current_recruiter.company.nil? && current_recruiter.company.is_member? %>
       <%= link_to "Edit Company", edit_company_path(current_recruiter.company), class: "dropdown-item" if !current_recruiter.company.nil? %>
       <%= link_to "Account settings", edit_recruiter_registration_path, class: "dropdown-item" %>
       <%= link_to 'Logout', destroy_recruiter_session_path, method: :delete , class: "dropdown-item" %>

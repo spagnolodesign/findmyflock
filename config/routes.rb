@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :subscribers
+  post '/stripe/webhooks', to: "stripe#webhooks"
+
   resources :developers do
     collection do
       get 'add_skills'
@@ -32,7 +35,6 @@ Rails.application.routes.draw do
       get 'benefits'
     end
   end
-
 
 
   authenticate :admin do
