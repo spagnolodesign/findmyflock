@@ -20,7 +20,7 @@
               </div>
             </div>
 
-            <h5>Profile photo</h5>
+            <h5>Profile photo <div style="font-weight: lighter; font-size: 12px">(optional)</div></h5>
             <div class="form-row my-4">
               <div class="col-sm-4 mb-3">
                 <% if @developer.avatar.attached? %>
@@ -30,7 +30,7 @@
                 <% end %>
               </div>
               <div class="col-sm-8">
-                <p> It is suggested that you provide a front-facing photo showing your head and shoulders. Professional dress within your photo is also encouraged.</p>
+                <p> It is suggested that you provide a photo that best represents you as an individual or professional, keeping in mind that this need not be a facial photo, but could be your cat, avatar, or favorite line of code. Be professional, but be creative!</p>
                 <%= f.input :avatar, as: :file, label: false, :input_html => { :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "image/x-png,image/jpeg" } %>
               </div>
             </div>
