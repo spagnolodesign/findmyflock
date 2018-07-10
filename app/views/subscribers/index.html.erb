@@ -22,11 +22,11 @@
                 <h6>Subscribed at:</h6>
                 <p><%= @company.subscriber.created_at.to_time.strftime('%B %e %Y') %></p>
               </div>
-              <div>
-                <% if !@company.subscriber.subscription_expires_at.nil? %>
-                <h6>Next bill expected | Active until:</h6>
-                <p><%= @company.subscriber.subscription_expires_at.to_time.strftime('%B %e %Y') %></p>
-              </div>
+              <% if !@company.subscriber.subscription_expires_at.nil? %>
+                <div>
+                  <h6>Next bill expected | Active until:</h6>
+                  <p><%= @company.subscriber.subscription_expires_at.to_time.strftime('%B %e %Y') %></p>
+                </div>
               <% end %>
             </div>
 
