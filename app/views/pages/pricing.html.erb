@@ -1,5 +1,8 @@
 <div class="container">
-  <div class="px-3 py-3 pt-md-5 pb-md-4 mb-4 mx-auto text-center">
+  <div class="mt-4 text-right">
+  <%= active_link_to 'Already have a company account? Login', new_recruiter_session_path, class: "btn-link" %>
+  </div>
+  <div class="px-3 py-1 pt-md-3 pb-md-4 mb-4 mx-auto text-center">
     <h2>Hire from the most talented and diverse<br>community in tech</h4>
   </div>
 
@@ -10,7 +13,7 @@
         <h2>Job posting per month</h2>
         <hr>
         <h4 class="card-title mt-4">$39.99  <small class="text-muted">/ Month</small></h4>
-        <button type="button" class="btn btn-lg btn-block btn-outline-primary mt-5">Sign up for free</button>
+        <%= active_link_to 'Sign up', new_recruiter_registration_path, class: "btn btn-lg btn-block btn-outline-primary mt-5" %>
       </div>
     </div>
     <div class="card mb-4 box-shadow">
@@ -19,7 +22,7 @@
         <h2>Job postings per month</h2>
         <hr>
         <h4 class="card-title mt-4">$99.99  <small class="text-muted">/ Month</small></h4>
-        <button type="button" class="btn btn-lg btn-block btn-outline-primary mt-5">Sign up for free</button>
+        <%= active_link_to 'Sign up', new_recruiter_registration_path, class: "btn btn-lg btn-block btn-outline-primary mt-5" %>
       </div>
     </div>
     <div class="card mb-4 box-shadow">
@@ -32,7 +35,7 @@
           <li><h5>Human recruiting assistance</h5></li>
           <li><h5>Inclusivity- approved by FMF</h5></li>
         </ul>
-        <button type="button" class="btn btn-lg btn-block btn-primary">Contact us</button>
+        <button type="button" class="btn btn-lg btn-block btn-primary" data-toggle="modal" data-target="#modal-vetted">Contact us</button>
       </div>
     </div>
   </div>
@@ -103,7 +106,7 @@
 
   <section class="mt-2 mb-5">
     <div class="row justify-content-md-center">
-      <div class="col-9">
+      <div class="col-sm-9">
         <div class="card review-card">
           <div class="row mx-auto pb-4">
             <div class="col-4 avatar align-self-center">
@@ -121,5 +124,22 @@
       </div>
     </div>
   </section>
+</div>
 
+<!-- Modal -->
+<div class="modal fade" id="modal-vetted" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Schedule a call with us</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+        <a target="_blank" href="https://calendly.com/katecatlin" class="btn btn-primary">Schedule the call</a>
+      </div>
+    </div>
+  </div>
 </div>
