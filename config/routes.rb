@@ -48,7 +48,7 @@ Rails.application.routes.draw do
       resources :recruiters
       resources :jobs
       resources :developers
-      resources :matches
+      resources :applications, only: [:index, :show]
     end
   end
 
