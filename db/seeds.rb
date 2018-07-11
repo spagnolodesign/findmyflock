@@ -1135,8 +1135,8 @@ Admin.create!(
   password_confirmation: Rails.application.credentials.admin_password
 )
 
-Plan.create(name: "1 Job", stripe_id: "1-job", display_price: (3999.to_f / 100))
-Plan.create(name: "3 Jobs", stripe_id: "3-jobs", display_price: (9999.to_f / 100))
+Plan.create(name: "1 Job Posting", stripe_id: "1-job", display_price: (3999.to_f / 100))
+Plan.create(name: "3 Job Postings", stripe_id: "3-jobs", display_price: (9999.to_f / 100))
 
 basic_plan = Stripe::Plan.create(
   :amount => 3999,

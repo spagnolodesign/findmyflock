@@ -37,12 +37,10 @@
       <div class="card mt-5">
         <% if @company.is_member? %>
         <div class="alert alert-info">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <i class="fas fa-exclamation-triangle fa-3x fa-pull-left fa-border fa-border-info"></i>
-          <strong>You are alredy subscribed</strong> for the plan <%= @company.subscriber.plan.name %>, in case you want to extend your subscription plese send us an email to: <a href="mailto:info@findmyflock.com">info@findmyflock.com</a>
-          <br />We will upgrade your subscrition.
+          You are currently subscribed to the plan for <%= @company.subscriber.plan.name %>. If you would like to change your subscription, please send us an email with the membership you would like to upgrade to and we will be happy to change your plan within 24 hours. <hr /><a href="mailto:info@findmyflock.com" class="btn btn-primary float-right">Contact Us</a>
         </div>
-        <% end %>
+        <% else %>
         <div class="card-body">
           <h4 class="text-center my-3 mb-5">Payment method</h4>
           <%= form_for @subscriber, html: { id: "payment-form" } do |f| %>
@@ -52,8 +50,8 @@
                 <label for="radioBasic" class="d-flex justify-content-start">
                   <input name="plan" value="1-job" class="radio-plan hidden" id="radioBasic" type="radio" required />
                   <div>
-                    <h5>1 Job posting</h5>
-                    <p class="muted">39,99$ billed monthly</p>
+                    <h5>1 Job Posting</h5>
+                    <p class="muted">$39.99 Billed Monthly</p>
                   </div>
                 </label>
               </div>
@@ -61,8 +59,8 @@
                 <label for="radioGold" class="d-flex justify-content-start">
                   <input name="plan" value="3-jobs" class="radio-plan hidden" id="radioGold" type="radio" required />
                   <div>
-                    <h5>3 Jobs posting</h5>
-                    <p class="muted">99,99$ billed monthly</p>
+                    <h5>3 Job Postings</h5>
+                    <p class="muted">99,99$ Billed Monthly</p>
                   </div>
                 </label>
               </div>
@@ -70,14 +68,14 @@
 
             <div class="row mb-3">
               <div class="col col-md-6">
-                <label for="card_name">Name on card</label>
+                <label for="card_name">Name On Card</label>
                 <input id="card_name" name="name" class="form-control" required />
               </div>
             </div>
 
             <div class="row mb-3">
               <div class="col col-md-6">
-                <label for="card-element">Credit or debit card</label>
+                <label for="card-element">Credit or Debit Card</label>
                 <div id="card-element"></div>
                 <div id="card-errors" class="invalid-feedback" role="alert"></div>
               </div>
@@ -97,17 +95,16 @@
               </div>
 
               <div class="row">
+                <div class="col-md-4 mb-3">
+                  <label for="address-state">State</label>
+                  <input id="address-state" name="address_state" class="form-control" placeholder="CA" required />
+                </div>
                 <div class="col-md-5 mb-3">
                   <label for="address-country">Country</label>
                   <input id="address-country" name="address_country" class="form-control" placeholder="United States" required />
                 </div>
-                <div class="col-md-4 mb-3">
-                  <label for="state">State</label>
-                  <label for="address-state">State</label>
-                  <input id="address-state" name="address_state" class="form-control" placeholder="CA" required />
-                </div>
                 <div class="col-md-3 mb-3">
-                  <label for="address-zip">ZIP</label>
+                  <label for="address-zip">Zip Code</label>
                   <input id="address-zip" name="address_zip" class="form-control" placeholder="92236" required />
                 </div>
               </div>
@@ -117,6 +114,7 @@
             </div>
           <% end %>
         </div>
+        <% end %>
       </div>
     </div>
   </div>

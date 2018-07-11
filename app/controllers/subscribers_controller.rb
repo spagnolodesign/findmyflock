@@ -20,7 +20,7 @@ class SubscribersController < ApplicationController
     }
 
     if @subscriber.save_and_make_payment(current_recruiter.email, @plan, stripe_token, billing_address)
-       redirect_to dashboard_companies_path, notice: "Thank you to subscribe with us."
+       redirect_to dashboard_companies_path, notice: "Thanks for becoming a member of Find My Flock."
     else
       render :new
     end
