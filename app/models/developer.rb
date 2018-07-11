@@ -78,7 +78,9 @@ class Developer < ApplicationRecord
         jobs_remote = Job.active.remote_or_office_jobs(remote).match_skills_type(skills_array)
         jobs = jobs_near_me.merge(jobs_remote)
         if need_us_permit
-          jobs = jobs.can_sponsor
+          jobs.can_sponsor
+        else
+          jobs
         end
       end
     end
