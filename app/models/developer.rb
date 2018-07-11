@@ -113,7 +113,4 @@ class Developer < ApplicationRecord
     end
   end
 
-
-
-
 end
