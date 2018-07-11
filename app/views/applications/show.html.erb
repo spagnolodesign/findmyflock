@@ -66,6 +66,8 @@
         <div class="badge btn-contacted">Contacted</div>
         <% elsif @application.status == "opened" %>
         <div class="badge btn-opened">Opened</div>
+        <% elsif @application.status == "rejected" %>
+        <div class="badge btn-pending">Rejected</div>
         <% else %>
         <div class="badge btn-pending">New</div>
         <% end %>
@@ -79,7 +81,7 @@
         </div>
       </div>
 
-      <% if current_recruiter.company.is_member? %>
+      <% if current_recruiter.company.is_allowed_member %>
 
       <div class="row pt-4 pb-4">
         <div class="col-xs-12 col-sm-12 centered">
@@ -109,6 +111,11 @@
         </div>
       </div>
 
+      <div class="row mt-5">
+        <h4 class='h6'>Reject this application</h4>
+        <p>In case the candidate do not match with your needs please reject the application request.</p>
+        <%= link_to "Reject application", reject_job_application_path(@job), method: :post, class: "btn btn-danger", :data => {:confirm => 'Are you sure?'} %>
+      </div>
       <% else %>
         <div class="alert alert-info mt-5">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

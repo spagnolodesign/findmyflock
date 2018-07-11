@@ -1,8 +1,8 @@
 class ApplicationsController < ApplicationController
   before_action :authenticate_developer!, only:[:new, :create]
   before_action :authenticate_recruiter!, only:[:show, :contact]
-  before_action :set_application, only: [:show, :contact]
-  before_action :set_job, only: [:new, :create]
+  before_action :set_application, only: [:show, :contact, :reject]
+  before_action :set_job, only: [:new, :create, :reject]
   before_action :set_match, only: [:new, :create]
 
   def show
@@ -51,6 +51,12 @@ class ApplicationsController < ApplicationController
       @application.contacted!
       redirect_to job_application_path(@job), notice: "We've sent an email to the candidate."
     end
+  end
+
+  def reject
+    @application.rejected!
+    DeveloperMailer.application_rejected(@application).deliver if @application.rejected?
+    redirect_to job_application_path(@job), notice: "We've sent an email to the candidate."
   end
 
   private

@@ -71,6 +71,8 @@
                     <div class="badge btn-contacted">Contacted</div>
                     <% elsif application.status == "opened" %>
                     <div class="badge btn-opened">Opened</div>
+                    <% elsif application.status == "rejected" %>
+                    <div class="badge btn-pending">Rejected</div>
                     <% else %>
                     <div class="badge btn-pending">New</div>
                     <% end %>

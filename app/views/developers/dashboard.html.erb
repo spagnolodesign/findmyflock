@@ -85,11 +85,13 @@
                 <h5 class="matched-job-skills-title">Current state</h5>
                 <div class="application-buttons">
                   <% if application.status == "contacted" %>
-                  <%= link_to "Contacted", new_job_application_path(application.match.job), class:"badge btn-contacted", style: ":hover {color: yellow}"  %>
+                  <span class="badge btn-contacted">Contacted</span>
                   <% elsif application.status == "opened" %>
-                  <%= link_to "Opened", new_job_application_path(application.match.job), class:"badge btn-opened"  %>
+                  <span class="badge btn-opened">Opened</span>
+                  <% elsif application.status == "rejected" %>
+                  <div class="badge btn-pending">Rejected</div>
                   <% else %>
-                  <%= link_to "Pending", new_job_application_path(application.match.job), class:"badge btn-pending", style: ":hover {color: yellow}"  %>
+                  <span class="badge btn-pending">Pending</span>
                   <% end %>
                 </div>
               </div>

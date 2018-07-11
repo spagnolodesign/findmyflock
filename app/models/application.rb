@@ -1,5 +1,5 @@
 class Application < ApplicationRecord
-  enum status: [ :pending, :opened, :contacted ]
+  enum status: [ :pending, :opened, :contacted, :rejected ]
 
   belongs_to :match
   has_one :developer, through: :matches
