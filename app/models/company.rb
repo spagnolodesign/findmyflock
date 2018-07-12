@@ -17,7 +17,7 @@ class Company < ApplicationRecord
   end
 
   def is_member?
-    !subscriber.nil? && (subscriber.active? || (subscriber.canceled? && subscriber.subscription_expires_at >= Date.today) || subscriber.trialing?)
+    !subscriber.nil? && (subscriber.active? || (subscriber.canceled? && subscriber.subscription_expires_at >= Date.today) || subscriber.trialing? || subscriber.past_due?)
   end
 
   def is_allowed_member

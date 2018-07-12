@@ -8,18 +8,21 @@ class SubscribersController < ApplicationController
   end
 
   def create
-    @plan = Plan.find_by(stripe_id: params[:plan])
-    @subscriber = Subscriber.new(company: @company)
-    stripe_token = params[:stripeToken]
-    billing_address = {
-      line1: params[:address_line1],
-      city: params[:address_city],
-      state: params[:address_country],
-      country: params[:address_state],
-      postal_code: params[:address_zip]
-    }
+		cupon_code = !params[:cupon_code].empty? ? get_id_cupon(params[:cupon_code]) : ""
+		@subscriber = Subscriber.new(company: @company)
 
-    if @subscriber.save_and_make_payment(current_recruiter.email, @plan, stripe_token, billing_address)
+		if cupon_code.nil?
+			flash[:alert] = "Invalid Cupon!"
+			return render :new
+		end
+
+    plan = Plan.find_by(stripe_id: params[:plan])
+
+    stripe_token = params[:stripeToken]
+
+    billing_address = { line1: params[:address_line1], city: params[:address_city], state: params[:address_country], country: params[:address_state], postal_code: params[:address_zip] }
+
+    if @subscriber.save_and_make_payment(current_recruiter.email, plan, stripe_token, billing_address, cupon_code)
        redirect_to dashboard_companies_path, notice: "Thanks for becoming a member of Find My Flock."
     else
       render :new
@@ -27,18 +30,35 @@ class SubscribersController < ApplicationController
   end
 
   def destroy
-    #Set subscription to canceld with stripe API
     @subscriber = Subscriber.find(params[:id])
     if @subscriber.active?
       sub = Stripe::Subscription.retrieve(@subscriber.stripe_subscription_id)
-      if sub.delete
-        redirect_to subscribers_path, notice: "Your subscription was canceled, you will still a member until the next billing period."
+      begin
+        sub.delete
+        flash[:notice] = "Your subscription was canceled, you will still a member until the next billing period."
+      rescue => e
+        flash[:alert] = "Some error occurred please contant the support team."
       end
+      redirect_to subscribers_path
     end
   end
 
   def set_company
     @company = current_recruiter.company
+  end
+
+	private
+
+	COUPONS = {
+    'FMF1' => 'fmf-1',
+    'FMF2' => 'fmf-2'
+  }
+
+  def get_id_cupon(code)
+    # Normalize user input
+    code = code.gsub(/\s+/, '')
+    code = code.upcase
+    COUPONS[code]
   end
 
 
