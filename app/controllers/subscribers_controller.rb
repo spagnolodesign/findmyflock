@@ -51,7 +51,8 @@ class SubscribersController < ApplicationController
 
 	COUPONS = {
     'FMF1' => 'fmf-1',
-    'FMF2' => 'fmf-2'
+    'FMF2' => 'fmf-2',
+    'LIConnections' => 'li-connections'
   }
 
   def get_id_cupon(code)
