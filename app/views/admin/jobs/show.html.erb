@@ -1,8 +1,22 @@
 <p>
   <strong>Name:</strong>
   <%= @job.title %>
-  <p>Is a vetted job: <%= @job.vetted %></p>
+  <p><b>Is a vetted job:</b> <%= @job.vetted %></p>
 </p>
+
+<p><b>Description:</b> <%= @job.description %></p>
+<p><b>Remote:</b> <%= @job.remote %></p>
+<p><b>City:</b> <%= @job.city %></p>
+<p><b>Zipcode:</b> <%= @job.zip_code %></p>
+<p><b>State:</b> <%= @job.state %></p>
+<p><b>Active:</b> <%= @job.active %></p>
+<p><b>Employment type:</b> <%= @job.employment_type %></p>
+<p><b>Can sponsor:</b> <%= @job.can_sponsor %></p>
+<p><b>Created:</b> <%= @job.created_at %></p>
+
+
+<h5>Skills</h5>
+<%= render 'admin/shared/skills_list', skills: @job.skills_array %>
 
 <%= link_to 'Edit', edit_admin_job_path(@job) %> |
 <%= link_to 'Back', admin_jobs_path %>

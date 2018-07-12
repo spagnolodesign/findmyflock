@@ -15,8 +15,9 @@
   </thead>
 
   <tbody>
-    <% @applications.each do |application| %>
+    <% @applications.sort_by(&:created_at).each do |application| %>
       <tr>
+        <td><%= application.match.created_at %></td>
         <td><%= application.match.job.title %></td>
         <td><%= application.match.developer.full_name %></td>
         <td><%= application.status %></td>

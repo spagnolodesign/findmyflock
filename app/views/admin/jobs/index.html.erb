@@ -17,7 +17,7 @@
   <tbody>
     <% @jobs.each do |job| %>
       <tr class="<%= "table-success" if job.vetted? %>">
-        <td><%= job.title %></td>
+        <td><%= link_to job.title, admin_job_path(job) %></td>
         <td><%= job.company.name %></td>
         <td><%= render 'admin/shared/skills_list', skills: job.skills_array %></td>
         <td><%= link_to 'Edit', edit_admin_job_path(job) %></td>
