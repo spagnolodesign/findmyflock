@@ -1051,17 +1051,15 @@ when "development"
         employment_type: EMPLOYMENT_TYPE.sample,
         latitude: nil,
         longitude: nil,
-        # max_salary: salary.sample,
         benefits: benefits,
         cultures: cultures,
         can_sponsor: Faker::Boolean.boolean(0.2),
         company: company
       )
-
-      job.save
-      puts "created job #{job.title}"
-      job.skills.new(name: Competence.all.sample.value, level: rand(1..4)).save
-
+      if job.save
+        puts "created job #{job.title}"
+        job.skills.new(name: Competence.all.sample.value, level: rand(1..4)).save
+      end
     end
 
   end
@@ -1082,14 +1080,14 @@ when "development"
       min_salary: salary = [10_000, 20_000, 30_000].sample,
       remote: [['remote'], ['office'], %w[remote office]].sample,
     )
-   dev.save
-   p "One developer created"
-
+   if dev.save
+     p "One developer created"
     3.times do
       a = dev.skills.new(name: Competence.all.sample.value, level: rand(3..5))
       a.save
     end
-   p "3 skills added"
+     p "3 skills added"
+   end
   end
 
 
@@ -1135,4 +1133,26 @@ Admin.create!(
   email: "info@findmyflock.com",
   password: Rails.application.credentials.admin_password,
   password_confirmation: Rails.application.credentials.admin_password
+)
+
+Plan.create(name: "1 Job Posting", stripe_id: "1-job", display_price: (3999.to_f / 100))
+Plan.create(name: "3 Job Postings", stripe_id: "3-jobs", display_price: (9999.to_f / 100))
+
+basic_plan = Stripe::Plan.create(
+  :amount => 3999,
+  :interval => "month",
+  :product => {
+    :name => "1 Job"
+  },
+  :currency => "usd",
+  :id => "1-job"
+)
+gold_plan = Stripe::Plan.create(
+  :amount => 9999,
+  :interval => "month",
+  :product => {
+    :name => "3 Jobs"
+  },
+  :currency => "usd",
+  :id => "3-jobs"
 )

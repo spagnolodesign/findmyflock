@@ -1,5 +1,6 @@
 <% skills.each do |skill| %>
-  <button type="button" class="btn btn-light btn-lg">
-    <i class="devicon-<%= skill.name %>-plain colored"></i> <%= skill.name %> <span class="badge badge-light"><%= skill.level %></span>
+  <% skill_array = skill.split("/") %>
+  <button type="button" class="btn btn-light btn-sm">
+    <i class="devicon-<%= skill_array[0] %>-plain colored"></i> <%= skill_array[0] %> <span class="badge badge-light"><%= skill_array[1] %></span>
   </button>
 <% end %>

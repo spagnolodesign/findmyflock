@@ -4,7 +4,7 @@ class Admin::JobsController < Admin::BaseController
   # GET /comapies
   # GET /comapies.json
   def index
-    @jobs = Job.all
+    @jobs = Job.all.order(created_at: :desc)
   end
 
   # GET /comapies/1
@@ -25,6 +25,7 @@ class Admin::JobsController < Admin::BaseController
   # POST /comapies.json
   def create
     @job = Job.new(job_params)
+    @job.toggle_to_vetted
     respond_to do |format|
       if @job.save
         format.html { redirect_to admin_jobs_path, notice: 'Job was successfully created.' }
@@ -65,6 +66,6 @@ class Admin::JobsController < Admin::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params.require(:job).permit(:title, :active, :description, :city, :zip_code, :state, :country, :max_salary, :employment_type, :can_sponsor, :company_id, remote:[], benefits:[], cultures:[])
+      params.require(:job).permit(:title, :active, :description, :city, :zip_code, :state, :country, :max_salary, :employment_type, :can_sponsor, :company_id, :vetted, remote:[], benefits:[], cultures:[])
     end
 end

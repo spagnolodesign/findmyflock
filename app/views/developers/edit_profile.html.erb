@@ -98,7 +98,7 @@
               <%= f.input :country, input_html: { id: "country" }, as: :string %>
               <div id="select-distance" class="hidden">
                 <h5 class="mt-5">How far are you willing to commute? <span id="range-distance" class="float-right"><%= @developer.mobility%> Mi</span></h5>
-                <%= f.input :mobility, input_html: { type: "range", value: "#{@developer.mobility}", min: 5, max: 200, step: 10 }, label: false %>
+                <%= f.input :mobility, input_html: { type: "range", value: "#{@developer.mobility.nil? ? 35 : @developer.mobility }", min: 5, max: 200, step: 10 }, label: false %>
               </div>
               <%= f.input :full_mobility, label: "I don't care about distance" %>
             </div>

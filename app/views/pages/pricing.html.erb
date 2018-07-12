@@ -1,0 +1,145 @@
+<div class="container">
+  <div class="mt-4 text-right">
+  <%= active_link_to 'Already have a company account? Login', new_recruiter_session_path, class: "btn-link" %>
+  </div>
+  <div class="px-3 py-1 pt-md-3 pb-md-4 mb-4 mx-auto text-center">
+    <h2>Hire from the most talented and diverse<br>community in tech</h4>
+  </div>
+
+  <div class="card-deck mb-3 text-center">
+    <div class="card mb-4 box-shadow">
+      <div class="card-body">
+        <h1 class="display-4 mt-2">1</h1>
+        <h2>Job posting per month</h2>
+        <hr>
+        <h4 class="card-title mt-4">$39.99  <small class="text-muted">/ Month</small></h4>
+        <%= active_link_to 'Sign up', new_recruiter_registration_path, class: "btn btn-lg btn-block btn-outline-primary mt-5" %>
+      </div>
+    </div>
+    <div class="card mb-4 box-shadow">
+      <div class="card-body">
+        <h1 class="display-4 mt-2">3</h1>
+        <h2>Job postings per month</h2>
+        <hr>
+        <h4 class="card-title mt-4">$99.99  <small class="text-muted">/ Month</small></h4>
+        <%= active_link_to 'Sign up', new_recruiter_registration_path, class: "btn btn-lg btn-block btn-outline-primary mt-5" %>
+      </div>
+    </div>
+    <div class="card mb-4 box-shadow">
+      <div class="card-header">
+        <h3 class="my-0 py-2 font-weight-normal">Vetted<br>Company</h3>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled mt-3 mb-4 vetted-list-offers">
+          <li><h6>Unlimited job postings</h6></li>
+          <li><h6>Human recruiting assistance</h6></li>
+          <li><h6>Inclusivity - Approved by Find My Flock</h6></li>
+        </ul>
+        <button type="button" class="btn btn-lg btn-block btn-primary" data-toggle="modal" data-target="#modal-vetted">Contact Us</button>
+      </div>
+    </div>
+  </div>
+
+  <section class="bid-stats">
+    <div class="row my-5">
+      <div class="col">
+        <div class="d-flex align-items-center flex-row justify-content-start mb-3">
+          <div><h1 class="display-4">82%</h1></div>
+          <div class="bid-text">of our network is <strong>women</strong></div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-flex align-items-center flex-row justify-content-start mb-3">
+          <div><h1 class="display-4">55%</h1></div>
+          <div class="bid-text">are <strong>mid-level or senior</strong></div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="d-flex align-items-center flex-row justify-content-start mb-3">
+          <div><h1 class="display-4">1/5</h1></div>
+          <div class="bid-text">candidates sent  through our <strong>Vetted services</strong> are the one you’ll hire</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bid-vetted mt-5">
+    <div class="row">
+      <div class="col-12">
+        <h3 class="centered blue-text pb-5">How will becoming Find My Flock Vetted<br>benefit your company?</h3>
+        <div class="section-02-sub">
+
+          <div class="col">
+            <div class="row home-icons">
+              <img src="/assets/affinitysearchicon-da4f7346b87e604816acf8d94e4b430d910fa62aa71445e7037405fabd880e86.png">
+            </div>
+            <div class="row pt-3 pb-3">
+              <h5 class="mb-4">Build trust through verified inclusivity</h5>
+              <p class="px-3">Developers are prioritizing companies where they’ll feel great. Our team will interview 2 developers from your team off-the-record so we can better tell the story of your community.</p>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="row home-icons">
+              <img src="/assets/transparencyicon-2229514ff346191068e022961969ecb4de3804957a99df03ff65bdbe2ce75547.png">
+            </div>
+            <div class="row pt-3 pb-3">
+              <h5 class="mb-4">Reach our diverse community</h5>
+              <p class="px-3">While all are welcome, we pride ourselves in UX’ing specifically for the underrepresented. We’ll also reach out to members of our network that would be a great fit but haven’t yet applied.</p>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="row home-icons">
+              <img src="/assets/timeicon-7934ef488acce6f99c82753555eb829186e93cbb1696c30108f74b21cc3565a5.png">
+            </div>
+            <div class="row pt-3 pb-3">
+              <h5 class="mb-4">Review only qualified applicants</h5>
+              <p class="px-3">Our algorithm only shows your jobs to pre-qualified candidates, which we further screen with a phone call before passing on to you. </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-2 mb-5">
+    <div class="row justify-content-md-center">
+      <div class="col-sm-9">
+        <div class="card review-card">
+          <div class="row mx-auto pb-4">
+            <div class="col-4 avatar align-self-center">
+              <%=image_tag("wes-morgan-fmf.png")%>
+            </div>
+            <div class="col-8 review-titles">
+              <h5 class="card-title">Wes Morgan</h5>
+              <h6 class="card-subtitle mb-2 text-muted">CTO of Democracy Works</h6>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-text">Flock totally flips the script on tech recruitment. They are the only  agency I've been excited to work with, and it's 100% because of their mission and how well they execute it. Having someone who learns about your organization, finds people who fit with what you're looking for but also value things like diversity, inclusiveness, and culture is a whole new level of bang for the buck when it comes to recruitment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal-vetted" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Schedule A Call With Us </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Becoming a Find My Flock Vetted Company offers many benefits to your recruitment process. First of all, everything we do is catered to you. Schedule a call with us to talk about what your company specifically needs and offers in order to find the best eligible candidates.</p>
+        <a target="_blank" href="https://calendly.com/katecatlin" class="btn btn-primary">Schedule A Call</a>
+      </div>
+    </div>
+  </div>
+</div>

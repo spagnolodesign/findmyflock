@@ -1,7 +1,7 @@
-<li class="nav-item active">
-  <a class="nav-link" id="NavJobs" href="#">Jobs<span class="sr-only">(current)</span></a>
-</li>
-
 <li class="nav-item">
-  <%= link_to 'For employers', new_recruiter_registration_path, class: "nav-link", id: "NavEmployers" %>
+  <%= active_link_to 'Developers ', new_developer_session_path, class: "nav-link", id: "NavEmployers" %>
+</li>
+<li class="nav-link d-none d-sm-block"> | </li>
+<li class="nav-item">
+  <%= active_link_to 'Employers', pages_path(:pricing), class: "nav-link", id: "NavEmployers" %>
 </li>

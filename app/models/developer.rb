@@ -68,19 +68,23 @@ class Developer < ApplicationRecord
   end
 
   def matched_job
-    if full_mobility
-      if need_us_permit
-        Job.active.remote_or_office_jobs(remote).match_skills_type(skills_array).can_sponsor
-      else
-        Job.active.remote_or_office_jobs(remote).match_skills_type(skills_array)
-      end
+    if remote === ["remote"]
+      Job.active.remote_or_office_jobs(remote).match_skills_type(skills_array)
     else
-      if need_us_permit
-        Job.active.check_location(mobility, latitude, longitude).remote_or_office_jobs(remote).match_skills_type(skills_array).can_sponsor
+      if full_mobility
+        Job.active.remote_or_office_jobs(remote).match_skills_type(skills_array)
       else
-        Job.active.check_location(mobility, latitude, longitude).remote_or_office_jobs(remote).match_skills_type(skills_array)
+        jobs_near_me = Job.active.check_location(mobility, latitude, longitude).remote_or_office_jobs(remote)
+        jobs_remote = Job.active.remote_or_office_jobs(remote).match_skills_type(skills_array)
+        jobs = jobs_near_me.merge(jobs_remote)
+        if need_us_permit
+          jobs.can_sponsor
+        else
+          jobs
+        end
       end
     end
+
   end
 
 
@@ -108,8 +112,5 @@ class Developer < ApplicationRecord
       end
     end
   end
-
-
-
 
 end

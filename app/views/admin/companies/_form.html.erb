@@ -2,6 +2,10 @@
   <%= form.input :name %>
   <%= form.input :url %>
   <%= form.input :industry %>
+  <%= form.input :vetted %>
+  <hr>
+  <h5>Pictures</h5>
   <%= form.file_field :images, multiple: true, direct_upload: true %>
-  <%= form.submit %>
+  <hr>
+  <%= form.submit "Update", class: "btn btn-primary" %>
 <% end %>

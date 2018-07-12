@@ -26,6 +26,8 @@ gem 'turbolinks'
 gem 'sendgrid-ruby'
 gem "letter_opener", :group => :development
 gem 'tinymce-rails'
+gem 'stripe'
+
 
 
 group :development, :test do

@@ -9,14 +9,20 @@
   <thead>
     <tr>
       <th>Value</th>
+      <th>Membership</th>
+      <th>Active jobs</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @companies.each do |company| %>
-      <tr>
+      <tr class="<%= "table-success" if company.vetted? %>">
+
         <td><%= company.name %></td>
+        <td><span class="badge badge-pill <%=  (!company.subscriber.nil? && company.subscriber.active?) ? "badge-success" : "badge-warning" %>"><%= company.subscriber.status if !company.subscriber.nil? %></span></td>
+        <td><%= company.jobs.active.count %></td>
+        <td><%= link_to 'Show', admin_company_path(company) %></td>
         <td><%= link_to 'Edit', edit_admin_company_path(company) %></td>
         <td><%= link_to 'Destroy', admin_company_path(company), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

@@ -1,6 +1,7 @@
 <p>
   <strong>Name:</strong>
   <%= @job.title %>
+  <p>Is a vetted job: <%= @job.vetted %></p>
 </p>
 
 <%= link_to 'Edit', edit_admin_job_path(@job) %> |
