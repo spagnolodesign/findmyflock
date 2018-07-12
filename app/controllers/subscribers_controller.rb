@@ -12,7 +12,7 @@ class SubscribersController < ApplicationController
 		@subscriber = Subscriber.new(company: @company)
 
 		if cupon_code.nil?
-			flash[:alert] = "Invalid Cupon!"
+			flash[:alert] = "Invalid coupon!"
 			return render :new
 		end
 
@@ -35,9 +35,9 @@ class SubscribersController < ApplicationController
       sub = Stripe::Subscription.retrieve(@subscriber.stripe_subscription_id)
       begin
         sub.delete
-        flash[:notice] = "Your subscription was canceled, you will still a member until the next billing period."
+        flash[:notice] = "Your subscription was canceled. You will still a member until the next billing period."
       rescue => e
-        flash[:alert] = "Some error occurred please contant the support team."
+        flash[:alert] = "Oops! An error has occurred. Please contant the support team at info@findmyflock.com."
       end
       redirect_to subscribers_path
     end
