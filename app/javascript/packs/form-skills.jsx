@@ -95,7 +95,8 @@ class FormSkill extends Component {
   }
 
   deleteSkill = (skill) => {
-    fetch(`/api/${this.props.resource}/${this.props.id}/skills/${skill}`, {
+    let skillName = encodeURIComponent(skill);
+    fetch(`/api/${this.props.resource}/${this.props.id}/skills/${skillName}`, {
       method: 'DELETE',
       headers: new Headers({ 'Content-Type': 'application/json' })
     })
