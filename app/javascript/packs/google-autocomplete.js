@@ -20,7 +20,6 @@ const googleLocation = () => {
       if (autocomplete != null) {
         autocomplete.addListener('place_changed', function(){
           var place = autocomplete.getPlace();
-          console.log(place);
           for (var i = 0; i < place.address_components.length; i++) {
             var addressType = place.address_components[i].types[0];
             if (componentForm[addressType]) {
@@ -31,7 +30,7 @@ const googleLocation = () => {
         });
       }
     }
-    
+
   })
 }
 
