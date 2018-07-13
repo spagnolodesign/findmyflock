@@ -15,6 +15,7 @@ class ApplicationsController < ApplicationController
     @developer = current_developer
     set_match
     @is_posted = application_is_posted?(@match)
+    @applications_sent = applications_sent_today
   end
 
   def edit
@@ -60,6 +61,16 @@ class ApplicationsController < ApplicationController
   end
 
   private
+
+  def applications_sent_today
+    count = 0
+    matches = Match.where(developer: current_developer)
+    matches.each do |match|
+      application = Application.where(match: match, created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+      count += 1 if !application.empty?
+    end
+    count
+  end
 
   def attach_resumes(resumes, developer)
     if resumes.any?

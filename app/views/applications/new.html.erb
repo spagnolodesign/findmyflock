@@ -13,6 +13,12 @@
           <h4 class="row justify-content-center underlined">Apply to this job</h4>
         </div>
 
+        <% if @applications_sent >= 5 %>
+
+          <p class="alert pt-3 pb-3" role="alert" style="color: gray;">
+            <i class="fas fa-exclamation-triangle fa-2x fa-pull-left fa-border"></i> You have reached the maximum number of applications per day <br/ >(5 per day).
+          </p>
+        <% else %>
         <%= simple_form_for([@job, @application]) do |f| %>
           <%= f.input :message,  :input_html => {:rows => 5}, label: "Write a message to the recruiter", required: true %>
 
@@ -28,6 +34,9 @@
 
             <%= f.submit "Send application", class: "btn btn-orange btn-application btn-block" %>
           <% end %>
+        <% end %>
+
+
 
          <% else %>
 
