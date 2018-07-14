@@ -28,8 +28,6 @@ gem "letter_opener", :group => :development
 gem 'tinymce-rails'
 gem 'stripe'
 
-
-
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'

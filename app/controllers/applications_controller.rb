@@ -39,7 +39,7 @@ class ApplicationsController < ApplicationController
         format.html { redirect_to new_job_application_path(@match.job) }
         CompanyMailer.new_application_advise(@mail_addresses, @match, @developer).deliver
       else
-        format.html { render :new }
+        format.html { render :new, alert: "Something went wrong please try again." }
       end
     end
   end
