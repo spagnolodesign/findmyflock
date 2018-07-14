@@ -5,6 +5,6 @@ class Application < ApplicationRecord
   has_one :developer, through: :matches
   has_one :job, through: :matches
   has_one :company, through: :job
-  validates :message, length: { maximum: 10000 }
+  validates :message, length: { maximum: 8000 }
 
 end
