@@ -45,25 +45,20 @@
           <h4 class="text-center my-3 mb-5">Payment method</h4>
           <%= form_for @subscriber, html: { id: "payment-form" } do |f| %>
 
-            <div class="d-flex justify-content-start mb-3">
-              <div class="plan radio-select">
-                <label for="radioBasic" class="d-flex justify-content-start">
-                  <input name="plan" value="1-job" class="radio-plan hidden" id="radioBasic" type="radio" required />
-                  <div>
-                    <h5>1 Job Posting</h5>
-                    <p class="muted">$39.99 Billed Monthly</p>
+            <div class="row mb-3">
+              <% Plan.all.each do |plan| %>
+                <div class="col">
+                  <div class="plan radio-select">
+                    <label class="d-flex justify-content-start">
+                      <input name="plan" value="<%= plan.stripe_id %>" class="radio-plan hidden" type="radio" required />
+                      <div>
+                        <h5><%= plan.name %></h5>
+                        <p class="muted">$<%= plan.display_price %> Billed Monthly</p>
+                      </div>
+                    </label>
                   </div>
-                </label>
-              </div>
-              <div class="plan left-plan radio-select">
-                <label for="radioGold" class="d-flex justify-content-start">
-                  <input name="plan" value="3-jobs" class="radio-plan hidden" id="radioGold" type="radio" required />
-                  <div>
-                    <h5>3 Job Postings</h5>
-                    <p class="muted">99,99$ Billed Monthly</p>
-                  </div>
-                </label>
-              </div>
+                </div>
+              <% end %>
             </div>
 
             <div class="row mb-3">
