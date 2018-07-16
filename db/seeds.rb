@@ -1017,28 +1017,27 @@ when "development"
       name: Faker::Company.name,
       industry: Faker::Company.industry
     )
-    r = Recruiter.all.sample
-    r.company = company
-    r.save
     puts "created company #{company.name}"
   end
 
   5.times do
-    Recruiter.create!(
+    r = Recruiter.new(
       email: Faker::Internet.email,
       password: "password",
       password_confirmation: "password",
       company: Company.all.sample,
       confirmed_at: Time.now.utc
     )
+    r.save validate: false
   end
-  Recruiter.create!(
+  r = Recruiter.new(
     email: 'recruiter@example.com',
     password: "password",
     password_confirmation: "password",
     company: Company.all.sample,
     confirmed_at: Time.now.utc
   )
+  r.save validate: false
 
   PLACES = [
     {city: "Los Angeles", state: "CA", country: "United States"},
@@ -1101,15 +1100,15 @@ when "development"
       need_us_permit: Faker::Boolean.boolean(0.2),
       min_salary: salary = [10_000, 20_000, 30_000].sample,
       remote: [['remote'], ['office'], %w[remote office]].sample,
-    ).skip_confirmation!
-   if dev.save
-     p "Developer created: #{dev.email}"
+    )
+    dev.skip_confirmation!
+    dev.save validate: false
+    p "Developer created: #{dev.email}"
     3.times do
       skill = dev.skills.new(name: Competence.all.sample.value, level: rand(3..5))
       skill.save
     end
-     p "3 skills added"
-   end
+    p "3 skills added"
   end
 
   5.times do
@@ -1131,11 +1130,11 @@ when "development"
     need_us_permit: false,
     min_salary: 10_000,
     remote:  ["remote", "office"]
-  ).skip_confirmation!
+  )
+  dev.skip_confirmation!
+  dev.save validate: false
 
   p "adding 40 skills"
-
-  dev.save
   40.times do
     dev = Developer.last.skills.new(name: Competence.all.sample.value, level: rand(3..5))
     dev.save
@@ -1151,7 +1150,7 @@ when "development"
   Admin.create!(
     email: "admin@findmyflock.com",
     password: 'password',
-    password_confirmation: 'password'
+    # password_confirmation: 'password'
   )
 
 when 'production'

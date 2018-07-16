@@ -11,7 +11,6 @@ Culture-centric tech job search.
 - [node](https://nodejs.org/) (see `.nvmrc` for version)
 - [yarn](https://yarnpkg.com/en/docs/install)
 
-
 ## Setup
 1. `bundle install` - Install ruby dependencies
 1. `nvm use` - Verify you are using the correct version of Node.
