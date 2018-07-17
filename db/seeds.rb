@@ -1024,7 +1024,6 @@ when "development"
     r = Recruiter.new(
       email: Faker::Internet.email,
       password: "password",
-      password_confirmation: "password",
       company: Company.all.sample,
       confirmed_at: Time.now.utc
     )
@@ -1033,7 +1032,6 @@ when "development"
   r = Recruiter.new(
     email: 'recruiter@example.com',
     password: "password",
-    password_confirmation: "password",
     company: Company.all.sample,
     confirmed_at: Time.now.utc
   )
@@ -1091,7 +1089,6 @@ when "development"
     dev = Developer.new(
       email: Faker::Internet.email,
       password: 'password',
-      password_confirmation: 'password',
       first_name: Faker::Name.first_name,
       last_name: Faker::Name.last_name,
       city: 'Los Angeles',
@@ -1149,8 +1146,7 @@ when "development"
 
   Admin.create!(
     email: "admin@findmyflock.com",
-    password: 'password',
-    # password_confirmation: 'password'
+    password: 'password'
   )
 
 when 'production'

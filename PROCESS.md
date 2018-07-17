@@ -38,7 +38,7 @@
     Merge master into branch and resolve conflicts as needed before PR review if
     it is not automatically mergeable without conflicts.
 
-7. Ask someone to review your code, preferably using Slack.
+7. Ask someone to review your code.
 
 8. Make any necessary changes.
 
