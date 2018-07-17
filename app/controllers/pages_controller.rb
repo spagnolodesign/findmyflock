@@ -11,6 +11,12 @@ class PagesController < ApplicationController
   def home
   end
 
+  def jobsamples
+    # 218 Gusto, 21 Automattic, 13 Khan, 154 slalom,
+    @jobs = Job.where(id: [1,2,3,4])
+  end
+
+
   private
 
   def valid_page?

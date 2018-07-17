@@ -216,3 +216,29 @@
     opacity: 0;
   }
 }
+
+.job-samples-page {
+  margin-right: 20vw;
+  margin-left: 20vw;
+  margin-top: 5vh;
+  margin-bottom: 8vh;
+
+}
+
+.job-sample {
+  background-color: white;
+  padding: 8vh;
+  padding-bottom: 4vh;
+  border-radius: 2%;
+  max-width: 650px;
+  margin-bottom: 13vh;
+  box-shadow: 10px 10px 69px -26px rgba(138, 138, 138, 0.75);
+}
+
+
+@media (max-width: 850px) {
+  .job-samples-page {
+    margin-right: 8vw;
+    margin-left: 8vw;
+  }
+}

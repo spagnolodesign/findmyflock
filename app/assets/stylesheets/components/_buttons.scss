@@ -20,6 +20,22 @@
   text-transform: uppercase;
 }
 
+.button-sample {
+  padding: 10px 25px;
+  border: 1px solid #ffa67b;
+  transition: 0.1s background-color ease-in-out;
+  text-decoration: none;
+  color: white;
+  letter-spacing: 5px;
+  background-color: #ffa67b;
+  font-weight: 400;
+  font-family: "Montserrat", "sans-serif";
+  font-size: 10px;
+  border-radius: 0.25rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 
 .btn-orange:hover {
   background-color: #ff935f;
