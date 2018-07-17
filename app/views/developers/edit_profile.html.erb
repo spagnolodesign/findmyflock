@@ -39,14 +39,12 @@
             <h5>Upload a resume</h5>
             <div class="form-row">
               <div class="col">
-                <p>The resume you upload will automatically be sent to an employer when you decide to apply to a job posting.</p>
+                <p>The latest resume uploaded will automatically be sent to an employer when you decide to apply to a job posting.</p>
                 <%= f.input :resumes, as: :file, label: false, :input_html => {multiple: true , :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "application/pdf" } %>
                 <% if @developer.resumes.attached? %>
-                  <p>Uploaded resumes:</p>
-                  <% @developer.resumes.each do |resume| %>
-                    <%= link_to rails_blob_path(resume, disposition: "attachment") do %>
+                  <p>Uploaded resume:</p>
+                    <%= link_to rails_blob_path(@developer.resumes.last, disposition: "attachment") do %>
                       <i class="far fa-file-pdf fa-3x"></i>
-                    <% end %>
                   <% end %>
                 <% else %>
                 <% end %>
