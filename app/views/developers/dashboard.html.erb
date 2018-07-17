@@ -29,7 +29,7 @@
             <div class="my-1 d-none d-sm-flex" id="params-container"></div>
             <div class="container matched-jobs" id="jobs-list">
               <% if !@jobs.empty? %>
-                <p class="d-sm-none"><a href="#filters" id="filter-show"><strong>Change Filters</strong></a></p>
+                <p class="d-sm-none w-100 text-center"><a href="#filters" id="filter-show"><strong>Change Filters</strong></a></p>
                 <p><%= @jobs.size %> jobs match your request</p>
                 <%= render @jobs %>
               <% else %>

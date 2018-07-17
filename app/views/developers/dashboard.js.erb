@@ -4,7 +4,7 @@ var el = document.getElementById('jobs-list');
 var string = document.getElementById('size-string');
 var filterCount = "<%= params.slice(:benefits, :cultures, :cities, :remote, :salaries).values.flatten.count %>";
 var filterButton = `
-  <p class="d-sm-none"><a href="#filters" id="filter-show"><strong>
+  <p class="d-sm-none w-100 text-center"><a href="#filters" id="filter-show"><strong>
     Change Filters${filterCount ? ` (${filterCount})` : ''}
   </strong></a></p>
 `;
