@@ -122,6 +122,10 @@
   border: none;
   width: 100%;
 
+  label {
+    display: block;
+    margin: 0;
+  }
   .btn-link {
     text-decoration: none;
     font-family: Roboto;

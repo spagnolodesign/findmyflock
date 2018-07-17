@@ -38,7 +38,7 @@ class DevelopersController < ApplicationController
     @cities = @jobs.distinct.pluck(:city).flatten.uniq
     @jobs = @jobs.filter_by_benefits(params[:benefits]) if params[:benefits].present?
     @jobs = @jobs.filter_by_cultures(params[:cultures]) if params[:cultures].present?
-    @jobs = @jobs.where(city:  params[:cities]) if params[:cities].present?
+    @jobs = @jobs.where(city: params[:cities]) if params[:cities].present?
     if params[:remote].present?
       params[:remote] = ["remote"] if params[:remote] == ["Remote"]
       params[:remote] = ["office"] if params[:remote] == ["Office"]
