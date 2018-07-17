@@ -1,4 +1,13 @@
-SKILLS = ['AR', 'VR', 'Cybersecurity', 'Management', 'Kubernetes', 'Docker', 'Architecture', 'Mentorship', 'AWS', 'Java', 'Python', 'C', 'Ruby', 'Javascript', 'JQuery', 'AngularJS', 'Node.js', 'React', 'PHP', 'WordPress', 'HTML', 'CSS', 'Objective-C', 'Swift', 'iOS', 'Android', 'Kotlin', 'SQL', '.NET', 'R', 'Perl', 'MATLAB', 'Erlang', 'Scala', 'Bash', 'Clojure', 'Haskell', 'Groovy', 'DevOps', 'Systems', 'Apex', 'SAS', 'Crystal', 'git', 'GitHub', 'Project Management', 'Product Management', 'Engineering Management', 'CTO', 'User Experience Design / UX', 'User Interface Design / UI', 'Quality Assurance / QA', 'Automated QA', 'Ruby on Rails', 'SaaS', 'React Native', 'Technical Sales', 'Outbound Sales', 'Business Development', 'Training', 'Django'].freeze
+SKILLS = [
+  'AR', 'VR', 'Cybersecurity', 'Management', 'Kubernetes', 'Docker', 'Architecture', 'Mentorship',
+  'AWS', 'Java', 'Python', 'C', 'Ruby', 'Javascript', 'JQuery', 'AngularJS', 'Node.js', 'React',
+  'PHP', 'WordPress', 'HTML', 'CSS', 'Objective-C', 'Swift', 'iOS', 'Android', 'Kotlin', 'SQL',
+  '.NET', 'R', 'Perl', 'MATLAB', 'Erlang', 'Scala', 'Bash', 'Clojure', 'Haskell', 'Groovy',
+  'DevOps', 'Systems', 'Apex', 'SAS', 'Crystal', 'git', 'GitHub', 'Project Management',
+  'Product Management', 'Engineering Management', 'CTO', 'User Experience Design / UX',
+  'User Interface Design / UI', 'Quality Assurance / QA', 'Automated QA', 'Ruby on Rails', 'SaaS',
+  'React Native', 'Technical Sales', 'Outbound Sales', 'Business Development', 'Training', 'Django'
+].freeze
 DEVSKILLS = [
   {
     "name": "amazonwebservices",
@@ -963,11 +972,24 @@ DEVSKILLS = [
   }
 ]
 
-EMPLOYMENT_TYPE = ['Full time', 'Part time', 'Contracted', 'Casual', 'Seasonal', 'Internship'].freeze
+EMPLOYMENT_TYPE = [
+  'Full time', 'Part time', 'Contracted', 'Casual', 'Seasonal', 'Internship'
+].freeze
 
-BENEFITS = ['Office Dogs', 'Equity', 'Remote', '30+ Days Parental Leave', '60+ Days Parental Leave', '90+ Days Parental Leave', 'Flexible Hours', 'Social Mission', 'Environmental Mission', '401(k)', '401(k) Matching', "100\% Covered Health Insurance", "80\%+ Covered Health Insurance", 'Dental Insurance', 'Vision Insurance', 'Life Insurance', 'Trans-Inclusive Healthcare', 'Professional Development Budget', 'Unlimited Vacation', '30+ Days Vacation', 'Lunch Provided', 'Beach Within 60 Minutes', 'Mountain Within 60 Minutes', 'In-Office Gym', 'Flat Heirarchy', 'Commuter Coverage'].freeze
+BENEFITS = [
+  'Office Dogs', 'Equity', 'Remote', '30+ Days Parental Leave', '60+ Days Parental Leave',
+  '90+ Days Parental Leave', 'Flexible Hours', 'Social Mission', 'Environmental Mission',
+  '401(k)', '401(k) Matching', '100% Covered Health Insurance', '80%+ Covered Health Insurance',
+  'Dental Insurance', 'Vision Insurance', 'Life Insurance', 'Trans-Inclusive Healthcare',
+  'Professional Development Budget', 'Unlimited Vacation', '30+ Days Vacation', 'Lunch Provided',
+  'Beach Within 60 Minutes', 'Mountain Within 60 Minutes', 'In-Office Gym', 'Flat Heirarchy',
+  'Commuter Coverage'
+].freeze
 
-CULTURES = ['family-like team', 'Cubicles', 'No cubicles' , 'company outings' , 'beer on tap', 'ping pong', 'Game Nights', 'pair programming', 'not pair programming'].freeze
+CULTURES = [
+  'family-like team', 'Cubicles', 'No cubicles', 'company outings', 'beer on tap', 'ping pong',
+  'Game Nights', 'pair programming', 'not pair programming'
+].freeze
 
 DEVSKILLS.each do |skill|
   Competence.create(value: skill[:name])
@@ -981,48 +1003,45 @@ end
 
 p "Created #{Benefit.all.count} benefits"
 
-
 CULTURES.each do |value|
   Culture.create(value: value)
 end
 
 p "Created #{Culture.all.count} cultures"
 
-
 case Rails.env
 when "development"
-
-  ## Running only in Development
   5.times do
-    Recruiter.create!(email: Faker::Internet.email, password:"Flock-2018", password_confirmation:"Flock-2018")
-  end
-
-  5.times do
-    company = Company.create(url: Faker::Internet.url, name: Faker::Company.name, industry: Faker::Company.industry)
-    r = Recruiter.all.sample
-    r.company = company
-    r.save
+    company = Company.create(
+      url: Faker::Internet.url,
+      name: Faker::Company.name,
+      industry: Faker::Company.industry
+    )
     puts "created company #{company.name}"
   end
 
+  5.times do
+    r = Recruiter.new(
+      email: Faker::Internet.email,
+      password: "password",
+      company: Company.all.sample,
+      confirmed_at: Time.now.utc
+    )
+    r.save validate: false
+  end
+  r = Recruiter.new(
+    email: 'recruiter@example.com',
+    password: "password",
+    company: Company.all.sample,
+    confirmed_at: Time.now.utc
+  )
+  r.save validate: false
 
   PLACES = [
-    {city: "Los Angeles",
-      state: "CA",
-      country: "United States"
-    },
-    {city: "Chicago",
-      state: "MI",
-      country: "United States"
-    },
-    {city: "New York",
-      state: "NY",
-      country: "United States"
-    },
-    {city: "San Francisco",
-      state: "CA",
-      country: "United States"
-    }
+    {city: "Los Angeles", state: "CA", country: "United States"},
+    {city: "Chicago", state: "MI", country: "United States"},
+    {city: "New York", state: "NY", country: "United States"},
+    {city: "San Francisco", state: "CA", country: "United States"}
   ]
 
   Company.all.each do |company|
@@ -1063,14 +1082,13 @@ when "development"
     end
 
   end
-  #
-  p "Creating Developer"
+
+  p "Creating Developers"
 
   5.times do
     dev = Developer.new(
       email: Faker::Internet.email,
-      password: 'Developer9)',
-      password_confirmation: 'Developer9)',
+      password: 'password',
       first_name: Faker::Name.first_name,
       last_name: Faker::Name.last_name,
       city: 'Los Angeles',
@@ -1080,28 +1098,27 @@ when "development"
       min_salary: salary = [10_000, 20_000, 30_000].sample,
       remote: [['remote'], ['office'], %w[remote office]].sample,
     )
-   if dev.save
-     p "One developer created"
+    dev.skip_confirmation!
+    dev.save validate: false
+    p "Developer created: #{dev.email}"
     3.times do
-      a = dev.skills.new(name: Competence.all.sample.value, level: rand(3..5))
-      a.save
+      skill = dev.skills.new(name: Competence.all.sample.value, level: rand(3..5))
+      skill.save
     end
-     p "3 skills added"
-   end
+    p "3 skills added"
   end
-
 
   5.times do
     Application.create(
       match: Match.all.sample,
-      message: "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh."
+      message: Faker::Lorem.paragraph
     )
   end
 
-  a = Developer.new(
-    email: "dev@findmyflock.com",
-    password: "Flock-2018",
-    password_confirmation: 'Flock-2018',
+  dev = Developer.new(
+    email: "dev@example.com",
+    password: "password",
+    password_confirmation: 'password',
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     city: 'New York',
@@ -1111,13 +1128,13 @@ when "development"
     min_salary: 10_000,
     remote:  ["remote", "office"]
   )
+  dev.skip_confirmation!
+  dev.save validate: false
 
   p "adding 40 skills"
-
-  a.save
   40.times do
-    a = Developer.last.skills.new(name: Competence.all.sample.value, level: rand(3..5))
-    a.save
+    dev = Developer.last.skills.new(name: Competence.all.sample.value, level: rand(3..5))
+    dev.save
   end
 
   p "Create matches"
@@ -1127,32 +1144,41 @@ when "development"
     end
   end
 
-end
+  Admin.create!(
+    email: "admin@findmyflock.com",
+    password: 'password'
+  )
 
-Admin.create!(
-  email: "info@findmyflock.com",
-  password: Rails.application.credentials.admin_password,
-  password_confirmation: Rails.application.credentials.admin_password
-)
+when 'production'
+  Admin.create!(
+    email: "info@findmyflock.com",
+    password: Rails.application.credentials.admin_password,
+    password_confirmation: Rails.application.credentials.admin_password
+  )
+end
 
 Plan.create(name: "1 Job Posting", stripe_id: "1-job", display_price: (3999.to_f / 100))
 Plan.create(name: "3 Job Postings", stripe_id: "3-jobs", display_price: (9999.to_f / 100))
 
-basic_plan = Stripe::Plan.create(
-  :amount => 3999,
-  :interval => "month",
-  :product => {
-    :name => "1 Job"
-  },
-  :currency => "usd",
-  :id => "1-job"
-)
-gold_plan = Stripe::Plan.create(
-  :amount => 9999,
-  :interval => "month",
-  :product => {
-    :name => "3 Jobs"
-  },
-  :currency => "usd",
-  :id => "3-jobs"
-)
+begin
+  basic_plan = Stripe::Plan.create(
+    amount: 3999,
+    interval: "month",
+    product: {
+      name: "1 Job"
+    },
+    currency: "usd",
+    id: "1-job"
+  )
+  gold_plan = Stripe::Plan.create(
+    amount: 9999,
+    interval: "month",
+    product: {
+      name: "3 Jobs"
+    },
+    currency: "usd",
+    id: "3-jobs"
+  )
+rescue
+  puts 'Plans already exist on Stripe'
+end
