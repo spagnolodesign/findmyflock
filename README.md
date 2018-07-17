@@ -19,7 +19,7 @@ Culture-centric tech job search.
 1. `bundle exec rails db:create db:migrate` - Create Postgres database and migrate.
 1. `bundle exec rails db:seed` - Seed database.
 
-Run the development server and test suite to verify successful deployment. See wiki for QA walkthrough.
+Run the development server and test suite to verify successful deployment. [See wiki for QA walkthrough](https://github.com/findmyflock/www/wiki/Manual-Testing-QA-Checklist).
 
 ## Development server
 - `bundle exec rails server`
