@@ -3,7 +3,8 @@
 one:
   title: MyString
   description: MyText
-  remote: MyText
+  remote:
+    - MyText
   city: MyString
   zip_code: MyString
   state: MyString
@@ -11,16 +12,20 @@ one:
   latitude: 1.5
   longitude: 1.5
   max_salary: 1
-  skills: MyText
+  skills_array:
+    - MyText
   employment_type: MyString
-  benefits: MyText
-  culture: MyText
+  benefits:
+    - MyText
+  cultures:
+    - MyText
   can_sponsor: false
 
 two:
   title: MyString
   description: MyText
-  remote: MyText
+  remote:
+    - MyText
   city: MyString
   zip_code: MyString
   state: MyString
@@ -28,8 +33,11 @@ two:
   latitude: 1.5
   longitude: 1.5
   max_salary: 1
-  skills: MyText
+  skills_array:
+    - MyText
   employment_type: MyString
-  benefits: MyText
-  culture: MyText
+  benefits:
+    - MyText
+  cultures:
+    - MyText
   can_sponsor: false
