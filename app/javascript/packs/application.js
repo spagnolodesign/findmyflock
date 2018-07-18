@@ -13,6 +13,7 @@ import { rangeSalary } from 'packs/developer-form';
 import { formRequest } from 'packs/index-search';
 import { initFormSkill } from 'packs/form-skills';
 import { initFlashAlert } from 'packs/flash';
+import { collapsingButton } from 'packs/collapsing-button';
 
 displayLocationInfo()
 rangeDistance()
@@ -22,3 +23,4 @@ rangeSalary()
 formRequest()
 listParams()
 uncheckFilter()
+collapsingButton()

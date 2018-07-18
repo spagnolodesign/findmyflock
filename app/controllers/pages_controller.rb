@@ -13,7 +13,7 @@ class PagesController < ApplicationController
 
   def jobsamples
     # 218 Gusto, 21 Automattic, 13 Khan, 154 slalom,
-    @jobs = Job.where(id: [1,2,3,4])
+    @jobs = Job.where(id: [218,21,13,154])
   end
 
 
