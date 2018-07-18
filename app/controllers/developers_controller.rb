@@ -16,6 +16,9 @@ class DevelopersController < ApplicationController
 
   def update
     @developer = current_developer
+    if developer_params[:resumes].present?
+      @developer.resumes.destroy_all
+    end
     @developer.update(developer_params)
     @developer.set_url
     @developer.first_login = true
