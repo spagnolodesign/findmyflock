@@ -57,7 +57,7 @@ class ApplicationsController < ApplicationController
   def reject
     @application.rejected!
     DeveloperMailer.application_rejected(@application).deliver if @application.rejected?
-    redirect_to job_application_path(@job), notice: "We've sent an email to the candidate."
+    redirect_to dashboard_companies_path, notice: "We've sent an email to the candidate."
   end
 
   private
