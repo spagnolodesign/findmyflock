@@ -20,7 +20,7 @@
           </p>
         <% else %>
         <%= simple_form_for([@job, @application]) do |f| %>
-          <%= f.input :message,  :input_html => {:rows => 5}, label: "Write a message to the recruiter", required: true %>
+          <%= f.input :message,  :input_html => {:rows => 5}, label: "Write a message to the recruiter at #{@recruiter}", required: true %>
 
           <% if !@developer.resumes.attached? %>
             <%= f.simple_fields_for @developer do |f| %>
