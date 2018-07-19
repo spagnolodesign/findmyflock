@@ -5,7 +5,7 @@
   <p>
     <strong>Avatar:</strong>
     <br>
-      <%= image_tag @developer.avatar.variant(resize: "300x300^", gravity:"center", extent: "300x300") %>
+      <%= image_tag @developer.avatar_thumbnail %>
   </p>
 <% end %>
 <p><b>Email:</b> <%= @developer.email %></p>
