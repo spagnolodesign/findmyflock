@@ -4,20 +4,20 @@ const collapsingButton = () => {
     let descriptions = document.querySelectorAll(".collapsing-description")
 
 
-      buttons.forEach(function(element){
-      element.addEventListener("click", toggleDiv)
+      buttons.forEach(function(button){
+      button.addEventListener("click", toggleDiv)
     });
 
     function toggleDiv(e) {
-      let element = e.target;
-      let desc = document.getElementById(element.dataset.value);
+      let button = e.target;
+      let desc = document.getElementById(button.dataset.value);
       if (desc.classList.contains("expanded")) {
-        element.innerText = "Read More"
+        button.innerText = "Read More"
         desc.classList.remove("expanded")
       }
       else {
         desc.classList.add("expanded")
-        element.innerText = "Close"
+        button.innerText = "Close"
       }
     }
   });
