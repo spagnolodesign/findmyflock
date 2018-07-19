@@ -24,7 +24,7 @@ protected
   end
 
   def disallowed_ip_location
-    # return false unless Rails.env.production?
+    return false unless Rails.env.production?
     country = session[:country] || (session[:country] = lookup_country)
     country.present? and not country.in? allowed_countries
   end
