@@ -23,11 +23,7 @@
             <h5>Profile photo <div style="font-weight: lighter; font-size: 12px">(optional)</div></h5>
             <div class="form-row my-4">
               <div class="col-sm-4 mb-3">
-                <% if @developer.avatar.attached? %>
-                  <%= image_tag @developer.avatar.variant(resize: "300x300^", gravity:"center", extent: "300x300"), class: "d-block w-100" %>
-                <% else %>
-                  <%= image_tag "avatar.jpg", class: "d-block w-100" %>
-                <% end %>
+                <%= image_tag @developer.avatar_thumbnail, class: "d-block w-100" %>
               </div>
               <div class="col-sm-8">
                 <p> It is suggested that you provide a photo that best represents you as an individual or professional, keeping in mind that this need not be a facial photo, but could be your cat, avatar, or favorite line of code. Be professional, but be creative!</p>

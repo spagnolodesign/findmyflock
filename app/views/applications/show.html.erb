@@ -9,7 +9,7 @@
 
       <div class="user-intro mx-auto">
         <div class="avatar">
-          <%= image_tag @developer.avatar.variant(resize: "300x300^", gravity:"center", extent: "300x300"), class: "d-block mx-auto", style: "align-self: center;" if !@developer.avatar.attachment.nil?  %>
+          <%= image_tag @developer.avatar_thumbnail, class: "d-block mx-auto" %>
         </div>
         <div class="user-info">
           <h5 class="pt-3"><%= @developer.full_name %></h5>
