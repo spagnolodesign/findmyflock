@@ -2,9 +2,7 @@ const collapsingButton = () => {
   document.addEventListener("DOMContentLoaded", function(event) {
     let buttons = document.querySelectorAll(".collapsing-button")
     let descriptions = document.querySelectorAll(".collapsing-description")
-
-
-      buttons.forEach(function(button){
+    buttons.forEach(function(button){
       button.addEventListener("click", toggleDiv)
     });
 
