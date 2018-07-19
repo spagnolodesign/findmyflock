@@ -16,9 +16,7 @@ class ApplicationsController < ApplicationController
     set_match
     @is_posted = application_is_posted?(@match)
     @applications_sent = applications_sent_today
-  end
-
-  def edit
+    @recruiter = @job.vetted ? 'Find My Flock' : @job.company.name
   end
 
   def create
@@ -27,7 +25,7 @@ class ApplicationsController < ApplicationController
     @developer = @match.developer
     @company = @match.job.company
     @mail_addresses = @company.recruiters_mail.join(",")
-    
+
     attach_resumes(params[:application][:developer][:resumes],  @developer) if !params[:application][:developer].nil?
 
     if !@developer.resumes.attached?

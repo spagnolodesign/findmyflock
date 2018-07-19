@@ -8,12 +8,6 @@ class JobsController < ApplicationController
     @job = Job.new
   end
 
-  def edit
-  end
-
-  def show
-  end
-
   def create
     @job = Job.new(job_params)
     @job.company = current_recruiter.company
@@ -51,12 +45,6 @@ class JobsController < ApplicationController
       end
     end
 
-  end
-
-  def skills
-  end
-
-  def benefits
   end
 
   private
