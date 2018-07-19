@@ -7,4 +7,6 @@ class Application < ApplicationRecord
   has_one :company, through: :job
   validates :message, length: { maximum: 8000 }
 
+  scope :open, -> { where.not(status: :rejected) }
+
 end
