@@ -26,14 +26,14 @@ class Job < ApplicationRecord
     end
   }
   scope :remote_or_office_jobs, -> (array) {where("remote <@ ARRAY[?]::text[] OR remote @> ARRAY[?]::text[]", array, array)}
-  scope :can_sponsor, -> {where("can_sponsor = true ")}
+  scope :can_sponsor, -> {where("can_sponsor = true")}
   scope :match_skills_type, -> (array) { where.not(skills_array: []).where("skills_array <@ ARRAY[?]::text[]", array) }
   scope :filter_by_salary, -> (value) {where("max_salary >= ?", value)}
   scope :filter_by_benefits, -> (array) { where("benefits @> ARRAY[?]::text[]", array) }
   scope :filter_by_cultures, -> (array) { where("cultures @> ARRAY[?]::text[]", array) }
   scope :filter_by_employment_type, -> (value) { where("employment_type = ?", value) }
   scope :filter_by_city, -> (array) { where(city: array)}
-
+  scope :order_by_vetted, -> { order(vetted: :desc) }
 
   def location
     [city, zip_code, state, country].compact.join(', ')
@@ -50,6 +50,12 @@ class Job < ApplicationRecord
 
   def check_cordinates
     errors.add(:city, "There is a problem with your location. Please try again") if latitude.nil?
+  end
+
+  def toggle_to_vetted
+    if company.vetted?
+      self.vetted = true
+    end
   end
 
 end

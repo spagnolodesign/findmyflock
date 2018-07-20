@@ -1,37 +1,34 @@
-# README
+# Find My Flock
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Culture-centric tech job search.
 
-Things you may want to cover:
+## Technology and Stack
+- [PostgreSQL 10.4](https://www.postgresql.org/docs/current/static/release-10-4.html)
+- [ruby 2.4.3](https://www.ruby-lang.org/en/news/2017/12/14/ruby-2-4-3-released/)
+- [rails 5.2](http://guides.rubyonrails.org/v5.2/)
+- [stripe](https://stripe.com/docs/api)
+- [npm](https://www.npmjs.com/get-npm)
+- [node](https://nodejs.org/) (see `.nvmrc` for version)
+- [yarn](https://yarnpkg.com/en/docs/install)
 
-* Ruby version
+## Setup
+1. `bundle install` - Install ruby dependencies
+1. `nvm use` - Verify you are using the correct version of Node.
+1. `yarn` - Install javscript dependencies
+1. Get the `master.key` file from another developer and add it to the config/ folder.
+1. `bundle exec rails db:create db:migrate` - Create Postgres database and migrate.
+1. `bundle exec rails db:seed` - Seed database.
 
-* System dependencies
+Run the development server and test suite to verify successful deployment. [See wiki for QA walkthrough](https://github.com/findmyflock/www/wiki/Manual-Testing-QA-Checklist).
 
-* Configuration
-  `EDITOR="atom --wait" bin/rails credentials:edit`
+## Development server
+- `bundle exec rails server`
+- View site at `http://localhost:3000/`
+- Use test accounts: `dev@example.com`, `recruiter@example.com`, and `admin@findmyflock.com` with password `password`
 
-* Database creation
+## Testing
+- `bundle exec rails test`
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-  STAGING
-  Deploy from Heroku Dashboard (Deploy -> Select Branch master -> deploy)
-
-  In case of pending migrations or new db changes run:
-  `heroku restart; heroku pg:reset DATABASE --confirm staging-findmyflock;  heroku run rake db:migrate; heroku run rake db:seed`
-
-  PRODUCTION
-  `heroku restart  --app production-find-my-flock;
-  heroku run rake db:migrate --app production-find-my-flock;
-  heroku run rake db:seed --app production-find-my-flock;
-
-
-* ...
+## Development Process
+- See [PROCESS](PROCESS.md)
+- Follow this [style guide](https://github.com/bbatsov/ruby-style-guide)

@@ -6,7 +6,7 @@
 
         <div class="dashboard-header">
           <div class="pb-2 mb-3" style="width: 100%">
-            <h1 class="centered" style="color: #b5b5b5;">Dashboard - <%= @company.name %></h1>
+            <h1 class="centered my-4" style="color: #b5b5b5;"><%= @company.name %></h1>
             <div class="pt-2 centered">
               <%= link_to image_tag('plus.png'), new_job_path, class: "btn-add-job" %> <%= link_to "Add a new job", new_job_path, style: "color: gray;" %>
             </div>
@@ -14,15 +14,15 @@
         </div>
 
         <nav class="nav nav-pills flex-column flex-sm-row mb-4" id="nav-tab" role="tablist">
-          <a class="flex-sm-fill text-sm-center nav-link nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Applications</a>
-          <a class="flex-sm-fill text-sm-center nav-link nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Active jobs</a>
+          <a class="flex-sm-fill text-sm-center nav-link nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="true">My Active Jobs</a>
+          <a class="flex-sm-fill text-sm-center nav-link nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="false">Applications</a>
         </nav>
 
         <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
             <div class="container matched-jobs" id="jobs-list">
 
-              <% @company.applications.each_with_index do |application, index| %>
+              <% @company.applications.open.each_with_index do |application, index| %>
 
               <div class="row centered matched-job">
 
@@ -71,6 +71,8 @@
                     <div class="badge btn-contacted">Contacted</div>
                     <% elsif application.status == "opened" %>
                     <div class="badge btn-opened">Opened</div>
+                    <% elsif application.status == "rejected" %>
+                    <div class="badge btn-pending">Rejected</div>
                     <% else %>
                     <div class="badge btn-pending">New</div>
                     <% end %>
@@ -81,8 +83,7 @@
               <% end %>
             </div>
           </div>
-
-          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
 
             <% @jobs.each_with_index do |job| %>
 

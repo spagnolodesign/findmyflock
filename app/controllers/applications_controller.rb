@@ -1,8 +1,8 @@
 class ApplicationsController < ApplicationController
   before_action :authenticate_developer!, only:[:new, :create]
   before_action :authenticate_recruiter!, only:[:show, :contact]
-  before_action :set_application, only: [:show, :contact]
-  before_action :set_job, only: [:new, :create]
+  before_action :set_application, only: [:show, :contact, :reject]
+  before_action :set_job, only: [:new, :create, :reject]
   before_action :set_match, only: [:new, :create]
 
   def show
@@ -15,9 +15,8 @@ class ApplicationsController < ApplicationController
     @developer = current_developer
     set_match
     @is_posted = application_is_posted?(@match)
-  end
-
-  def edit
+    @applications_sent = applications_sent_today
+    @recruiter = @job.vetted ? 'Find My Flock' : @job.company.name
   end
 
   def create
@@ -38,7 +37,7 @@ class ApplicationsController < ApplicationController
         format.html { redirect_to new_job_application_path(@match.job) }
         CompanyMailer.new_application_advise(@mail_addresses, @match, @developer).deliver
       else
-        format.html { render :new }
+        format.html { render :new, alert: "Something went wrong please try again." }
       end
     end
   end
@@ -53,7 +52,23 @@ class ApplicationsController < ApplicationController
     end
   end
 
+  def reject
+    @application.rejected!
+    DeveloperMailer.application_rejected(@application).deliver if @application.rejected?
+    redirect_to dashboard_companies_path, notice: "We've sent an email to the candidate."
+  end
+
   private
+
+  def applications_sent_today
+    count = 0
+    matches = Match.where(developer: current_developer)
+    matches.each do |match|
+      application = Application.where(match: match, created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+      count += 1 if !application.empty?
+    end
+    count
+  end
 
   def attach_resumes(resumes, developer)
     if resumes.any?

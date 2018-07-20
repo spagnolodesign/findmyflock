@@ -5,9 +5,10 @@
   <p>
     <strong>Avatar:</strong>
     <br>
-      <%= image_tag @developer.avatar.variant(resize: "300x300^", gravity:"center", extent: "300x300") %>
+      <%= image_tag @developer.avatar_thumbnail %>
   </p>
 <% end %>
+<p><b>Email:</b> <%= @developer.email %></p>
 <p><b>Need us permit:</b> <%= @developer.need_us_permit %></p>
 <p><b>Linkedin url:</b> <%= @developer.linkedin_url %></p>
 <p><b>Github url:</b> <%= @developer.github_url %></p>
@@ -17,7 +18,7 @@
 <p><b>Remote:</b> <%= @developer.remote %></p>
 
 <h5>Skills</h5>
-<%= render 'admin/shared/skills_list', skills: @developer.skills %>
+<%= render 'admin/shared/skills_list', skills: @developer.skills_array %>
 <%= render 'admin/developers/matches' %>
 
 <br />

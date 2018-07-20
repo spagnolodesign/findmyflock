@@ -1,6 +1,6 @@
 class DevelopersController < ApplicationController
   before_action :authenticate_developer!, only: [:edit_profile, :add_skills, :update, :dashboard]
-
+  before_action :is_profile_complete?, only: [:dashboard]
 
   def show
     @developer = Developer.find(params[:id])
@@ -16,6 +16,9 @@ class DevelopersController < ApplicationController
 
   def update
     @developer = current_developer
+    if developer_params[:resumes].present?
+      @developer.resumes.destroy_all
+    end
     @developer.update(developer_params)
     @developer.set_url
     @developer.first_login = true
@@ -38,7 +41,7 @@ class DevelopersController < ApplicationController
     @cities = @jobs.distinct.pluck(:city).flatten.uniq
     @jobs = @jobs.filter_by_benefits(params[:benefits]) if params[:benefits].present?
     @jobs = @jobs.filter_by_cultures(params[:cultures]) if params[:cultures].present?
-    @jobs = @jobs.where(city:  params[:cities]) if params[:cities].present?
+    @jobs = @jobs.where(city: params[:cities]) if params[:cities].present?
     if params[:remote].present?
       params[:remote] = ["remote"] if params[:remote] == ["Remote"]
       params[:remote] = ["office"] if params[:remote] == ["Office"]
@@ -46,6 +49,13 @@ class DevelopersController < ApplicationController
       @jobs = @jobs.where(remote: params[:remote])
     end
     @jobs = @jobs.filter_by_salary(params[:salaries]) if params[:salaries].present?
+    @jobs = @jobs.sort_by { |j| j.vetted ? 0 : 1 }
+  end
+
+  def is_profile_complete?
+    if current_developer.first_name.nil? || current_developer.last_name.nil? || current_developer.skills_array.empty?
+      redirect_to edit_profile_developers_path, alert: "Please compleate your profile! Make sure to add some skills."
+    end
   end
 
   private

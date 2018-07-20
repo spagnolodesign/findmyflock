@@ -1,0 +1,7 @@
+<h3>Application for <%= @job.title %> at <%= @job.company.name %> from <%= @developer.full_name %></h3>
+<p><%= link_to "Go to company", admin_company_path(@job.company) %> | <%= link_to "Go to Developer", admin_developer_path(@developer) %> | <%= link_to "Go to Job", admin_job_path(@job) %></p>
+
+<h6>Status:</h6>
+<p><%= @application.status %></p>
+<h6>Message from canditate:</h6>
+<p><%= @application.message %></p>

@@ -4,19 +4,14 @@ class JobsController < ApplicationController
   before_action :authorize_action, only: [:edit, :update, :skills, :benefits]
 
   def new
+    redirect_to new_subscriber_path if !current_recruiter.company.is_allowed_member
     @job = Job.new
-  end
-
-  def edit
-  end
-
-  def show
   end
 
   def create
     @job = Job.new(job_params)
     @job.company = current_recruiter.company
-    
+    @job.toggle_to_vetted
     step = params[:job][:navigate_to]
     respond_to do |format|
       if @job.save
@@ -50,12 +45,6 @@ class JobsController < ApplicationController
       end
     end
 
-  end
-
-  def skills
-  end
-
-  def benefits
   end
 
   private

@@ -1,16 +1,16 @@
 <div class="card filter-card">
   <div class="card-header" id="heading-<%= collapse_name %>">
     <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#<%= collapse_name %>" aria-expanded="false" aria-controls="<%= collapse_name %>">
-      <%= title %>
+      <i class="fas fa-plus"></i> <%= title %>
     </button>
   </div>
 
   <div id="<%= collapse_name %>" class="collapse" aria-labelledby="heading<%= collapse_name %>" data-parent="#accordion">
     <div class="card-body">
       <% dataset.each do |name| %>
-        <div class="checkbox">
+        <label class="checkbox">
           <%= check_box_tag value, name %> <%= name %>
-        </div>
+        </label>
       <% end %>
     </div>
   </div>

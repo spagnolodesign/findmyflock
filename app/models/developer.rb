@@ -18,6 +18,12 @@ class Developer < ApplicationRecord
   before_update :check_cordinates, if: :city_changed?
   before_update :set_mobility
 
+  DEFAULT_AVATAR = "avatar.jpg"
+
+  def avatar_thumbnail
+    return DEFAULT_AVATAR unless avatar.attachment.present?
+    avatar.variant combine_options: {resize: "300x300^", gravity: "center", extent: "300x300"}
+  end
 
   def developer_location
     [city, zip_code, state, country].compact.join(', ')
@@ -68,19 +74,23 @@ class Developer < ApplicationRecord
   end
 
   def matched_job
-    if full_mobility
-      if need_us_permit
-        Job.active.remote_or_office_jobs(remote).match_skills_type(skills_array).can_sponsor
-      else
-        Job.active.remote_or_office_jobs(remote).match_skills_type(skills_array)
-      end
+    if remote === ["remote"]
+      Job.active.remote_or_office_jobs(remote).match_skills_type(skills_array)
     else
-      if need_us_permit
-        Job.active.check_location(mobility, latitude, longitude).remote_or_office_jobs(remote).match_skills_type(skills_array).can_sponsor
+      if full_mobility
+        Job.active.remote_or_office_jobs(remote).match_skills_type(skills_array)
       else
-        Job.active.check_location(mobility, latitude, longitude).remote_or_office_jobs(remote).match_skills_type(skills_array)
+        jobs_near_me = Job.active.check_location(mobility, latitude, longitude).remote_or_office_jobs(remote)
+        jobs_remote = Job.active.remote_or_office_jobs(remote).match_skills_type(skills_array)
+        jobs = jobs_near_me.merge(jobs_remote)
+        if need_us_permit
+          jobs.can_sponsor
+        else
+          jobs
+        end
       end
     end
+
   end
 
 
@@ -108,8 +118,5 @@ class Developer < ApplicationRecord
       end
     end
   end
-
-
-
 
 end

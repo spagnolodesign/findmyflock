@@ -23,11 +23,7 @@
             <h5>Profile photo <div style="font-weight: lighter; font-size: 12px">(optional)</div></h5>
             <div class="form-row my-4">
               <div class="col-sm-4 mb-3">
-                <% if @developer.avatar.attached? %>
-                  <%= image_tag @developer.avatar.variant(resize: "300x300^", gravity:"center", extent: "300x300"), class: "d-block w-100" %>
-                <% else %>
-                  <%= image_tag "avatar.jpg", class: "d-block w-100" %>
-                <% end %>
+                <%= image_tag @developer.avatar_thumbnail, class: "d-block w-100" %>
               </div>
               <div class="col-sm-8">
                 <p> It is suggested that you provide a photo that best represents you as an individual or professional, keeping in mind that this need not be a facial photo, but could be your cat, avatar, or favorite line of code. Be professional, but be creative!</p>
@@ -42,11 +38,13 @@
                 <p>The latest resume uploaded will automatically be sent to an employer when you decide to apply to a job posting.</p>
                 <%= f.input :resumes, as: :file, label: false, :input_html => {multiple: true , :data => {"direct-upload-url": "#{root_url}rails/active_storage/direct_uploads" }, accept: "application/pdf" } %>
                 <% if @developer.resumes.attached? %>
-                  <p>Uploaded resume:</p>
-                    <%= link_to rails_blob_path(@developer.resumes.last, disposition: "attachment") do %>
+                 <p>Uploaded resumes:</p>
+                <% @developer.resumes.each do |resume| %>
+                   <%= link_to rails_blob_path(resume, disposition: "attachment") do %>
                       <i class="far fa-file-pdf fa-3x"></i>
+                    <% end %>
                   <% end %>
-                <% else %>
+                  <% else %>
                 <% end %>
               </div>
             </div>
@@ -96,7 +94,7 @@
               <%= f.input :country, input_html: { id: "country" }, as: :string %>
               <div id="select-distance" class="hidden">
                 <h5 class="mt-5">How far are you willing to commute? <span id="range-distance" class="float-right"><%= @developer.mobility%> Mi</span></h5>
-                <%= f.input :mobility, input_html: { type: "range", value: "#{@developer.mobility}", min: 5, max: 200, step: 10 }, label: false %>
+                <%= f.input :mobility, input_html: { type: "range", value: "#{@developer.mobility.nil? ? 35 : @developer.mobility }", min: 5, max: 200, step: 10 }, label: false %>
               </div>
               <%= f.input :full_mobility, label: "I don't care about distance" %>
             </div>

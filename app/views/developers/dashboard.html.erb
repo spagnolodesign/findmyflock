@@ -1,111 +1,106 @@
 <div class="container-fluid user-dashboard-container">
-  <div id ="dashboard-container">
+  <div id="dashboard-container">
     <div class="row">
-
-      <nav class="col-md-3 d-none pt-3 d-md-block bg-white sidebar" style="border-right: 1px solid #f1f1f1;">
-        <h5 class="h6 pl-3 pt-2" style="color: #6c757d">Filter by:</h5>
-        <div class="accordion" id="accordion">
+      <nav class="filters">
+        <h5 class="h6 pl-3 pt-2 my-3 sticky-top" style="color: #6c757d;">Filter by:</h5>
+        <div class="accordion sticky-top" style="" id="accordion">
           <%= form_for(:developer, :url => { :action => "dashboard" }, :html => {:method => :get, id: "filter"}, remote: true) do |f| %>
+            <%= render "utils/checkboxes_filter", title: "Benefits", dataset: @benefits, value: "benefits[]", collapse_name: "benefitsCollapse" %>
+            <%= render "utils/checkboxes_filter", title: "Cultures", dataset: @cultures, value: "cultures[]", collapse_name: "culturesCollapse" %>
+            <%= render "utils/checkboxes_filter", title: "Cities", dataset: @cities, value: "cities[]", collapse_name: "citiesCollapse" %>
+            <%= render "utils/checkboxes_filter", title: "Salary", dataset: @salaries, value: "salaries[]", collapse_name: "salaryCollapse" %>
 
-          <%= render "utils/checkboxes_filter", title: "Benefits", dataset: @benefits, value: "benefits[]", collapse_name: "benefitsCollapse" %>
-          <%= render "utils/checkboxes_filter", title: "Cultures", dataset: @cultures, value: "cultures[]", collapse_name: "culturesCollapse" %>
-          <%= render "utils/checkboxes_filter", title: "Cities", dataset: @cities, value: "cities[]", collapse_name: "citiesCollapse" %>
-          <%= render "utils/checkboxes_filter", title: "Salary", dataset: @salaries, value: "salaries[]", collapse_name: "salaryCollapse" %>
-
-          <% if @developer.remote == ["remote", "office"] %>
-          <%= render "utils/checkboxes_filter", title: "Remote/Office", dataset: ["Remote", "Office", "Both"], value: "remote[]", collapse_name: "remoteCollapse" %>
-          <% end %>
+            <% if @developer.remote == ["remote", "office"] %>
+              <%= render "utils/checkboxes_filter", title: "Remote/Office", dataset: ["Remote", "Office", "Both"], value: "remote[]", collapse_name: "remoteCollapse" %>
+            <% end %>
           <% end %>
         </div>
+        <div class="d-sm-none my-4 text-center"><a href="#nav-home" id="filter-hide" class="btn-orange">Apply Filters</a></div>
       </nav>
 
-      <div role="main" class="col-md-9 col-lg-9 pt-3 px-4 mx-auto" style="max-width: 90%;">
-        <div class="dashboard-header">
-          <h5>Welcome, <%= @developer.first_name %>!</h5>
-        </div>
-        <nav class="nav nav-pills flex-column flex-sm-row mb-4" id="nav-tab" role="tablist">
+      <div role="main" class="col-md-9 col-lg-9 pt-3 px-sm-4 mx-auto">
+        <nav class="nav nav-pills flex-column flex-sm-row mb-3" id="nav-tab" role="tablist">
           <a class="flex-sm-fill text-sm-center nav-link nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Matched Jobs</a>
           <a class="flex-sm-fill text-sm-center nav-link nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Applications</a>
         </nav>
 
-        <div class="d-flex my-1" id="params-container"></div>
-
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="my-1 d-none d-sm-flex" id="params-container"></div>
             <div class="container matched-jobs" id="jobs-list">
               <% if !@jobs.empty? %>
-              <p><%= @jobs.size %> jobs match your request</p>
-              <%= render @jobs %>
+                <p class="d-sm-none w-100 text-center"><a href="#filters" id="filter-show"><strong>Change Filters</strong></a></p>
+                <p><%= @jobs.size %> jobs match your request</p>
+                <%= render @jobs %>
               <% else %>
-              <div class="text-center">
-                <h5>What's next?</h5>
-                <p>Thanks for completing your profile! Congrats, you are on your way to finding your flock and flying higher together. <br>
-                 No jobs match your profile right now, but more companies are joining us every day. When a job matching your skills comes up we will email you.
-                </p>
-              </div>
+                <div class="text-center">
+                  <h5>What's next?</h5>
+                  <p>Thanks for completing your profile! Congrats, you are on your way to finding your flock and flying higher together. <br>
+                   No jobs match your profile right now, but more companies are joining us every day. When a job matching y our skills comes up we will email you.
+                  </p>
+                </div>
               <% end %>
             </div>
           </div>
 
           <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <% @developer.applications.each_with_index do |application, index| %>
+              <div class="container justify-content-center matched-job">
+                <div class="row centered">
 
-
-           <% @developer.applications.each_with_index do |application, index| %>
-           <div class="container justify-content-center matched-job">
-             <div class="row centered">
-
-              <div class="col-xs-11 col-sm-11 col-md-5">
-                <h4><%= application.match.job.title %></h4>
-                <h5 class="text-muted"><%= application.match.job.company.name %></h5>
-                <p class="text-muted">
-                  <%= application.match.job.city %>
-                  <% if application.match.job.remote == ["remote"] %>
-                  - Remote
-                  <% elsif application.match.job.remote == ["office"] %>
-                  - Office
-                  <% elsif application.match.job.remote == ["remote", "office"]%>
-                  - Office & Remote
-                  <% end %>
-                </div>
-              </p>
-
-              <div class="col-xs-12 col-sm-12 col-md-4 matched-job-skills">
-                <h5 class="matched-job-skills-title">Main skills</h5>
-                <div class="row">
-                  <table class="table">
-                    <tbody>
-                      <% application.match.job.skills.each do |skill| %>
-                      <tr>
-                        <td><i class="devicon-<%= skill.name %>-plain colored"></i></td>
-                        <td><%= skill.name %></td>
-                        <td><%= skill.level %></td>
-                      </tr>
+                  <div class="col-xs-11 col-sm-11 col-md-5">
+                    <h4><%= application.match.job.title %></h4>
+                    <h5 class="text-muted"><%= application.match.job.company.name %></h5>
+                    <p class="text-muted">
+                      <%= application.match.job.city %>
+                      <% if application.match.job.remote == ["remote"] %>
+                        - Remote
+                      <% elsif application.match.job.remote == ["office"] %>
+                        - Office
+                      <% elsif application.match.job.remote == ["remote", "office"] %>
+                        - Office & Remote
                       <% end %>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+                    </p>
+                  </div>
 
-              <div class="col-xs-12 col-sm-12 col-md-3">
-                <h5 class="matched-job-skills-title">Current state</h5>
-                <div class="application-buttons">
-                  <% if application.status == "contacted" %>
-                  <%= link_to "Contacted", new_job_application_path(application.match.job), class:"badge btn-contacted", style: ":hover {color: yellow}"  %>
-                  <% elsif application.status == "opened" %>
-                  <%= link_to "Opened", new_job_application_path(application.match.job), class:"badge btn-opened"  %>
-                  <% else %>
-                  <%= link_to "Pending", new_job_application_path(application.match.job), class:"badge btn-pending", style: ":hover {color: yellow}"  %>
-                  <% end %>
+                  <div class="col-xs-12 col-sm-12 col-md-4 matched-job-skills">
+                    <h5 class="matched-job-skills-title">Main skills</h5>
+                    <div class="row">
+                      <table class="table">
+                        <tbody>
+                          <% application.match.job.skills.each do |skill| %>
+                            <tr>
+                              <td><i class="devicon-<%= skill.name %>-plain colored"></i></td>
+                              <td><%= skill.name %></td>
+                              <td><%= skill.level %></td>
+                            </tr>
+                          <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-12 col-md-3">
+                    <h5 class="matched-job-skills-title">Current state</h5>
+                    <div class="application-buttons">
+                      <% if application.status == "contacted" %>
+                        <span class="badge btn-contacted">Contacted</span>
+                      <% elsif application.status == "opened" %>
+                        <span class="badge btn-opened">Opened</span>
+                      <% elsif application.status == "rejected" %>
+                        <span class="badge btn-pending">Rejected</span>
+                      <% else %>
+                        <span class="badge btn-pending">Pending</span>
+                      <% end %>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+            <% end %>
           </div>
-          <% end %>
-
-
         </div>
       </div>
     </div>
   </div>
-</div>
+  <%= render "shared/vetted_modal" %>
 </div>

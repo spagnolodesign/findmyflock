@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_10_035815) do
+ActiveRecord::Schema.define(version: 2018_07_05_043753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2018_06_10_035815) do
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "vetted", default: false
   end
 
   create_table "competences", force: :cascade do |t|
@@ -147,6 +148,7 @@ ActiveRecord::Schema.define(version: 2018_06_10_035815) do
     t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "vetted", default: false
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
@@ -157,6 +159,14 @@ ActiveRecord::Schema.define(version: 2018_06_10_035815) do
     t.datetime "updated_at", null: false
     t.index ["developer_id"], name: "index_matches_on_developer_id"
     t.index ["job_id"], name: "index_matches_on_job_id"
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.string "stripe_id", null: false
+    t.string "name", null: false
+    t.decimal "display_price", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "recruiters", force: :cascade do |t|
@@ -193,9 +203,26 @@ ActiveRecord::Schema.define(version: 2018_06_10_035815) do
     t.index ["skillable_type", "skillable_id"], name: "index_skills_on_skillable_type_and_skillable_id"
   end
 
+  create_table "subscribers", force: :cascade do |t|
+    t.string "stripe_customer_id", null: false
+    t.string "stripe_subscription_id", null: false
+    t.datetime "subscribed_at"
+    t.datetime "subscription_expires_at"
+    t.integer "plan_id", null: false
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "company_id"
+    t.index ["company_id"], name: "index_subscribers_on_company_id"
+    t.index ["plan_id"], name: "plans_for_subsribers"
+    t.index ["subscribed_at"], name: "subscribed_at_for_subscribers"
+    t.index ["subscription_expires_at"], name: "expiring_subscritions_on_subscribers"
+  end
+
   add_foreign_key "applications", "matches"
   add_foreign_key "jobs", "companies"
   add_foreign_key "matches", "developers"
   add_foreign_key "matches", "jobs"
   add_foreign_key "recruiters", "companies"
+  add_foreign_key "subscribers", "companies"
 end

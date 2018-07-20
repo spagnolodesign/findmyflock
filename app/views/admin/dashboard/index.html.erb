@@ -1,1 +1,54 @@
 <h1>Dashboard</h1>
+<br />
+
+<div class="row">
+
+  <div class="col-md-4 mb-2">
+    <div class="card">
+      <div class="card-header">
+       Developers
+      </div>
+      <div class="card-body">
+        <h6>Total: <%= @developers_count %></h6>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-2">
+    <div class="card">
+      <div class="card-header">
+       Companies
+      </div>
+      <div class="card-body">
+        <h6>Total: <%= @companies_count %></h6>
+        <h6>Active members: <%= @members.where(status:"active").count %></h6>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-2">
+    <div class="card">
+      <div class="card-header">
+       Jobs
+      </div>
+      <div class="card-body">
+        <h6>Total: <%= @jobs.count %></h6>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-2">
+    <div class="card">
+      <div class="card-header">
+       Applications
+      </div>
+      <div class="card-body">
+        <h6>Total: <%= @applications.count %></h6>
+        <h6>Pending applications: <%= @applications.where(status:"pending").count %></h6>
+        <h6>Opened applications: <%= @applications.where(status:"opened").count %></h6>
+        <h6>Contacted applications: <%= @applications.where(status:"contacted").count %></h6>
+      </div>
+    </div>
+  </div>
+
+</div>
