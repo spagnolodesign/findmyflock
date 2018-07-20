@@ -216,3 +216,74 @@
     opacity: 0;
   }
 }
+
+.job-samples-page {
+  margin: 20px auto;
+}
+
+.job-sample {
+  background-color: white;
+  padding: 8vh;
+  padding-bottom: 4vh;
+  border-radius: 2%;
+  max-width: 650px;
+  margin-bottom: 13vh;
+  box-shadow: 10px 10px 105px -16px rgba(207, 207, 207, 0.75);
+}
+
+
+@media (max-width: 850px) {
+
+  .job-sample {
+    padding: 1vw;
+  }
+
+  .job-sample {
+    .job-show-titles {
+      padding: 5vw;
+    }
+    .job-show-skills {
+      max-width: 320px;
+    }
+    .underlined-orange-dark {
+      max-width: 495px;
+    }
+  }
+}
+
+
+.collapsing-description {
+  max-height: 300px;
+  overflow: hidden;
+  position: relative;
+  padding-right: 16px;
+  padding-bottom: 50px;
+  padding-left: 16px;
+  margin-bottom: 25px;
+  border-bottom: #d9d9d9 1px solid;
+  transition: max-height 2s ease-in-out;
+}
+
+.collapsing-button {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-top: 50px;
+  padding-bottom: 5px;
+  text-align: center;
+  color: #0096a8;
+  font-weight: 700;
+  font-size: 18px;
+  background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.92) 36%, white 86%);
+  cursor: pointer;
+}
+
+
+.collapsing-button:hover {
+  color: #F4951F;
+}
+
+.expanded {
+  max-height: 3500px;
+}

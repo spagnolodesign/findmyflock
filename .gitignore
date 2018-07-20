@@ -32,6 +32,8 @@ yarn-debug.log*
 
 # Ignore application configuration
 /config/application.yml
+latest.dump
+
 
 # Ignore OS crap
 .DS_Store
