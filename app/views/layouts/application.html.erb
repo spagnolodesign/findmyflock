@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108113887-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-108113887-1');
-  </script>
-
   <meta charset="UTF-8">
   <title>Find My Flock - Jobs You Want.</title>
   <meta name="description" content="We match your skills, experience and desired benefits to the right company for you.">
   <%= favicon_link_tag %>
+
+  <% if Rails.env.production? %>
+    <%= render 'shared/google_analytics' %>
+    <%= render 'shared/hotjar' %>
+  <% end %>
 
   <!-- Facebook Open Graph data -->
   <meta property="og:title" content="Find My Flock - Jobs You Want." />
@@ -43,7 +38,7 @@
 <body>
   <%= render 'shared/flash' %>
 
-  <body class="main-body">
+  <div class="main-body">
 
     <%= render 'shared/navbar/main-navbar' %>
 
@@ -51,11 +46,9 @@
       <%= yield %>
     </main>
 
-
     <%= render 'shared/footer' %>
-    <!--Start of Zendesk Chat Script-->
-    <script type="text/javascript">window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set._.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");$.src="https://v2.zopim.com/?5Yp1No3u0V8MpewvPmILos2VWhFNKsq4";z.t=+new Date;$.type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");</script>
-    <!--End of Zendesk Chat Script-->
+
+    <%= render 'shared/zendesk' %>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
@@ -63,6 +56,6 @@
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.dig(:geocode, :api_key)}&libraries=places" %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
-
-  </body>
-  </html>
+  </div>
+</body>
+</html>
