@@ -1,6 +1,6 @@
 # Find My Flock
 
-Culture-centric tech job search.
+A culture-centric tech job search engine SAS.
 
 ## Technology and Stack
 - [PostgreSQL 10.4](https://www.postgresql.org/docs/current/static/release-10-4.html)
